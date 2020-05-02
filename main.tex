@@ -1,6 +1,6 @@
 % -*- coding: utf-8 -*-
 \documentclass[12pt,openright]{book}
-
+\usepackage{setspace}
 \usepackage{ifxetex}
 \ifxetex
   \usepackage[bookmarksnumbered]{hyperref}
@@ -8,6 +8,7 @@
   \usepackage[unicode,bookmarksnumbered]{hyperref}
 \fi
 \usepackage{fontspec}
+
 \usepackage[emptydoublepage]{NKThesis}   % 中文
 %\usepackage[emptydoublepage,English]{NKThesis} % 英文
 \usepackage{amssymb}
@@ -67,11 +68,14 @@ resume
   校外导师     = 罗翔\quad 教授（张三大学）,
   }
 
+
 \include{abstract}
 \tableofcontents
+\begin{spacing}{1.5}
 \include{manual}
 
 \include{references}
+\end{spacing}
 \include{acknowledgements}
 \include{appendices}
 \include{resume}

@@ -32,7 +32,4 @@ Using Overleaf Link
   * and
   * 尚未进行测试因为没用中文参考文献
 * 替换manual为多个文件，如introduction.tex等
-	* 取消includeonly的限制
-  * 加spacing
-  * 在overleaf上说明github的链接以及联系方式
 

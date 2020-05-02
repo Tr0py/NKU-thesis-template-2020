@@ -1,0 +1,79 @@
+% -*- coding: utf-8 -*-
+\documentclass[12pt,openright]{book}
+
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage[bookmarksnumbered]{hyperref}
+\else
+  \usepackage[unicode,bookmarksnumbered]{hyperref}
+\fi
+\usepackage{fontspec}
+\usepackage[emptydoublepage]{NKThesis}   % 中文
+%\usepackage[emptydoublepage,English]{NKThesis} % 英文
+\usepackage{amssymb}
+%   根据需要选择 biblatex 宏包选项. 
+%\usepackage[maxnames=3,minnames=3,sorting=none]{biblatex}
+%这里加上style=nkthesis
+\usepackage[ maxnames=3,minnames=3,sorting=none,  style = nkthesis]{biblatex}
+% \usepackage{cite}
+\hypersetup{colorlinks=true,
+            pdfborder=0 0 1,
+            citecolor=black,
+            linkcolor=black}
+%\usepackage{tikz}
+\usepackage{amsmath}
+\addbibresource{nkthesis.bib}
+\DeclareBibliographyCategory{cited}
+\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+
+\includeonly{
+abstract,
+manual,
+acknowledgements,
+references,
+appendices,
+resume
+}
+\newtheorem{Theorem}{\hskip 2em 定理}[chapter]
+\newtheorem{Lemma}[Theorem]{\hskip 2em 引理}
+\newtheorem{Corollary}[Theorem]{\hskip 2em 推论}
+\newtheorem{Proposition}[Theorem]{\hskip 2em 命题}
+\newtheorem{Definition}[Theorem]{\hskip 2em 定义}
+\newtheorem{Example}[Theorem]{\hskip 2em 例}
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+\begin{document}
+
+%  设置基本信息
+%  注意:  逗号`,'是项目分隔符. 如果某一项的值出现逗号, 应放在花括号内, 如 {,}
+%
+
+\NKTsetup{%
+  论文题目(中文) = 现代绿色化学中的物理有机问题,
+  论文题目(中文)(第二行) =第二行中文题目，填无则不显示本行,
+%   论文题目(中文)(第二行) =无,
+  论文题目(英文) =  Physical Organic Concerns in Green Chemistry,
+  论文题目(英文)(第二行) =This is Line 2 of English Title,
+%   论文题目(英文)(第三行) =无,
+  学号           = 1610233,
+  姓名          = 张三,
+  学院          = 计算机与控制工程学院,
+  系别          = 计算机科学与技术,
+  专业           = 信息安全,
+  年级          = 2016,
+  论文完成时间   = 2020年5月,
+  指导教师       = 张三\quad 教授,
+  % 如果有校外导师则填写校外导师。没有填无
+%   校外导师      =无,
+  校外导师     = 罗翔\quad 教授（张三大学）,
+  }
+
+\include{abstract}
+\tableofcontents
+\include{manual}
+
+\include{references}
+\include{acknowledgements}
+\include{appendices}
+\include{resume}
+
+\end{document}

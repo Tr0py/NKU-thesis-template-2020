@@ -1,0 +1,249 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 1.7 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{ChenCheChen2001}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {陈建军}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {车建文}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {陈勇}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \field{number}{1}
+  \field{pages}{74\bibrangedash 80}
+  \field{title}{具有频率和振型概率约束的工程结构动力优化设计}
+  \field{volume}{18}
+  \field{type}{J}
+  \field{journaltitle}{计算力学学报}
+  \field{year}{2001}
+  \field{userf}{zh}
+\endentry
+
+\entry{Nadkarni-1992}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Nadkarni}{N.}%
+     {M.~A.}{M.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nair}{N.}%
+     {C.~K.~K.}{C.~K.~K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pandey}{P.}%
+     {V.~N.}{V.~N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Others}{O.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{NMA+1}
+  \strng{fullhash}{NMANCKKPVNOA1}
+  \field{pages}{223\bibrangedash 234}
+  \field{title}{Characterzation of alpha-galactosidase from corynebacterium
+  murisepticum and mechanism of its induction}
+  \field{volume}{38}
+  \field{type}{J}
+  \field{journaltitle}{J Gen App Microbiol}
+  \field{year}{1992}
+\endentry
+
+\entry{Hua-Wang-1973}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {华罗庚}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {王元}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \field{number}{4}
+  \field{pages}{339\bibrangedash 357}
+  \field{title}{论一致分布与近似分析：数论方法(I)}
+  \field{type}{J}
+  \field{journaltitle}{中国科学}
+  \field{year}{1973}
+  \field{userf}{zh}
+\endentry
+
+\entry{ZhuKeZhen}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {竺可桢}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {科学出版社}%
+  }
+  \field{title}{物候学}
+  \list{location}{1}{%
+    {北京}%
+  }
+  \field{type}{M}
+  \field{year}{1973}
+  \field{userf}{zh}
+\endentry
+
+\entry{Huo}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {霍夫斯塔主编}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \name{translator}{1}{}{%
+    {{}%
+     {胡祥壁}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {农业出版社}%
+  }
+  \field{pages}{798\bibrangedash 799}
+  \field{title}{禽病学：下册．第7版}
+  \list{location}{1}{%
+    {北京}%
+  }
+  \field{type}{M}
+  \field{year}{1981}
+  \field{userf}{zh}
+\endentry
+
+\entry{Example}{customf}{}
+  \field{addendum}{Nadkarni M A, Nair C K K, Pandey V N, et al．
+  Characterzation of alpha-galactosidase from corynebacterium murisepticum and
+  mechanism of its induction. J Gen App Microbiol，1992，38：223 $\sim$ 234}
+\endentry
+
+\entry{JiangXiZhou}{patent}{}
+  \name{author}{1}{}{%
+    {{}%
+     {姜锡洲}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \field{number}{88105607.3}
+  \field{title}{一种温热外敷药制备方案}
+  \list{location}{1}{%
+    {中国}%
+  }
+  \field{type}{P}
+  \field{day}{26}
+  \field{month}{07}
+  \field{year}{1989}
+  \field{userf}{zh}
+\endentry
+
+\entry{Timoshenko}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Timoshenko}{T.}%
+     {S.~P.}{S.~P.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {McGraw-Hil1}%
+  }
+  \strng{namehash}{TSP1}
+  \strng{fullhash}{TSP1}
+  \field{pages}{17\bibrangedash 36}
+  \field{title}{Theory of plate and shells．2nd ed.}
+  \list{location}{1}{%
+    {New York}%
+  }
+  \field{type}{M}
+  \field{year}{1959}
+\endentry
+
+\entry{Zhang-Wang}{incollection}{}
+  \name{author}{2}{}{%
+    {{}%
+     {张全福}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {王里青}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \name{bookauthor}{1}{}{%
+    {{}%
+     {郑福寿}{.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {河海大学出版社}%
+  }
+  \field{booktitle}{学报编辑论丛：第2集}
+  \field{pages}{1\bibrangedash 4}
+  \field{title}{“百家争鸣”与理工科学报编辑工作}
+  \list{location}{1}{%
+    {南京}%
+  }
+  \field{type}{M}
+  \field{year}{1991}
+  \field{userf}{zh}
+\endentry
+
+\entry{Ding}{customf}{}
+  \field{addendum}{丁光莹.
+  钢筋混凝土框架结构非线性反应分析的随机模拟分析:
+  [博士学位论文]. 上海：同济大学，2001}
+  \field{userf}{zh}
+\endentry
+
+\entry{GB6447-86}{customf}{}
+  \field{addendum}{全国文献工作标准化技术委员会第六分委员会．GB
+  6447-86 文摘编写规则．北京：中国标准出版社，1986}
+  \field{userf}{zh}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

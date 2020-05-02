@@ -1,0 +1,103 @@
+%   Function:
+%             Re-arrange references in citation order.
+%   Usage:
+%            \usepackage[options]{biborder}
+%   Options:
+%       onlycited:    Do not show un-cited references.
+%       nomark:       Do not mark un-cited references (default: mark with `[uncited]')
+%                     valid only without the option `onlycited'
+%       outputcited:  Output cited references to \jobname.ref
+%
+%
+%
+%   Limitations:
+%       The optional parameter of \bibitem is not supported.
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{biborder}[2009/06/01]
+
+\def\BO@uncitedflag{[uncited]}
+
+\newif\ifBO@showuncited
+\BO@showuncitedtrue
+
+\newif\ifBO@outputcited
+\BO@outputcitedfalse
+
+\DeclareOption{onlycited}{\BO@showuncitedfalse}
+\DeclareOption{nomark}{\def\BO@uncitedflag{}}
+\DeclareOption{outputcited}{\BO@outputcitedtrue}
+\ProcessOptions\relax
+
+\ifBO@outputcited
+  \newwrite\BO@fd@output
+  \if@filesw
+    \immediate\openout\BO@fd@output\jobname.ref
+  \fi
+\fi
+
+\endlinechar \m@ne
+
+\let\BO@bibitem\@bibitem
+
+\newcount\BO@counta
+\newcount\BO@countd
+
+\BO@counta 0
+\def\BO@citation#1{%
+  \ifcsname BO@bibnum@#1\endcsname
+  \else
+    \global\advance\BO@counta 1\relax
+%    \expandafter\xdef\csname b@#1\endcsname{\the\BO@counta}
+    \expandafter\xdef\csname BO@biblabel@\the\BO@counta\endcsname{#1}%
+    \expandafter\xdef\csname BO@bibnum@#1\endcsname{\the\BO@counta}%
+  \fi}
+
+\let\BO@thebibliography\thebibliography
+\def\thebibliography#1{
+   \BO@thebibliography{#1}
+   \BO@prepare}
+
+\long\def\BO@prepare#1\end{#1\bibitem{@}\end}
+\def\BO@at{@}
+
+\def\bibitem#1{
+  \def\BO@temp{#1}
+  \ifx\BO@temp\BO@at\relax
+    \def\BO@temp{\BO@newbib}
+  \else
+    \def\BO@temp{\newbibitem{#1}}
+  \fi
+  \BO@temp}
+
+\long\def\newbibitem#1#2\bibitem{
+  \ifcsname BO@bibnum@#1\endcsname
+    \@namedef{BO@bibline@#1}{#2}
+    \ifBO@outputcited
+       \if@filesw
+          \@temptokena{#2}
+          \immediate\write\BO@fd@output{\string\bibitem{#1}}
+          \immediate\write\BO@fd@output{\the\@temptokena}
+          \immediate\write\BO@fd@output{}
+       \fi
+    \fi
+  \else
+    \ifBO@showuncited
+       \@namedef{BO@bibline@#1}{\BO@uncitedflag #2}
+       \BO@citation{#1}
+    \fi
+  \fi
+  \bibitem}
+
+\def\BO@newbib{
+  \BO@countd 0
+  \loop
+    \ifnum\the\BO@countd<\the\BO@counta
+      \advance\BO@countd 1
+      \edef\BO@temp{\csname BO@biblabel@\the\BO@countd\endcsname}
+      \BO@bibitem{\BO@temp}
+      \csname BO@bibline@\BO@temp\endcsname
+  \repeat}
+
+\endlinechar `\^^M
+\endinput

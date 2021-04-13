@@ -23,6 +23,33 @@ Using Overleaf Link
 2. 添加了楷体粗体(\cukai)
 3. 添加了字号小三(\zihaoxiaosan)
 
+### 2021/04/13
+1. 增加了Times New Roman字体
+2. 增加了本地编译的选项
+
+本地编译方法
+#### 依赖 
+textlive-2020
+##### Linux
+```
+  sudo apt install texlive-full
+```
+##### Windows
+下载texlive-2020并添加到环境变量。
+
+#### 编译
+##### 自动编译
+make
+
+##### 手动编译
+```
+xelatex main
+biber main
+xelatex main
+xelatex main # 两次编译以生成正确的参考文献。
+```
+
+
 ## 0x2 TODO:
 
 * 兼容学校/学院模板？
@@ -32,4 +59,3 @@ Using Overleaf Link
   * and
   * 尚未进行测试因为没用中文参考文献
 * 替换manual为多个文件，如introduction.tex等
-

@@ -283,8 +283,7 @@
   \else
     \@restonecolfalse
   \fi
-  {
-  \addcontentsline{toc}{chapter}{\protect\numberline{目\quad 录}{}}
+  {\addcontentsline{toc}{chapter}{\protect\numberline{目 录}{}}
   \@toclinefalse\chapter*{\contentsname}}
   \@starttoc{toc}%
   \if@restonecol
@@ -732,7 +731,7 @@
   \clearpage
   \vspace*{24pt}
   \centerline{\zihaosi\rmfamily\bfseries 摘\quad 要}
- \addcontentsline{toc}{chapter}{\protect\numberline{摘\quad 要}{}}
+  \addcontentsline{toc}{chapter}{\protect\numberline{摘 要}{}}
   \markboth{摘\quad 要}{摘\quad 要} 
   \vspace*{18pt}
   \fontsize{12}{20}\selectfont}
@@ -743,7 +742,7 @@
   \vspace*{24pt}
 %  \centerline{\zihaosi \jiacu Abstract}
   \centerline{\zihaosi \bfseries Abstract}
- \addcontentsline{toc}{chapter}{\protect\numberline{Abstract}{}}  
+  \addcontentsline{toc}{chapter}{\protect\numberline{Abstract}{}}  
   \markboth{Abstract}{Abstract}
   \vspace*{18pt}
   \fontsize{12}{20}\selectfont}
@@ -780,19 +779,18 @@
 
   \vskip 10mm
   \vbox to 15mm{}
-  %\zihaosi
   \zihaoxiaosan
   \baselineskip 30pt
   \vbox to 35mm{
   \begin{tabular}{lcl}
   
-  \NKT@tb@item{\zihaoxiaosan 中文题目：}{lunwentimuzh}\\
+  \NKT@tb@item{中文题目：}{lunwentimuzh}\\
     \ifx\NKT@key@titlecntwo\NKT@string@null
         %% 没有第二行中文标题
     \else
         \NKT@tb@item{\hskip 5em}{titlecntwo}\\
     \fi
-  \NKT@tb@item{\zihaoxiaosan 外文题目：}{lunwentimuy}\\
+  \NKT@tb@item{外文题目：}{lunwentimuy}\\
   
     \ifx\NKT@key@titleentwo\NKT@string@null
         %% 没有第二行英文标题
@@ -837,12 +835,7 @@
 \def\NKT@tb@item#1#2{%
   #1%
   \hskip 0.5em%
-  \underline{\hbox to 115mm{\zihaoxiaosan\textbf{\cukai\NKT@keyvalue{#2}\hfil}}}} %中英文题目的向右偏移（也可能是下划线）
-  
-% \def\NKT@tben@item#1#2{%
-%   #1%
-%   \hskip 0.5em%
-%   \underline{\hbox to 115mm{\textbf{\hfil\NKT@keyvalue{#2}\hfil}}}}
+  \underline{\hbox to 115mm{\zihaoxiaosan\textbf{\cukai\NKT@keyvalue{#2}\hfil}}}}
   
 \def\NKT@declaration{
 本人郑重声明：所呈交的学位论文，是本人在指导教师指导下，进行研究工作所取得的成果。
@@ -876,18 +869,19 @@
   \hskip 25em 年\hskip 2em 月\hskip 2em 日\hbox to 1em{}
   }
 
+\setCJKmonofont[Path=fonts/]{simfang.ttf}
+\setCJKmainfont[BoldFont=simhei.ttf,ItalicFont=simkai.ttf,Path=fonts/]{simsun.ttf}
+\newCJKfontfamily\cukai[Path=fonts/]{FZCKJW.ttf}
 
-
-
-
-
-
-% \input{NKTfonts.cfg}
-
-\setCJKmonofont{[simfang.ttf]}
-\setCJKmainfont[BoldFont={[simhei.ttf]},ItalicFont={[simkai.ttf]}]{[simsun.ttf]}
-\newCJKfontfamily\cukai{[Kaiti-SC-Bold.ttf]}
+% Times New Roman
+\setromanfont[
+BoldFont=timesbd.ttf,
+ItalicFont=timesi.ttf,
+BoldItalicFont=timesbi.ttf,
+Path=fonts/
+]{times.ttf}
 \setmainfont{Times New Roman}
+
 
 \newcommand\setpaperdimen[2]{
   \pdfpagewidth=#1 true mm

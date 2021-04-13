@@ -1,21 +1,18 @@
 % -*- coding: utf-8 -*-
 \documentclass[12pt,openright]{book}
-\usepackage{setspace}
+
 \usepackage{ifxetex}
 \ifxetex
   \usepackage[bookmarksnumbered]{hyperref}
 \else
   \usepackage[unicode,bookmarksnumbered]{hyperref}
 \fi
-\usepackage{fontspec}
 
 \usepackage[emptydoublepage]{NKThesis}   % 中文
 %\usepackage[emptydoublepage,English]{NKThesis} % 英文
 \usepackage{amssymb}
-\usepackage{hyperref}
-%   根据需要选择 biblatex 宏包选项. 
+%   根据需要选择 biblatex 宏包选项.
 %\usepackage[maxnames=3,minnames=3,sorting=none]{biblatex}
-%这里加上style=nkthesis
 \usepackage[ maxnames=3,minnames=3,sorting=none,  style = nkthesis]{biblatex}
 % \usepackage{cite}
 \hypersetup{colorlinks=true,
@@ -24,18 +21,63 @@
             linkcolor=black}
 %\usepackage{tikz}
 \usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} 
+\usepackage{subfigure}
+\usepackage{listings}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{color,xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{cases}
+\usepackage{multirow}
+\usepackage{tabularx}
+\definecolor{corange}{HTML}{FF9666}
+\definecolor{lblue}{HTML}{97FFFF}
+\definecolor{cblue}{HTML}{AB82FF}
+\definecolor{cred}{HTML}{FF99A1}
+\definecolor{cgreen}{HTML}{7ACCBE}
+\definecolor{red1}{RGB}{254,67,101}
+\definecolor{red2}{RGB}{252,157,154}
+\definecolor{red3}{RGB}{249,205,173}
+\definecolor{grey1}{RGB}{200,200,169}
+\definecolor{grey2}{RGB}{131,175,155}
+\definecolor{color1}{HTML}{0099CC}
+\definecolor{color2}{HTML}{F9B46F}
+\definecolor{cblue1}{HTML}{0074D9}
+\definecolor{lblue1}{HTML}{99CCFF}
+\definecolor{corange1}{HTML}{FFDDCE}
+\definecolor{corange2}{HTML}{FF9900}
+\definecolor{corange3}{HTML}{FF9966}
+\definecolor{corange4}{HTML}{FF6600}
+\definecolor{cred2}{HTML}{FF6666}
+\usetikzlibrary{patterns}
 \addbibresource{nkthesis.bib}
 \DeclareBibliographyCategory{cited}
 \AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
 
-% \includeonly{
-% abstract,
-% manual,
-% acknowledgements,
-% references,
-% appendices,
-% resume
-% }
+\includeonly{
+abstract,
+introduction,
+background,
+pipeline,
+experiment,
+conclusion,
+manual,
+acknowledgements,
+references,
+appendices,
+resume
+}
 \newtheorem{Theorem}{\hskip 2em 定理}[chapter]
 \newtheorem{Lemma}[Theorem]{\hskip 2em 引理}
 \newtheorem{Corollary}[Theorem]{\hskip 2em 推论}
@@ -43,6 +85,10 @@
 \newtheorem{Definition}[Theorem]{\hskip 2em 定义}
 \newtheorem{Example}[Theorem]{\hskip 2em 例}
 \newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+\renewcommand{\algorithmicrequire}{\textbf{输入：}}
+\renewcommand{\algorithmicensure}{\textbf{输出：}}
+\algnewcommand{\LeftComment}[1]{\Statex \(\triangleright\) #1}
+\floatname{algorithm}{算法}
 \begin{document}
 
 %  设置基本信息
@@ -50,25 +96,24 @@
 %
 
 \NKTsetup{%
-  论文题目(中文) = 现代绿色化学中的物理有机问题,
-  论文题目(中文)(第二行) =第二行中文题目，填无则不显示本行,
-%   论文题目(中文)(第二行) =无,
-  论文题目(英文) =  Physical Organic Concerns in Green Chemistry,
-  论文题目(英文)(第二行) =This is Line 2 of English Title,
-%   论文题目(英文)(第三行) =无,
-  学号           = 1610233,
-  姓名          = 张三,
-  学院          = 计算机与控制工程学院,
+  论文题目(中文) = 南开大学本科生毕业论文模板 V1.3,
+  %论文题目(中文)(第二行) =第二行中文题目，填无则不显示本行,
+  论文题目(中文)(第二行) =无,
+  论文题目(英文) =  {Released in March, 2021},
+  %论文题目(英文)(第二行) =,
+  论文题目(英文)(第二行) =无,
+  学号           = 16xxxxx,
+  姓名          = XX,
+  年级          = 2016级,
+  专业           = 计算机科学与技术,
   系别          = 计算机科学与技术,
-  专业           = 信息安全,
-  年级          = 2016,
-  论文完成时间   = 2020年5月,
-  指导教师       = 张三\quad 教授,
+  学院          = 计算机学院,
+  指导教师       = XX\quad 教授,
   % 如果有校外导师则填写校外导师。没有填无
-%   校外导师      =无,
-  校外导师     = 罗翔\quad 教授（张三大学）,
+  校外导师      =无,
+  %校外导师     = 罗翔\quad 教授（张三大学）,
+  论文完成时间   = 2020年5月,
   }
-
 
 \include{abstract}
 \tableofcontents
@@ -80,5 +125,12 @@
 \include{acknowledgements}
 \include{appendices}
 \include{resume}
+
+
+
+
+
+
+
 
 \end{document}

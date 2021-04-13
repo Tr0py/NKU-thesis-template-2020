@@ -3,11 +3,24 @@ Undergraduate dissertation latex template for Nankai University that synchronize
 
 ## 0x0 How to use
 
-Using Overleaf Link
+### 1. 在线使用：Using Overleaf Link
 
 [Link to overleaf template](https://www.overleaf.com/latex/templates/nku-dissertation-template2020/ryscpwbhbmhs)
 
+
+### 2. 离线使用：Compile using texlive
+
+1. 依赖:`textlive-2020`
+2. 编译指令: `make`
+
 ## 0x1 Change Log
+
+### 2021/04/13
+1. 增加了Times New Roman字体
+2. 增加了本地编译的选项
+
+### 2021/03/10
+1. 优化格式
 
 ### 2020/4/23
 
@@ -23,31 +36,6 @@ Using Overleaf Link
 2. 添加了楷体粗体(\cukai)
 3. 添加了字号小三(\zihaoxiaosan)
 
-### 2021/04/13
-1. 增加了Times New Roman字体
-2. 增加了本地编译的选项
-
-本地编译方法
-#### 依赖 
-textlive-2020
-##### Linux
-```
-  sudo apt install texlive-full
-```
-##### Windows
-下载texlive-2020并添加到环境变量。
-
-#### 编译
-##### 自动编译
-make
-
-##### 手动编译
-```
-xelatex main
-biber main
-xelatex main
-xelatex main # 两次编译以生成正确的参考文献。
-```
 
 
 ## 0x2 TODO:

@@ -105,9 +105,11 @@
   \def\thesubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
   \def\contentsname{目录}
   \def\appendixnamenonumber{附录}
+  \def\appendixname{附录}
   \def\nkrefname{参考文献}
   \def\tablename{表}
   \def\figurename{图}
+  \def\listingname{代码}
   \def\NKT@proof{证明}
 \fi
 
@@ -283,7 +285,9 @@
   \else
     \@restonecolfalse
   \fi
-  {\addcontentsline{toc}{chapter}{\protect\numberline{目 录}{}}
+  {  
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\protect\numberline{目 录}{}}
   \@toclinefalse\chapter*{\contentsname}}
   \@starttoc{toc}%
   \if@restonecol
@@ -509,7 +513,6 @@
 
 \def\appendix{
   \if@firstappendix
-     \setcounter{chapter}{0}%
      \setcounter{section}{0}%
      \renewcommand\@chapapp{Appendix}
      \typeout{....\AppendicesTotal...}
@@ -707,6 +710,7 @@
   \clearpage
   \vspace*{24pt}
   \centerline{\zihaosi\rmfamily\bfseries 致\quad 谢}
+  \phantomsection
   \addcontentsline{toc}{chapter}{\protect\numberline{致\quad 谢}{}}
   \markboth{致\quad 谢}{致\quad 谢} 
   \vspace*{18pt}
@@ -731,6 +735,7 @@
   \clearpage
   \vspace*{24pt}
   \centerline{\zihaosi\rmfamily\bfseries 摘\quad 要}
+  \phantomsection
   \addcontentsline{toc}{chapter}{\protect\numberline{摘 要}{}}
   \markboth{摘\quad 要}{摘\quad 要} 
   \vspace*{18pt}
@@ -742,6 +747,7 @@
   \vspace*{24pt}
 %  \centerline{\zihaosi \jiacu Abstract}
   \centerline{\zihaosi \bfseries Abstract}
+  \phantomsection
   \addcontentsline{toc}{chapter}{\protect\numberline{Abstract}{}}  
   \markboth{Abstract}{Abstract}
   \vspace*{18pt}

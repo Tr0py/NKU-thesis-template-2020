@@ -162,8 +162,7 @@
 \DeclareFieldFormat*{number}{\mkbibparens{#1}}
 \DeclareFieldFormat[patent]{number}{#1}
 \renewbibmacro{title}{\iffieldundef{title}{}{\printfield{title}}}
-%\newbibmacro{type}{\iffieldundef{type}{}{\printfield{type}}}
-\newbibmacro{type}{}
+\newbibmacro{type}{\iffieldundef{type}{}{\printfield{type}}}
 \newbibmacro{number}{\iffieldundef{number}{}{\printfield{number}}}
 
 \let\bibinitperiod\relax

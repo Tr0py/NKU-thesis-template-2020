@@ -102,7 +102,7 @@
 \else
   \def\chaptername{第\CJKnumber{\arabic{chapter}}章}
   \def\thesection{第\CJKnumber{\arabic{section}}节}
-  \def\thesubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+  \def\thesubsection{{\enghei\arabic{chapter}.\arabic{section}.\arabic{subsection}}}
   \def\contentsname{目录}
   \def\appendixnamenonumber{附录}
   \def\appendixname{附录}
@@ -187,7 +187,7 @@
 \def\partformat{\centering\huge\bfseries}
 \def\chapterformat{\centering\fontsize{16}{19}\bfseries\jiacu}
 \def\sectionformat{\centering\bfseries\zihaosi}
-\def\subsectionformat{\bfseries\fontsize{13}{15}\selectfont}
+\def\subsectionformat{\bfseries\fontsize{13}{15}\selectfont\jiacu}
 \def\subsubsectionformat{\bfseries\zihaowu}
 
 
@@ -879,6 +879,7 @@
 \setCJKmainfont[BoldFont=simhei.ttf,ItalicFont=simkai.ttf,Path=fonts/]{simsun.ttf}
 \newCJKfontfamily\cukai[Path=fonts/]{FZCKJW.ttf}
 
+\newfontfamily{\enghei}{[simhei]}
 % Times New Roman
 \setromanfont[
 BoldFont=timesbd.ttf,

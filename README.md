@@ -17,7 +17,11 @@ Undergraduate dissertation template in latex for Nankai University that synchron
    2. MacOS: [MacTeX](http://www.tug.org/mactex/)
 2. 编译指令: `make`
 
+# 【接受提交模板改动】
 
+如果你使用了这个模板，并且根据当年学校/学院的新规定更新了模板，欢迎将你的代码提交到本项目里。
+
+如果成功merge的话，你的付出也可以让之后使用模板的人受益，你也会被加入到贡献者列表里。
 
 ## 0x1 Change Log
 

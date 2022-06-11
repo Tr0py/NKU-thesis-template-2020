@@ -7,8 +7,11 @@ Undergraduate dissertation template in latex for Nankai University that synchron
 
 ### 1. 在线使用：Using Overleaf Link （推荐）
 
-[Link to overleaf template](https://www.overleaf.com/latex/templates/nku-dissertation-template2020/ryscpwbhbmhs)
+可以使用在线模板来生成自己的project或将源码上传至overleaf生成新project。A与B择其一即可。
 
+A. 使用在线模板：[Link to overleaf template](https://www.overleaf.com/latex/templates/nku-dissertation-template2020/ryscpwbhbmhs)
+
+B. 上传新Project：将代码打包成zip后使用overleaf upload功能上传。**注意设置compiler版本为xelatex 2020.**
 
 ### 2. 离线使用：Compile using texlive
 

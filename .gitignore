@@ -8,3 +8,5 @@
 main.pdf
 main.run.xml
 *.zip
+_site/
+.*

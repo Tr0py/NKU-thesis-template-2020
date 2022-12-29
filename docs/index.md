@@ -30,12 +30,15 @@ It mainly provides undergraduate thesis template.
 2. 在Overleaf中上传源码作为project
 	- Overleaf中，点击左方"New Project" - "Upload Project"
 	- 选择下载好的zip文件上传
+	- 选择使用XeLateX + 2020 TeX Live 进行编译
+		- 左上角Menu - Compiler 选择XeLateX, TeX Live Version选择2020(Legacy)
 
 ### 3. 使用源码+tex本地编译
 
 1. 安装环境依赖:textlive
 	- Windows / Linux: TeX Live
 	- MacOS: MacTeX
+	- Note: 目前TeX Live 2020 + XeLateX可以正常编译，新版本可能会有报错。未来计划修复。
 2. 克隆源码
 3. 使用`make`进行编译
 

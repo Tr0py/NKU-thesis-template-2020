@@ -3,8 +3,10 @@ layout: default
 ---
 
 # 南开大学毕业论文模板
-![NKUTHESIS](https://img.shields.io/badge/NKthesis-latex-blue.svg)
-[![Gitter](https://badges.gitter.im/nkuthesis/community.svg)](https://gitter.im/nkuthesis/community)
+[![NKUTHESIS](https://img.shields.io/badge/NKthesis-latex-blue.svg)](https://tr0py.github.io/NKU-thesis-template-2020/)
+[![GitHub release](https://img.shields.io/github/release/Tr0py/NKU-thesis-template-2020.svg?label=version&style=popout)](https://github.com/Tr0py/NKU-thesis-template-2020/releases/latest)
+[![Overleaf](https://img.shields.io/badge/Overleaf模板-green)](https://www.overleaf.com/latex/templates/nan-kai-da-xue-ben-ke-sheng-bi-ye-lun-wen-mo-ban-v1-dot-4/hdfqhtmmmdpv)
+[![Questions](https://img.shields.io/badge/模板讨论&使用问题？-pink)](https://github.com/Tr0py/NKU-thesis-template-2020/discussions)
 
 ## 简介
 
@@ -17,12 +19,14 @@ It mainly provides undergraduate thesis template.
 
 有三种常用使用方式，以下三种任选其一，难度递增。
 
-### 1. 使用Overleaf模板
+### 1. 使用Overleaf模板 [便于使用]
 
 1. 打开 [Overleaf南开大学本科生毕业论文模板](https://www.overleaf.com/latex/templates/nan-kai-da-xue-ben-ke-sheng-bi-ye-lun-wen-mo-ban-v1-dot-4/hdfqhtmmmdpv)
 2. 点击"Open as Template"
 
-### 2. 使用源码+overleaf
+> 注意：overleaf模板版本可能比GitHub版本落后。如果想使用最新版，请使用源码+overleaf方式。
+
+### 2. 使用源码+overleaf [最新版本]
 
 1. 下载最新的源码
 	- 打开[最新的Release页面](https://github.com/Tr0py/NKU-thesis-template-2020/releases/latest)
@@ -33,7 +37,7 @@ It mainly provides undergraduate thesis template.
 	- 选择使用XeLateX + 2020 TeX Live 进行编译
 		- 左上角Menu - Compiler 选择XeLateX, TeX Live Version选择2020(Legacy)
 
-### 3. 使用源码+tex本地编译
+### 3. 使用源码+tex本地编译 [便于开发]
 
 1. 安装环境依赖:textlive
 	- Windows / Linux: TeX Live

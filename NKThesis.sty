@@ -100,9 +100,9 @@
   \def\figurename{Figure}
   \def\NKT@proof{Proof}
 \else
-  \def\chaptername{第\CJKnumber{\arabic{chapter}}章}
-  \def\thesection{第\CJKnumber{\arabic{section}}节}
-  \def\thesubsection{{\enghei\arabic{chapter}.\arabic{section}.\arabic{subsection}}}
+  \def\chaptername{第\texorpdfstring{\CJKnumber{\arabic{chapter}}}{\arabic{chapter}}章}
+  \def\thesection{第\texorpdfstring{\CJKnumber{\arabic{section}}}{\arabic{section}}节}
+  \def\thesubsection{{\texorpdfstring{\enghei}{}\arabic{chapter}.\arabic{section}.\arabic{subsection}}}
   \def\contentsname{目\quad 录}
   \def\appendixnamenonumber{附录}
   \def\appendixname{附\quad 录}

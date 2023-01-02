@@ -51,6 +51,6 @@ It mainly provides undergraduate thesis template.
 
 - 硕士生/博士生毕业论文模板可以移步[南开大学硕士毕业论文(博士论文)Latex模板](https://nkthesis.newfuture.cc/)
 - 如果遇到问题，你可以
-	- 在GitHub提出[Issue](https://github.com/Tr0py/NKU-thesis-template-2020/issues)
-	- 在[Gitter](https://gitter.im/nkuthesis/community)问问题
-	- 向维护者发送[邮件](https://github.com/tr0py/)询问
+	- 如果你有疑问或建议，欢迎在[GitHub 讨论区](https://github.com/Tr0py/NKU-thesis-template-2020/discussions)问问题
+	- 如果你遇到了bug，欢迎在GitHub提出[Issue](https://github.com/Tr0py/NKU-thesis-template-2020/issues)
+	- 最后，欢迎向维护者发送[邮件](https://github.com/tr0py/)询问

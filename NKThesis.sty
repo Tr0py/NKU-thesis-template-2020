@@ -31,7 +31,9 @@
 \ifxetex
   \RequirePackage{xeCJK}
   \edef\CJK@UnicodeEnc{UTF8}
-  \def\CJKaddEncHook#1#2{\expandafter\def\csname xeCJK@enc@#1\endcsname{#2}}
+  \ifx\CJKaddEncHook#1#2\undefined
+    \def\CJKaddEncHook#1#2{\expandafter\def\csname xeCJK@enc@#1\endcsname{#2}}
+  \fi
   \def\Unicode#1#2{\@tempcnta#1\relax
     \multiply\@tempcnta 256\relax
     \advance\@tempcnta#2\relax

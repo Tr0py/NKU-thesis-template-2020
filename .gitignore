@@ -10,3 +10,4 @@ main.run.xml
 *.zip
 _site/
 .*
+Gemfile.lock

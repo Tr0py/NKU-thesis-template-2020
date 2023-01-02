@@ -121,7 +121,7 @@
 		{\usebibmacro{bytranslator}}%
 	}%
 }
-\newbibmacro{urldate}{%
+\renewbibmacro{urldate}{%
 	\iffieldundef{urlyear}{}{%
 		\printtext{\cegen{检索于 }{retrieved on\addspace}}%
 		\printurldate%
@@ -340,7 +340,7 @@
 \DeclareBibliographyAlias{inproceedings}{incollection}
 \DeclareBibliographyAlias{*}{book}
 
-\DeclareSortingScheme{ecnty}{
+\DeclareSortingTemplate{ecnty}{
 	\sort{\field{presort}}
 	\sort[final]{\field{sortkey}}
 	\sort{
@@ -348,10 +348,10 @@
 		\literal{en}
 	}
 	\sort{
-		\name{sortname}
-		\name{author}
-		\name{editor}
-		\name{translator}
+		\field{sortname}
+		\field{author}
+		\field{editor}
+		\field{translator}
 		\field{sorttitle}
 		\field{title}
 	}
@@ -365,7 +365,7 @@
 	}
 }
 
-\DeclareSortingScheme{centy}{
+\DeclareSortingTemplate{centy}{
 	\sort{\field{presort}}
 	\sort[final]{\field{sortkey}}
 	\sort[direction = descending]{
@@ -373,10 +373,10 @@
 		\literal{en}
 	}
 	\sort{
-		\name{sortname}
-		\name{author}
-		\name{editor}
-		\name{translator}
+		\field{sortname}
+		\field{author}
+		\field{editor}
+		\field{translator}
 		\field{sorttitle}
 		\field{title}
 	}

@@ -41,12 +41,18 @@ It mainly provides undergraduate thesis template.
 
 ### 3. 使用源码+tex本地编译 [便于开发]
 
+在开发时尽量使用统一的环境，尤其应该用TeXlive 2022，这样可以保持和overleaf的引擎版本一致。
+使用docker会自动setup好环境，比较推荐。
+
+**3.1 使用docker(推荐)**
+1. 安装[docker](https://docs.docker.com/engine/install/)
+2. 用`make docker-compile`进行编译。
+
+**3.2 自行安装TeXlive 2022**
 1. 安装环境依赖:textlive
 	- Windows / Linux: TeX Live
 	- MacOS: MacTeX
-	- Note: 目前TeX Live 2020 + XeLateX可以正常编译，新版本可能会有报错。未来计划修复。
-2. 克隆源码
-3. 使用`make`进行编译
+3. 使用`make compile`进行编译
 
 
 ## 其他

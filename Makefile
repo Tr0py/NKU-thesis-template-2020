@@ -6,7 +6,8 @@ compile:
 	rm *.aux *.out *.blg *.toc *.bbl *.bcf
 
 docker-compile:
-	sudo docker run --rm -v "$(pwd)":/latex -w /latex texlive/texlive /bin/bash -c "make"
+	# Use TeXlive 2022
+	sudo docker run --rm -v "$(PWD)":/latex -w /latex texlive/texlive:TL2022-historic /bin/bash -c "make compile"
 
 clean:
 	rm main.pdf main.run.xml main.log

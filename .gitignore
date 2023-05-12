@@ -7,6 +7,7 @@
 *.aux
 main.pdf
 main.run.xml
+main.synctex.gz
 *.zip
 _site/
 .*

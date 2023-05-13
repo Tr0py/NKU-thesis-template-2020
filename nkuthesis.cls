@@ -101,18 +101,15 @@
 \newcommand\ul@t@parbox[2]{{%
 	\hbadness=10000 % 禁用此处 "underfull hbox" 提示
 	\settototalheight\topulineparbox@totalheight{\parbox[t]{#1}{#2}}%
-	\ifdimless{\baselineskip}{\topulineparbox@totalheight}{
-		\rlap{\smash{\parbox[t]{#1}{%
-			\unlessboolexpr{test {\ifdimless{\topulineparbox@totalheight}{0pt}}}{%
-				\underline{\hspace{#1}}\\%
-				\addtolength\topulineparbox@totalheight{-\baselineskip}%
-			}%
-		}}}%
-		\parbox[t]{#1}{#2}
-		\vspace{0.7ex}
-	}{
-		\underline{\makebox[#1][c]{#2}}
-	}
+	\rlap{\smash{\parbox[t]{#1}{%
+		\unlessboolexpr{test {\ifdimless{\topulineparbox@totalheight}{0pt}}}{%
+			\underline{\hspace{#1}}\\%
+			\addtolength\topulineparbox@totalheight{-\baselineskip}%
+		}%
+	}}}%
+	\parbox[t]{#1}{#2}
+	\settototalheight\topulineparbox@totalheight{\parbox[t]{#1}{#2}}%
+	\ifdimless{\topulineparbox@totalheight}{25pt}{}{\vspace{0.7ex}}
 }}
 \renewcommand{\maketitle}{
 	\begin{titlepage}

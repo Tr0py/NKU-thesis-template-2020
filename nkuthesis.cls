@@ -4,7 +4,7 @@
 \ProvidesClass{nkuthesis}
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessOptions\relax
-\LoadClass[zihao=-4,linespread=1.5,fontset=none]{ctexart}
+\LoadClass[zihao=-4,linespread=1.64,fontset=none]{ctexart}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%                               Basic

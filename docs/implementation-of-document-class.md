@@ -166,6 +166,13 @@
 
 TODO: 数学环境的实现变式较多，且各数学宏包的默认样式基本满足要求，因此本文档类不对公式样式进行“微操”，请读者自行调用相关宏包。
 
+公式、表格、图等、算法、伪代码等编号可借助 chngcntr 宏包实现按章编号，本文档类保留默认，不进行修改。
+
+*推荐阅读*：
+
+- [按章节给图片标号](https://blog.csdn.net/a8131357leo/article/details/90606949)
+- [chngcntr – Change the resetting of counters](http://mirrors.ctan.org/macros/latex/contrib/chngcntr/chngcntr.pdf)
+
 ### 表格与图
 
 > （1）表格必须与论文叙述有直接联系，不得出现与论文叙述脱节的表格。表格中的内容在技术上不得与正文矛盾。

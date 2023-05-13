@@ -200,7 +200,14 @@
 }{\clearpage}
 
 % 致谢
-\newenvironment{acknowledgement}
-	{\nolabel@section{4}[致谢]{致\hspace{1em}谢}}
-	{\clearpage}
+\newenvironment{acknowledgement}{
+	\nolabel@section{4}[致谢]{致\hspace{1em}谢}
+	\newcounter{begin@page}
+	\setcounter{begin@page}{\value{page}}
+}{
+	\ifnumequal{\thebegin@page}{\thepage}{}{\ClassWarning{nkuthesis}{致谢超过了一页}}
+	\clearpage
+}
+
+	
 

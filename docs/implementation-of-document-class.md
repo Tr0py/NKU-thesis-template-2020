@@ -87,7 +87,7 @@
 - [The fancyhdr and extramarks packages](http://mirrors.ctan.org/macros/latex/contrib/fancyhdr/fancyhdr.pdf)
 - [一个关于 geometry 设置页眉 1.5 cm，页脚 1.5 cm的问题](https://ask.latexstudio.net/ask/question/3474.html)
 
-### 标题格式 
+### 标题格式
 
 >毕业论文（设计）正文数字标题书写顺序依次为：一、（一）1. (1) ①；第一级标题用小三号黑体字，第二级标题用四号黑体字，第三级及以下标题用小四号黑体字。
 
@@ -496,7 +496,6 @@ natbib 和 biblatex 这两个宏包均可通过重定义`\bibfont`设置参考�
 
 - [natbib – Flexible bibliography support](http://mirrors.ctan.org/macros/latex/contrib/natbib/natbib.pdf)
 - [BibLATEX – Sophisticated Bibliographies in LATEX](http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf)
-
 
 ### 其他
 

@@ -111,6 +111,8 @@
 	\settototalheight\topulineparbox@totalheight{\parbox[t]{#1}{#2}}%
 	\ifdimless{\topulineparbox@totalheight}{25pt}{}{\vspace{0.7ex}}
 }}
+\newlength\@titlewidth
+\newlength\@authorwidth
 \renewcommand{\maketitle}{
 	\begin{titlepage}
 		\centering
@@ -119,20 +121,26 @@
 			\vspace{35pt}\par\linespread{1}\zihao{2}
 		\makebox[255pt][s]{本科生毕业论文（设计）}\par
 			\vspace{60pt}\par\linespread{1.2}\zihao{3}
+			\settowidth{\@titlewidth}{\begin{tabular}{c}\zh@title\\\en@title\end{tabular}}
 		\begin{tabular}{l@{：}l}
-			中文题目 & \ul@t@parbox{16.5em}{\centering\zh@title} \\
-			外文题目 & \ul@t@parbox{16.5em}{\centering\en@title} \\
+			中文题目 & \ul@t@parbox{\@titlewidth}{\centering\zh@title} \\
+			外文题目 & \ul@t@parbox{\@titlewidth}{\centering\en@title} \\
 		\end{tabular}
 			\vspace{\fill}\par\linespread{1.15}\zihao{3}
+			\settowidth{\@authorwidth}{
+				\begin{tabular}{c}
+					\@studentid\\\@author\\\@grade\\\@major\\\@department\\\@college\\\@adviser\\\@date
+				\end{tabular}
+			}
 		\begin{tabular}{l@{：}l}
-			学\hspace{2em}号 &\ul@t@parbox{8em}{\centering\@studentid}  \\
-			姓\hspace{2em}名 &\ul@t@parbox{8em}{\centering\@author}     \\
-			年\hspace{2em}级 &\ul@t@parbox{8em}{\centering\@grade}      \\
-			专\hspace{2em}业 &\ul@t@parbox{8em}{\centering\@major}      \\
-			系\hspace{2em}别 &\ul@t@parbox{8em}{\centering\@department} \\
-			学\hspace{2em}院 &\ul@t@parbox{8em}{\centering\@college}    \\
-			指导教师         & \ul@t@parbox{8em}{\centering\@adviser}    \\
-			完成日期         & \ul@t@parbox{8em}{\centering\@date}       \\
+			学\hspace{2em}号 &\ul@t@parbox{\@authorwidth}{\centering\@studentid}  \\
+			姓\hspace{2em}名 &\ul@t@parbox{\@authorwidth}{\centering\@author}     \\
+			年\hspace{2em}级 &\ul@t@parbox{\@authorwidth}{\centering\@grade}      \\
+			专\hspace{2em}业 &\ul@t@parbox{\@authorwidth}{\centering\@major}      \\
+			系\hspace{2em}别 &\ul@t@parbox{\@authorwidth}{\centering\@department} \\
+			学\hspace{2em}院 &\ul@t@parbox{\@authorwidth}{\centering\@college}    \\
+			指导教师         & \ul@t@parbox{\@authorwidth}{\centering\@adviser}    \\
+			完成日期         & \ul@t@parbox{\@authorwidth}{\centering\@date}       \\
 		\end{tabular}
 			\vspace{\fill}
 	\end{titlepage}}

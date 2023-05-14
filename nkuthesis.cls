@@ -40,15 +40,15 @@
 \setcounter{secnumdepth}{5}
 \newcommand{\sectionbreak}{\newpage\vspace*{0pt}}
 \renewcommand{\thesection}{\chinese{section}}
-\renewcommand{\thesubsection}{（\chinese{subsection}）}
-\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
-\renewcommand{\theparagraph}{(\arabic{paragraph})}
-\renewcommand{\thesubparagraph}{\ding{\numexpr171+\value{subparagraph}}}
-\titleformat{\section}{\centering\zihao{-3}\sffamily}{{\thesection}、}{0em}{}
-\titleformat{\subsection}{\centering\zihao{4}\sffamily}{\thesubsection}{0em}{}
-\titleformat{\subsubsection}{\zihao{-4}\sffamily}{{\thesubsubsection}.}{0.5em}{}
-\titleformat{\paragraph}{\zihao{-4}\sffamily}{\theparagraph}{0.5em}{}
-\titleformat{\subparagraph}{\zihao{-4}\sffamily}{\thesubparagraph}{0.5em}{}
+\renewcommand{\thesubsection}{\chinese{subsection}}
+\renewcommand{\thesubsubsection}{\chinese{subsubsection}}
+\renewcommand{\theparagraph}{\chinese{paragraph}}
+\renewcommand{\thesubparagraph}{\chinese{subparagraph}}
+\titleformat{\section}{\centering\zihao{-3}\sffamily}{\chinese{section}、}{0em}{}
+\titleformat{\subsection}{\centering\zihao{4}\sffamily}{（\chinese{subsection}）}{0em}{}
+\titleformat{\subsubsection}{\zihao{-4}\sffamily}{\arabic{subsubsection}.}{0.5em}{}
+\titleformat{\paragraph}{\zihao{-4}\sffamily}{(\arabic{paragraph})}{0.5em}{}
+\titleformat{\subparagraph}{\zihao{-4}\sffamily}{\ding{\numexpr171+\value{subparagraph}}}{0.5em}{}
 
 % 注释
 \RequirePackage[perpage,bottom]{footmisc}
@@ -172,7 +172,7 @@
 \titlecontents{section}[0em]{\zihao{-3}}
 	{\thecontentslabel、}{}{\content@filler\contentspage}
 \titlecontents{subsection}[2em]{\zihao{4}}
-	{\thecontentslabel}{}{\content@filler\contentspage}
+	{（\thecontentslabel）}{}{\content@filler\contentspage}
 \renewcommand{\tableofcontents}
 	{\nolabel@section*{3}[目录]{目\hspace{1em}录}\@starttoc{toc}\clearpage}
 
@@ -180,11 +180,11 @@
 \RenewDocumentCommand{\appendix}{s}{
 	\setcounter{section}{0}
 	\setcounter{subsection}{0}
-	\renewcommand{\thesection}{附录\Alph{section}}
+	\renewcommand{\thesection}{\Alph{section}}
 	\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}%
 	\titleformat{\section}{\centering\zihao{4}\sffamily}
 		{附\hspace{1em}录\Alph{section}：}{0em}{}
-	\titlecontents{section}[0em]{\zihao{-3}}{\thecontentslabel：}{}
+	\titlecontents{section}[0em]{\zihao{-3}}{附录\thecontentslabel：}{}
 		{\content@filler\contentspage}
 	\IfBooleanT{#1}{\nolabel@section{4}[附录]{附\hspace{1em}录}}
 }

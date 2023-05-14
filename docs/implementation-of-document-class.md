@@ -489,6 +489,9 @@ natbib 和 biblatex 这两个宏包均可通过重定义`\bibfont`设置参考�
 }{\clearpage}
 ```
 
+如果使用 natbib 宏包排版参考文献，可以使用 gbt7714 宏包提供的 `gbt7714-numerical`参考文献样式。
+如果使用 biblatex 宏包排版参考文献，可以使用对应的 `gb7714-2015`样式。
+
 *推荐阅读*：
 
 - [natbib – Flexible bibliography support](http://mirrors.ctan.org/macros/latex/contrib/natbib/natbib.pdf)

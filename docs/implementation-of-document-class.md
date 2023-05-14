@@ -99,24 +99,14 @@
 \setcounter{secnumdepth}{5}
 ```
 
-然后，设置各级标题的编号。`\chinese`是 ctex 提供的显示中文数字的命令。带圈数字的实现详见注释一节。
+然后，借助 titlesec 宏包提供的`\titleformat`命令设置标题格式。`\chinese`是 ctex 提供的显示中文数字的命令。带圈数字的实现详见注释一节。
 
 ```latex
-\renewcommand{\thesection}{\chinese{section}}
-\renewcommand{\thesubsection}{（\chinese{subsection}）}
-\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
-\renewcommand{\theparagraph}{(\arabic{paragraph})}
-\renewcommand{\thesubparagraph}{\ding{\numexpr171+\value{subparagraph}}}
-```
-
-最后，借助 titlesec 宏包提供的`\titleformat`命令设置标题格式。
-
-```latex
-\titleformat{\section}{\centering\zihao{-3}\sffamily}{{\thesection}、}{0em}{}
-\titleformat{\subsection}{\centering\zihao{4}\sffamily}{\thesubsection}{0em}{}
-\titleformat{\subsubsection}{\zihao{-4}\sffamily}{{\thesubsubsection}.}{0.5em}{}
-\titleformat{\paragraph}{\zihao{-4}\sffamily}{\theparagraph}{0.5em}{}
-\titleformat{\subparagraph}{\zihao{-4}\sffamily}{\thesubparagraph}{0.5em}{}
+\titleformat{\section}{\centering\zihao{-3}\sffamily}{\chinese{section}、}{0em}{}
+\titleformat{\subsection}{\centering\zihao{4}\sffamily}{（\chinese{subsection}）}{0em}{}
+\titleformat{\subsubsection}{\zihao{-4}\sffamily}{\arabic{subsubsection}.}{0.5em}{}
+\titleformat{\paragraph}{\zihao{-4}\sffamily}{(\arabic{paragraph})}{0.5em}{}
+\titleformat{\subparagraph}{\zihao{-4}\sffamily}{\ding{\numexpr171+\value{subparagraph}}}{0.5em}{}
 ```
 
 *推荐阅读*：
@@ -429,14 +419,14 @@ TODO: 数学环境的实现变式较多，且各数学宏包的默认样式基�
 \RenewDocumentCommand{\appendix}{s}{
   \setcounter{section}{0}
   \setcounter{subsection}{0}
-  % 重设编号，保证目录、页眉和书签的编号显示正常
-  \renewcommand{\thesection}{附录\Alph{section}}
+  % 重设编号
+  \renewcommand{\thesection}{\Alph{section}}
   % 在目录中不显示附录的二级标题
   \addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
   % 多标题情况的section格式和目录格式
   \titleformat{\section}{\centering\zihao{4}\sffamily}
     {附\hspace{1em}录\Alph{section}：}{0em}{}
-  \titlecontents{section}[0em]{\zihao{-3}}{\thecontentslabel：}{}
+  \titlecontents{section}[0em]{\zihao{-3}}{附录\thecontentslabel：}{}
     {\content@filler\contentspage}
   % 单标题情况直接放置一个标题
   \IfBooleanT{#1}{\nolabel@section{4}[附录]{附\hspace{1em}录}}

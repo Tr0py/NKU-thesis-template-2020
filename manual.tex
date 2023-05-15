@@ -1,8 +1,12 @@
 % -*- coding: utf-8 -*-
+% !TEX root = mythesis.tex
 
-\chapter{南开大学学位论文格式宏包 NKThesis 使用说明} \label{chpt:A}
+\def\XeLaTeX{X\kern-.1667em\lower.5ex\hbox{\reflectbox{E}}\kern-.1667em\LaTeX}
+\def\XeTeX{X\kern-.1667em\lower.5ex\hbox{\reflectbox{E}}\kern-.1667em\TeX}
 
-\section{前言}
+\section{南开大学学位论文格式宏包 NKThesis 使用说明} \label{chpt:A}
+
+\subsection{前言}
 
 请follow我们最新的进度\href{https://github.com/Tr0py/NKU-thesis-template-2020}{https://github.com/Tr0py/NKU-thesis-template-2020}, 以获取最新的模板bug修复及更新。如有问题请在GitHub留言，我们会尽快回复。欢迎加入毕业论文模板维护的工作中:).
 
@@ -27,11 +31,11 @@
 \hskip 20em 16级本科生\quad 赵子懿\quad 潘宇
 
 
-\section{系统要求}
+\subsection{系统要求}
 
 模板仅在 CTex2.9.2 下测试\XeLaTeX 通过。对于其它 TeX 发行版可能需要做个别修改。本模板改编自孙老师（http://222.30.48.141/$\sim$sunwch）的版本，格式参照南开大学2019年毕业论文格式。
 
-\section{NKThesis 使用说明}
+\subsection{NKThesis 使用说明}
 
 本模板可以使用以下两种方式编译:
 \begin{enumerate}
@@ -67,13 +71,13 @@
 注意：使用 \XeLaTeX\ 编译时，\XeTeX\ 的版本应不低于 0.9995.0(MiKTeX 2.8 或者 TeXLive 2009)。
 
 
-\section{引用章节号}
+\subsection{引用章节号}
 \label{sec:ex:A}
 
-引用章节号请参考如下格式: \ref{chpt:A}\ref{sec:ex:A}.
+引用章节号请参考如下格式: 第\ref{chpt:A}章第\ref{sec:ex:A}节或\autoref{chpt:A}\autoref{sec:ex:A}
 
 
-\section{中英文间隔}
+\subsection{中英文间隔}
 
 使用 \XeLaTeX\ 编译时，会自动在中英文转换时添加必要的空格。 使用 [PDF]\LaTeX\
 编译时仅忽略中文之间的空格，而中英文之间的空格予以保留。
@@ -86,12 +90,13 @@
 可以看出，以上两行用 \XeLaTeX\ 编译的结果是相同的。
 
 
-\section{NKThesis 预调用的宏包}
+\subsection{NKThesis 预调用的宏包}
 
 NKThesis 已经调用以下宏包，您无须重新调用。
 
-\begin{center}
-\tablecaption{NKThesis 预调用的宏包}
+\begin{table}
+\centering
+\caption{NKThesis 预调用的宏包}
 \begin{tabular}{l|l}
 \hline
 编译方式 & 调用的宏包\\ \hline
@@ -99,19 +104,19 @@ NKThesis 已经调用以下宏包，您无须重新调用。
 [PDF]\LaTeX & CJK, CJKnumb, uniGBK, graphicx, mathptmx \\
 \hline
 \end{tabular}
-\end{center}
+\end{table}
 
-
-\section{图表}
+\subsection{图表}
 
 插图的例子：
 
-\begin{center}
+\begin{table}
+\centering
 \includegraphics[viewport=0 0 2984 969,width=40mm]{figures/nankaidaxue.pdf}
-\figurecaption{南开大学}
-\end{center}
+\caption{南开大学}
+\end{table}
 
-\section{字体}
+\subsection{字体}
 
 一般情况下, 您不需要显式地设置字体. 如果确实需要, 请使用以下命令
 
@@ -124,7 +129,7 @@ NKThesis 已经调用以下宏包，您无须重新调用。
 \end{verbatim}
 
 % {\itshape 楷体}
-\section{参考文献} \label{manual:ref}
+\subsection{参考文献} \label{manual:ref}
 参考文献引用:
 \cite{ChenCheChen2001,Nadkarni-1992,Hua-Wang-1973}
 文献\upcite{ZhuKeZhen,Huo}\cite{JiangXiZhou,Timoshenko,Zhang-Wang}
@@ -133,14 +138,14 @@ NKThesis 已经调用以下宏包，您无须重新调用。
 
 第一次编译\cite{hong2012hqemu}\cite{zaharia2010spark}\cite{wenwenasplos2018}
 
-\subsection{录入参考文献}
+\subsubsection{录入参考文献}
 
 本模板采用 biblatex 宏包管理参考文献。如果你对此不熟悉，可以参考biblatex使用手册。
 
 
 
-\section{一些建议}
-\subsection{关于分数的写法}
+\subsection{一些建议}
+\subsubsection{关于分数的写法}
 
 
 \LaTeX 提供宏命令\verb+\frac+, 用以打印分数. 为使得版面整齐, 该命令的使用应遵循以下原则:
@@ -181,7 +186,7 @@ $(x+2)/((3x^2+4)(7+y))$. 下面是居中表达式:
 \end{eqnarray}
 
 
-\subsection{标点}
+\subsubsection{标点}
 科技文献中一般用半角标点, 请参考《中国科学》发表的论文.
 
 如果使用全角标点, 可以使用
@@ -208,6 +213,9 @@ $(x+2)/((3x^2+4)(7+y))$. 下面是居中表达式:
 \begin{Lemma} \label{thm:tex}
 \TeX 文件在不同操作系统下的排版结果完全一致.
 \end{Lemma}
+
+\newcommand{\proof}[1][证明]{\par\textbf{#1.}\,\, }
+\def\endproof{\hfill{\usefont{U}{msa}{m}{n}\char"03}}
 
 \begin{proof}
 这是证明.
@@ -243,62 +251,116 @@ x&=&y+z \\
  z&=&y-x. \label{eq:aa2}
 \end{eqnarray}
 
-
-
 引用:   定理\ref{thm:latex}的推论是什么呢？
 方程式编号:  由(\ref{eq:a1})(\ref{eq:aa2})式.
 
-\subsection{列举环境:  enumerate}
+\subsubsection{列举环境:  enumerate}
 
-环境 enumerate 已经被改写，增加了一个可选参数[字符串], 用以控制所进。例如，
-\begin{verbatim}
-  \begin{enumerate}
-    \item This is an example.
-    \item This is an example.
-      \begin{enumerate}
-      \item This is an example.
-      \item This is an example.
-    \end{enumerate}
-  \end{enumerate}
-  \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的缩进。
-                       % 缺省值为 [M]
-    \item This is an example.
-    \item This is an example.
-      \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的缩进。
-      \item This is an example.
-      \item This is an example.
-    \end{enumerate}
-  \end{enumerate}
-\end{verbatim}
-的输出为
-  \begin{enumerate}
-    \item This is an example.
-    \item This is an example.
-      \begin{enumerate}
-      \item This is an example.
-      \item This is an example.
-    \end{enumerate}
-  \end{enumerate}
-  \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的所进。
-                       % 缺省值为 [M]
-    \item This is an example.
-    \item This is an example.
-      \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的所进。
-      \item This is an example.
-      \item This is an example.
-    \end{enumerate}
-  \end{enumerate}
+TODO 将会重写
+% \makeatletter
+% \def\@listi{%
+%   \leftmargin\leftmargini
+%   \parsep 0pt%
+%   \topsep \parsep
+%   \itemsep \parsep}
+% \let\@listI\@listi
+% \@listi
+% \def\@listii{%
+%   \leftmargin\leftmarginii
+%   \labelwidth\leftmarginii
+%   \advance\labelwidth-\labelsep
+%   \parsep 0pt%
+%   \topsep \parsep
+%   \itemsep \parsep}
+% \def\@listiii{%
+%   \leftmargin\leftmarginiii
+%   \labelwidth\leftmarginiii
+%   \advance\labelwidth-\labelsep
+%   \parsep 0pt%
+%   \topsep \parsep
+%   \itemsep \parsep
+%   \partopsep \p@ \@plus\z@ \@minus\p@}
 
-\clearpage
+% \renewcommand\enumerate[1][M]{%
+%   \ifnum \@enumdepth >3 %
+%     \@toodeep
+%   \else
+%     \advance\@enumdepth\@ne
+%     \edef\@enumctr{%
+%       enum\romannumeral\the\@enumdepth}%
+%     \list{%
+%       \csname label\@enumctr\endcsname\,}%
+%       {\settowidth\labelwidth{#1}%
+%        \leftmargin\labelwidth
+%        \advance\leftmargin\labelsep
+%        \ifnum\@enumdepth=1 %
+%          \advance\leftmargin\parindent
+%        \fi
+%        \usecounter{\@enumctr} %
+%        \listparindent\parindent
+%        \itemsep\z@
+% %       \def\makelabel##1{%
+% %         \mbox{##1}\hfil}%
+%        \def\makelabel##1{\hss\llap{##1}}}%
+%     \def\newblock{%
+%       \hskip .11em plus .33em minus .07em}%
+%     \sloppy\clubpenalty4000 %
+%     \widowpenalty4000 %
+%     \sfcode`\.=1000\relax
+%   \fi}
+% \let\endenumerate=\endlist
+% \endinput
+% \makeatother
 
-\section{\TeX\ 简介}
+% 环境 enumerate 已经被改写，增加了一个可选参数[字符串], 用以控制所进。例如，
+% \begin{verbatim}
+%   \begin{enumerate}
+%     \item This is an example.
+%     \item This is an example.
+%       \begin{enumerate}
+%       \item This is an example.
+%       \item This is an example.
+%     \end{enumerate}
+%   \end{enumerate}
+%   \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的缩进。
+%                        % 缺省值为 [M]
+%     \item This is an example.
+%     \item This is an example.
+%       \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的缩进。
+%       \item This is an example.
+%       \item This is an example.
+%     \end{enumerate}
+%   \end{enumerate}
+% \end{verbatim}
+% 的输出为
+%   \begin{enumerate}
+%     \item This is an example.
+%     \item This is an example.
+%       \begin{enumerate}
+%       \item This is an example.
+%       \item This is an example.
+%     \end{enumerate}
+%   \end{enumerate}
+%   \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的所进。
+%                        % 缺省值为 [M]
+%     \item This is an example.
+%     \item This is an example.
+%       \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的所进。
+%       \item This is an example.
+%       \item This is an example.
+%     \end{enumerate}
+%   \end{enumerate}
+
+% \clearpage
+
+\subsection{\TeX\ 简介}
 
 以下内容是 milksea@bbs.ctex.org 撰写的关于\TeX\ 的简单介绍。
 注意这不是一个入门教程，不讲 \TeX\ 系统的配置安装，也不讲具体的 \LaTeX\ 代码。
 这里仅仅试图以一些只言片语来解释：
 进入这个门槛之前新手应该知道的注意事项，以及遇到问题以后该去如何解决问题。
 
-\subsection{什么是 \TeX/\LaTeX，我是否应该选择它}
+\subsubsection{什么是 \TeX/\LaTeX，我是否应该选择它}
 
 \TeX\ 是最早由高德纳（Donald Knuth）教授创建的一门标记式宏语言，
 用来排版科技文章，尤其擅长处理复杂的数学公式。\TeX\ 同时也是处理这一语言的排版软件。
@@ -330,13 +392,13 @@ x&=&y+z \\
 
 \def\AAAA{}
 
-\subsection{我该用什么编辑器？}
+\subsubsection{我该用什么编辑器？}
 
 编辑器功能有简有繁，特色不一，从简单的纯文本编辑器到繁复的 Emacs，因人而易。基本功能有语法高亮、方便编译预览就很好了，扩充功能和定制有无限的可能。初学者可以使用功能简单、使用方便的专用编辑器，如 TeXWorks、Kile、WinEdt 等，或者类似所见即所得功能的 LyX；熟悉的人可以使用定制性更强的 Notepad++、SciTE、Vim、Emacs 等。这方面的介绍很多，一开始不妨多试几种，找到最适合自己的才是最好的。
 
 另外提醒一句，编辑器只是工作的助力，不必把它看得太重。一些编辑器有极为繁杂的功能，一些编辑器常常会引来黑客们的论战（如 Emacs 与 Vim）。为工作，别为这些浪费太多精力，适用即可。
 
-\subsection{我该去哪里寻找答案？}
+\subsubsection{我该去哪里寻找答案？}
 
 0、绝对的新手，先读完一本入门读物，了解基本的知识。
 
@@ -347,7 +409,7 @@ x&=&y+z \\
 3、清楚、聪明地提出你的问题。
 
 
-\subsection{我应该看什么 \LaTeX\ 读物？}
+\subsubsection{我应该看什么 \LaTeX\ 读物？}
 
 这不是一个容易回答的问题，因为有许多选择，也同样有许多不合适的选择。
 这里只是选出一个比较好的答案。更多更详细的介绍可以在版面和网上寻找（注意时效）。
@@ -377,7 +439,7 @@ x&=&y+z \\
 \end{enumerate}
 \end{enumerate}
 
-\subsection{什么知识会过时？什么不会？}
+\subsubsection{什么知识会过时？什么不会？}
 
 \TeX\ 是排版语言，也是广泛使用的软件，并且不断在发展中；
 因此，总有一些东西会很快过时。作为学习 \TeX\ 的人，
@@ -439,21 +501,17 @@ WinEdt 在 5.5 以后的版本支持 UTF-8 编码，而旧版本不支持；
 天元系统，到后来的 CJK 方式，到近来的 \XeTeX、LuaTeX 方式，
 中文处理的原理、软件、宏包、配置方式等都在不断变化中。
 
-
-
-\subsection{插图格式}
+\subsubsection{插图格式}
 
 前面提到， \LaTeX\ 主要支持EPS格式的插图文件， 而PDF\LaTeX\ 则更喜欢 PDF、PNG、JPG 格式的图形。
 为解决兼容性，最新版的 PDF\LaTeX 会自动把 EPS 文件转换为 PDF 文件。因此，使用 EPS 格式的插图可能具有最广泛
 的通用性。
 
-\subsection{\LaTeX\ 作图}
+\subsubsection{\LaTeX\ 作图}
 
 目前已经有很多优秀的\LaTeX\ 作图宏包，如 pgf/Tikz 和 pstricks，两者都具有强大的作图能力。
 
-\chapter{说明}
-
-
+\section{说明}
 
 本模板参照南开大学学位论文写作规范编写，
 仅仅提供了论文的基本格式，包括章节标题和正文字体、字号等等的设置。
@@ -466,4 +524,4 @@ WinEdt 在 5.5 以后的版本支持 UTF-8 编码，而旧版本不支持；
 如果您不同意这些条款，请不要使用这个模板。
 
 
-参考文献的录入请参考\ref{manual:ref}。 
+参考文献的录入请参考第\ref{chpt:A}章第\ref{manual:ref}节。 

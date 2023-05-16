@@ -33,6 +33,7 @@
 \usepackage{cases}
 \usepackage{multirow}
 \usepackage{enumitem} % 列表格式
+\usepackage{chngcntr} % 编号格式
 
 % \usepackage{tabularx}
 \definecolor{corange}{HTML}{FF9666}
@@ -59,7 +60,7 @@
 \DeclareBibliographyCategory{cited}
 \AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
 
-\newtheorem{Theorem}{\hskip 2em 定理}
+\newtheorem{Theorem}{\hskip 2em 定理}[section]
 \newtheorem{Lemma}[Theorem]{\hskip 2em 引理}
 \newtheorem{Corollary}[Theorem]{\hskip 2em 推论}
 \newtheorem{Proposition}[Theorem]{\hskip 2em 命题}
@@ -85,10 +86,9 @@
 \keywords{南开大学；毕业论文；模板}
 \keywords*{dark energy model; dynamic analysis}
 
-\counterwithinsection{table}
-\counterwithinsection{figure}
-\counterwithinsection{equation}
-\counterwithinsection{Theorem}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
 
 \begin{document}
 

@@ -63,6 +63,11 @@
 \captionsetup{labelsep=enspace,skip=1pt}
 \RequirePackage{flafter} % 浮动体置于引用后，包含h选项后似乎不生效
 \RequirePackage[section]{placeins} % 浮动体不跨节
+\newcommand{\english@section@counter}{\arabic{section}}
+\newcommand{\counterwithinsection}[1]{
+	\@addtoreset{#1}{section}
+	\csdef{the#1}{\english@section@counter.\arabic{#1}}
+}
 
 % 超链接、PDF书签属性（教务处格式未要求）
 \RequirePackage[hidelinks,pdfa,pdfusetitle,bookmarksnumbered]{hyperref}
@@ -186,15 +191,20 @@
 
 % 附录
 \RenewDocumentCommand{\appendix}{s}{
-	\setcounter{section}{0}
-	\setcounter{subsection}{0}
-	\renewcommand{\thesection}{\Alph{section}}
-	\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}%
-	\titleformat{\section}{\centering\zihao{4}\sffamily}
-		{附\hspace{1em}录\Alph{section}：}{0em}{}
-	\titlecontents{section}[0em]{\zihao{-3}}{附录\thecontentslabel：}{}
-		{\content@filler\contentspage}
-	\IfBooleanT{#1}{\nolabel@section{4}[附录]{附\hspace{1em}录}}
+	\IfBooleanTF{#1}{
+		\nolabel@section{4}[附录]{附\hspace{1em}录}
+		\renewcommand{\english@section@counter}{A}
+	}{
+		\setcounter{section}{0}
+		\setcounter{subsection}{0}
+		\renewcommand{\thesection}{\Alph{section}}
+		\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}%
+		\titleformat{\section}{\centering\zihao{4}\sffamily}
+			{附\hspace{1em}录\Alph{section}：}{0em}{}
+		\titlecontents{section}[0em]{\zihao{-3}}{附录\thecontentslabel：}{}
+			{\content@filler\contentspage}
+		\renewcommand{\english@section@counter}{\Alph{section}}
+	}
 }
 
 % 参考文献

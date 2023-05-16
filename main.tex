@@ -33,6 +33,7 @@
 \usepackage{cases}
 \usepackage{multirow}
 \usepackage{enumitem} % 列表格式
+\usepackage{chngcntr} % 编号格式
 
 % \usepackage{tabularx}
 \definecolor{corange}{HTML}{FF9666}
@@ -84,6 +85,10 @@
 \date{\today}
 \keywords{南开大学；毕业论文；模板}
 \keywords*{dark energy model; dynamic analysis}
+
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
 
 \begin{document}
 

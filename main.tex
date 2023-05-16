@@ -59,7 +59,7 @@
 \DeclareBibliographyCategory{cited}
 \AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
 
-\newtheorem{Theorem}{\hskip 2em 定理}[section]
+\newtheorem{Theorem}{\hskip 2em 定理}
 \newtheorem{Lemma}[Theorem]{\hskip 2em 引理}
 \newtheorem{Corollary}[Theorem]{\hskip 2em 推论}
 \newtheorem{Proposition}[Theorem]{\hskip 2em 命题}
@@ -84,6 +84,11 @@
 \date{\today}
 \keywords{南开大学；毕业论文；模板}
 \keywords*{dark energy model; dynamic analysis}
+
+\counterwithinsection{table}
+\counterwithinsection{figure}
+\counterwithinsection{equation}
+\counterwithinsection{Theorem}
 
 \begin{document}
 

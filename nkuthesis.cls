@@ -17,8 +17,8 @@
 }{% fallback
 	\ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“STIX”替代}
 	\RequirePackage[nomath,notext,not1,notextcomp]{stix}
-	\setmainfont{STIX Two Text}
-	% \setsansfont{STIX-Bold}
+	\setmainfont{STIX}
+	\setsansfont{STIX-Bold}
 }
 
 \setCJKfamilyfont{fb@song}{FandolSong}[AutoFakeBold=1]

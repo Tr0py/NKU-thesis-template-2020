@@ -11,9 +11,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % 字体
-% Times New Roman
-\setmainfont{Times New Roman}
-\setsansfont{Times New Roman Bold}
+\IfFontExistsTF{Times New Roman}{
+	\setmainfont{Times New Roman}
+	\setsansfont{Times New Roman Bold}
+}{% fallback
+	\ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“XITS”替代}
+	\setmainfont{XITS}
+	\setsansfont{XITS Bold}
+}
+
 \setCJKfamilyfont{fb@song}{FandolSong}[AutoFakeBold=1]
 
 % 页面设置

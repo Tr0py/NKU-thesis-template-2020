@@ -1,16 +1,86 @@
-% brief:	基本实现2022年11月版《南开大学本科毕业论文（设计）指导手册》的格式要求
-
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{nkuthesis}
+% \iffalse meta-comment
+% !TeX program  = XeLaTeX
+% !TeX encoding = UTF-8
+%
+% Copyright (C) 2023 by https://github.com/Tr0py/NKU-thesis-template-2020
+% -----------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{nkuthesis.dtx}
+%</driver>
+%<class>\NeedsTeXFormat{LaTeX2e}[2021/11/15]
+%<class>\ProvidesClass{nkuthesis}
+%<*class>
+[2023/05/17 v3.0 Nankai University undergraduate thesis document class]
+%</class>
+%
+%<*batchfile>
+\begingroup
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\generate{\file{nkuthesis.cls}{\from{nkuthesis.dtx}{class}}}
+\endgroup
+%</batchfile>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{ctex}
+\begin{document}
+\DocInput{nkuthesis.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{nkuthesis.dtx}
+% \title{南开大学本科生毕业论文模板\thanks{本文档适用于\textsf{nkuthesis}~\fileversion}}
+% \author{Tr0py/NKU-thesis-template-2020\thanks{\url{https://github.com/Tr0py/NKU-thesis-template-2020}}}
+% \date{\filedate}
+%
+% \maketitle
+%
+% \begin{abstract}
+% 基本实现2022年11月版《南开大学本科毕业论文（设计）指导手册》的格式要求
+% \end{abstract}
+%
+% \section{简介}
+%
+% Put text here.
+%
+% \section{使用方式}
+%
+% \DescribeMacro{\YOURMACRO}
+% Put description of |\YOURMACRO| here.
+%
+% \DescribeEnv{YOURENV}
+% Put description of |YOURENV| here.
+%
+% \StopEventually{}
+% \appendix
+% \section{代码实现}
+% 声明 |draft| 选项，将其作为选项传入 |ctexart| 宏包中。
+%    \begin{macrocode}
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessOptions\relax
+%    \end{macrocode}
+% 加载 |ctex| 宏包，字号设置为小四，根据经验调整|linespread|使其接近 MS Word 中的 1.5倍行距，不使用 |ctex| 的字体配置。
+%    \begin{macrocode}
 \LoadClass[zihao=-4,linespread=1.64]{ctexart}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%                               Basic
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% 字体
+%% 字体
 \IfFontExistsTF{Times New Roman}{
 	\setmainfont{Times New Roman}
 	\setsansfont{Times New Roman Bold}
@@ -26,40 +96,46 @@
 \RequirePackage[paper=a4paper,vmargin=2.54cm,hmargin=3.17cm,
 	headheight=0.75cm,headsep=0.29cm,footskip=0.79cm]{geometry}
 
-% 标题
+%% 标题
 \RequirePackage{titlesec}
 \RequirePackage{pifont}
 \RequirePackage{calc}
 \setcounter{secnumdepth}{5}
 \newcommand{\sectionbreak}{\newpage\vspace*{0pt}}
-\titleformat{\section}{\centering\zihao{-3}\sffamily}{\chinese{section}、}{0em}{}
-\titleformat{\subsection}{\centering\zihao{4}\sffamily}{（\chinese{subsection}）}{0em}{}
-\titleformat{\subsubsection}{\zihao{-4}\sffamily}{\arabic{subsubsection}.}{0.5em}{}
-\titleformat{\paragraph}{\zihao{-4}\sffamily}{(\arabic{paragraph})}{0.5em}{}
-\titleformat{\subparagraph}{\zihao{-4}\sffamily}{\ding{\numexpr171+\value{subparagraph}}}{0.5em}{}
+\titleformat{\section}{\centering\zihao{-3}\sffamily} {\chinese{section}、}{0em}{}
+\titleformat{\subsection}{\centering\zihao{4}\sffamily} {（\chinese{subsection}）}{0em}{}
+\titleformat{\subsubsection}{\zihao{-4}\sffamily} {\arabic{subsubsection}.}{0.5em}{}
+\titleformat{\paragraph}{\zihao{-4}\sffamily} {(\arabic{paragraph})}{0.5em}{}
+\titleformat{\subparagraph}{\zihao{-4}\sffamily} {\ding{\numexpr171+\value{subparagraph}}}{0.5em}{}
 
-% 注释
+%% 注释
 \RequirePackage[perpage,bottom]{footmisc}
 \renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}} % 仅 1-10 有效
 \RequirePackage{etoolbox}
 \patchcmd\@makefntext{#1}{\enspace{}#1}{}{\fail}
 
-% 图、表
+%% 图、表
 \RequirePackage{caption}
 \DeclareCaptionLabelSeparator{enspace}{\enspace}
 \captionsetup{labelsep=enspace,skip=1pt}
 \RequirePackage{flafter} % 浮动体置于引用后，包含h选项后似乎不生效
 \RequirePackage[section]{placeins} % 浮动体不跨节
 
-% 超链接、PDF书签属性（教务处格式未要求）
+%% 超链接、PDF书签属性（教务处格式未要求）
 \RequirePackage[hidelinks,pdfa,pdfusetitle,bookmarksnumbered]{hyperref}
 \hypersetup{pdfsubject={南开大学本科生毕业论文（设计）}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%                      Command & Envirenment
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{macro}{mysample}
+% We start by defining and initializing the counter that is used.
+% \end{macro}
+%
+%
+% \begin{environment}{YOURENV}
+% 中文
+% Put explanation of |YOURENV|'s implementation here.
+% \end{environment}
 
-% 文档信息：模仿\title \author \date 的使用
+%% 文档信息：模仿\title \author \date 的使用
 \newcommand{\zh@title}{}
 \newcommand{\en@title}{}
 \newcommand{\@studentid}{}
@@ -127,7 +203,7 @@
 			\vspace{\fill}
 	\end{titlepage}}
 
-% 声明
+%% 声明
 \NewDocumentCommand{\nolabel@section}{smO{#4}m}{%
 	\clearpage\section*{\phantomsection\sffamily\zihao{#2}#4}\sectionmark{#3}%
 	\IfBooleanF{#1}{\addcontentsline{toc}{section}{#3}}}
@@ -147,7 +223,7 @@
 		年\hspace{2em}月\hspace{2em}日
 	\end{flushright}\clearpage}
 
-% 中英摘要
+%% 中英摘要
 \renewenvironment{abstract}
 	{\nolabel@section*{4}[摘要]{摘\hspace{1em}要}}
 	{\par\bigskip\par\noindent\textsf{关键词：}\zh@keywords\clearpage}
@@ -155,7 +231,7 @@
 	{\nolabel@section*{4}{Abstract}}
 	{\par\bigskip\par\noindent\textsf{Keywords:\space}\en@keywords\clearpage}
 
-% 目录
+%% 目录
 \RequirePackage{titletoc}
 \setcounter{tocdepth}{2}
 \titlecontents{section}[0em]{\zihao{-3}}
@@ -166,7 +242,7 @@
 \renewcommand{\tableofcontents}
 	{\nolabel@section*{3}[目录]{目\hspace{1em}录}\@starttoc{toc}\clearpage}
 
-% 附录
+%% 附录
 \RenewDocumentCommand{\appendix}{s}{
 	\setcounter{section}{0}
 	\setcounter{subsection}{0}
@@ -182,14 +258,14 @@
 	}
 }
 
-% 参考文献
+%% 参考文献
 \newenvironment{reference}{
 	\nolabel@section{4}{参考文献}
 	% 兼容natbib、biblatex、和手写
 	\ifdef{\bibfont}{\renewcommand{\bibfont}{\zihao{5}}}{\zihao{5}}
 }{\clearpage}
 
-% 致谢
+%% 致谢
 \newenvironment{acknowledgement}{
 	\nolabel@section{4}[致谢]{致\hspace{1em}谢}
 	\newcounter{begin@page}
@@ -198,6 +274,18 @@
 	\ifnumequal{\thebegin@page}{\thepage}{}{\ClassWarning{nkuthesis}{致谢超过了一页}}
 	\clearpage
 }
-
-	
-
+%    \end{macrocode}
+% \Finale
+%
+% \typeout{**************************************************}
+% \typeout{*}
+% \typeout{* To finish the installation you have to move the}
+% \typeout{* following file into a directory searched by TeX:}
+% \typeout{*}
+% \typeout{*   nkuthesis.cls}
+% \typeout{*}
+% \typeout{* Documentation is in nkuthesis.pdf}
+% \typeout{*}
+% \typeout{* Happy TeXing!}
+% \typeout{**************************************************}
+\endinput

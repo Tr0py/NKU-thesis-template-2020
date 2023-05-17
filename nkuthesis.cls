@@ -4,7 +4,7 @@
 \ProvidesClass{nkuthesis}
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessOptions\relax
-\LoadClass[zihao=-4,linespread=1.64,fontset=none]{ctexart}
+\LoadClass[zihao=-4,linespread=1.64]{ctexart}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%                               Basic
@@ -12,21 +12,9 @@
 
 % 字体
 % Times New Roman
-\setmainfont[
-	BoldFont=timesbd.ttf,
-	ItalicFont=timesi.ttf,
-	BoldItalicFont=timesbi.ttf,
-	Path=fonts/
-]{times.ttf}
-\setsansfont[
-	ItalicFont=timesbi.ttf,
-	Path=fonts/
-]{timesbd.ttf}
-\setCJKmainfont[BoldFont=simhei.ttf,ItalicFont=simkai.ttf,Path=fonts/]{simsun.ttf}
-\setCJKsansfont[Path=fonts/]{simhei.ttf}
-\setCJKmonofont[Path=fonts/]{simfang.ttf}
-\setCJKfamilyfont{fb@song}{simsun.ttf}[AutoFakeBold=1,Path=fonts/]
-
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman Bold}
+\setCJKfamilyfont{fb@song}{FandolSong}[AutoFakeBold=1]
 
 % 页面设置
 \pagestyle{plain} % 兼容fancyhdr
@@ -171,7 +159,7 @@
 % 目录
 \RequirePackage{titletoc}
 \setcounter{tocdepth}{2}
-\newcommand{\content@filler}{~\titlerule*[0.96em]{\CJKfamily{fb@song}…}}
+\newcommand{\content@filler}{~\titlerule*[0.83em]{\CJKfamily{fb@song}…}}
 \titlecontents{section}[0em]{\zihao{-3}}
 	{\zhnumber{\thecontentslabel}、}{}{\content@filler\contentspage}
 \renewcommand{\thesubsection}{\arabic{subsection}}

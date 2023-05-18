@@ -21,8 +21,6 @@
 	\setsansfont{STIX-Bold}
 }
 
-\setCJKfamilyfont{fb@song}{FandolSong}[AutoFakeBold=1]
-
 % 页面设置
 \pagestyle{plain} % 兼容fancyhdr
 \RequirePackage[paper=a4paper,vmargin=2.54cm,hmargin=3.17cm,

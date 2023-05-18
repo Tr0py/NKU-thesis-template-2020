@@ -99,9 +99,9 @@
 	\settototalheight\topulineparbox@totalheight{\parbox[t]{#1}{#2}}%
 	\ifdimless{\topulineparbox@totalheight}{25pt}{}{\vspace{0.7ex}}
 }}
-\newcommand{\pdf@fake@bold}[1]{
-	\special{pdf:code q 2 Tr 0.3 w} % reference: http://t.csdn.cn/rJN18
-	#1
+\NewDocumentCommand{\textfb}{O{1}m}{
+	\special{pdf:code q 2 Tr #1 w} % reference: http://t.csdn.cn/rJN18
+	\textnormal{#2}
 	\special{pdf:code Q}
 }
 \newlength\@titlewidth
@@ -110,7 +110,7 @@
 	\begin{titlepage}
 		\centering
 			\vspace*{25pt}\par\linespread{1}\fontsize{56}{0}
-		\textnormal{\makebox[5.5em][s]{\pdf@fake@bold{南开大学}}}\par
+		\textfb{\makebox[5.5em][s]{南开大学}}\par
 			\vspace{35pt}\par\linespread{1}\zihao{2}
 		\makebox[255pt][s]{本科生毕业论文（设计）}\par
 			\vspace{60pt}\par\linespread{1.2}\zihao{3}

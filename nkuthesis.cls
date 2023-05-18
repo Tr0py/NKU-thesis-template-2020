@@ -171,12 +171,11 @@
 % 目录
 \RequirePackage{titletoc}
 \setcounter{tocdepth}{2}
-\newcommand{\content@filler}{~\titlerule*[0.83em]{\CJKfamily{fb@song}…}}
 \titlecontents{section}[0em]{\zihao{-3}}
-	{\zhnumber{\thecontentslabel}、}{}{\content@filler\contentspage}
+	{\zhnumber{\thecontentslabel}、}{}{\titlerule*{$\cdot$}\contentspage}
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \titlecontents{subsection}[2em]{\zihao{4}}
-	{（\zhnumber{\thecontentslabel}）}{}{\content@filler\contentspage}
+	{（\zhnumber{\thecontentslabel}）}{}{\titlerule*{$\cdot$}\contentspage}
 \renewcommand{\tableofcontents}
 	{\nolabel@section*{3}[目录]{目\hspace{1em}录}\@starttoc{toc}\clearpage}
 
@@ -189,7 +188,7 @@
 	\titleformat{\section}{\centering\zihao{4}\sffamily}
 		{附\hspace{1em}录\Alph{section}：}{0em}{}
 	\titlecontents{section}[0em]{\zihao{-3}}{附录\thecontentslabel：}{}
-		{\content@filler\contentspage}
+		{\titlerule*{$\cdot$}\contentspage}
 	\IfBooleanT{#1}{
 		\stepcounter{section}
 		\nolabel@section{4}[附录]{附\hspace{1em}录}

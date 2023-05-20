@@ -2,7 +2,7 @@
 % !TeX program  = XeLaTeX
 % !TeX encoding = UTF-8
 %
-% Copyright (C) 2023 by https://github.com/Tr0py/NKU-thesis-template-2020
+% Copyright (C) 2023 by <https://github.com/Tr0py/NKU-thesis-template-2020>
 % -----------------------------------
 %
 % This file may be distributed and/or modified under the
@@ -46,40 +46,124 @@
 % \fi
 %
 % \GetFileInfo{nkuthesis.dtx}
-% \title{南开大学本科生毕业论文模板\thanks{本文档适用于\textsf{nkuthesis}~\fileversion}}
-% \author{Tr0py/NKU-thesis-template-2020\thanks{\url{https://github.com/Tr0py/NKU-thesis-template-2020}}}
+% \title{南开大学本科生毕业论文模板\\
+%   The document class \textsf{nkuthesis}~\fileversion}
+% \author{历届参与维护的学生 \thanks{模板维护于：
+%   \url{https://github.com/Tr0py/NKU-thesis-template-2020}}}
 % \date{\filedate}
 %
 % \maketitle
 %
-% \begin{abstract}
-% 基本实现2022年11月版《南开大学本科毕业论文（设计）指导手册》的格式要求
-% \end{abstract}
+% \section{介绍}
 %
-% \section{简介}
+% 基本实现2022年11月版《南开大学本科毕业论文（设计）指导手册》
+% 的格式要求。本模板并未得到官方认证和支持，乃是由历届学生自发
+% 维护。作者不保证本模板完全符合学校的要求，不对由此产生的任何
+% 后果负责。
 %
-% Put text here.
+% \section{使用说明}
+% 
+% 本模板样式与结构继承自 ctexart 文档类，使用方法请查阅 ctex 宏集
+% 文档。本模板根据毕业论文格式要求，对相关样式进行了修改，并定义
+% 了一些宏命令用于创建封面等文档组件。
 %
-% \section{使用方式}
+% \subsection{模板选项}
 %
-% \DescribeMacro{\YOURMACRO}
-% Put description of |\YOURMACRO| here.
+% \begin{description}
+%   \item[draft] 启用草稿模式
+% \end{description}
 %
-% \DescribeEnv{YOURENV}
-% Put description of |YOURENV| here.
+% \subsection{正文编写}
+%
+% 略，参照示例文档。
+%
+% \subsection{文档组件}
+% 
+% \subsubsection{封面}
+%
+% \DescribeMacro{\title\marg{中文标题}}
+% 设置封面内容，完成日期未设置时为编译日期
+% \DescribeMacro{\title*\marg{英文标题}}\\
+% \DescribeMacro{\author\marg{姓名}}\\
+% \DescribeMacro{\studentid\marg{学号}}\\
+% \DescribeMacro{\grade\marg{年级}}\\
+% \DescribeMacro{\major\marg{专业}}\\
+% \DescribeMacro{\department\marg{系别}}\\
+% \DescribeMacro{\college\marg{学院}}\\
+% \DescribeMacro{\adviser\marg{指导教师}}\\
+% \DescribeMacro{\date\marg{完成日期}}\\
+% 
+% \DescribeMacro{\maketitle}
+% 在此处放置封面。标题、导师等项在一行显示不下时，需要使用
+% |\\| 手动另启一行。标题、导师等项自动适应内容长度，内容居中。
+%
+% \subsubsection{诚信声明}
+%
+% \DescribeMacro{\declaration}
+% 在此处放置诚信声明。
+%
+% \subsubsection{摘要}
+%
+% \DescribeMacro{\keywords\marg{中文关键词}}
+% 设置关键词，你需要自己将关键词以分号分隔。
+% \DescribeMacro{\keywords*\marg{英文关键词}}\\
+%
+% \DescribeEnv{abstract}
+% 排版中文摘要。
+%
+%% \DescribeEnv{abstract*}
+% 排版英文摘要。
+%
+% \subsubsection{目录}
+%
+% \DescribeMacro{\tableofcontents}
+% 在此处放置目录。
+%
+% \subsubsection{附录}
+%
+% \DescribeMacro{\appendix}
+% 此后内容为附录内容，使用 \cs{section} 排版附录各章标题。
+%
+% \DescribeMacro{\appendix*}
+% 此后内容为附录内容，并在此处放置一个无编号的附录标题。
+%
+% \subsubsection{参考文献}
+%
+% \DescribeEnv{reference}
+% 排版参考文献。该环境仅会放置标题并设置字体，参考文献内容
+% 需要自行通过 thebibliography环境、bibtex或biblatex来排版。
+%
+% \subsubsection{致谢}
+%
+% \DescribeEnv{acknowledgement}
+% 排版致谢。
 %
 % \StopEventually{}
 % \appendix
+% 
 % \section{代码实现}
-% 声明 |draft| 选项，将其作为选项传入 |ctexart| 宏包中。
+%
+% \subsection{选项}
+%
+% 声明 draft 选项，将其作为选项传入 ctexart 宏包中。
 %    \begin{macrocode}
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessOptions\relax
 %    \end{macrocode}
-% 加载 |ctex| 宏包，字号设置为小四，根据经验调整|linespread|使其接近 MS Word 中的 1.5倍行距，不使用 |ctex| 的字体配置。
+%
+% \subsection{正文}
+%
+% \subsubsection{字体与行距}
+%
+% 加载 ctex 宏包，字号设置为小四，根据经验使用\cs{linespread}使行距接近 MS Word 中的 1.5倍行距，不使用 ctex 的字体配置。
+%
 %    \begin{macrocode}
 \LoadClass[zihao=-4,linespread=1.64]{ctexart}
-
+%    \end{macrocode}
+% 
+% 英文配置为Times New Roman
+%
+%    \begin{macrocode}
 %% 字体
 \IfFontExistsTF{Times New Roman}{
 	\setmainfont{Times New Roman}
@@ -90,52 +174,100 @@
 	\setmainfont{STIX}
 	\setsansfont{STIX-Bold}
 }
-
-% 页面设置
-\pagestyle{plain} % 兼容fancyhdr
+%    \end{macrocode}
+%
+% \subsubsection{页面设计}
+%
+% 隐藏页眉，显示页码，
+%
+%    \begin{macrocode}
+\pagestyle{plain} 
+%    \end{macrocode}
+%
+% 设置页边距。
+%
+%    \begin{macrocode}
 \RequirePackage[paper=a4paper,vmargin=2.54cm,hmargin=3.17cm,
-	headheight=0.75cm,headsep=0.29cm,footskip=0.79cm]{geometry}
-
-%% 标题
+  headheight=0.75cm,headsep=0.29cm,footskip=0.79cm]{geometry}
+%    \end{macrocode}
+%
+% \subsubsection{标题}
+%
+% 设置五级标题。
+%
+%    \begin{macrocode}
 \RequirePackage{titlesec}
 \RequirePackage{pifont}
 \RequirePackage{calc}
 \setcounter{secnumdepth}{5}
 \newcommand{\sectionbreak}{\newpage\vspace*{0pt}}
-\titleformat{\section}{\centering\zihao{-3}\sffamily} {\chinese{section}、}{0em}{}
-\titleformat{\subsection}{\centering\zihao{4}\sffamily} {（\chinese{subsection}）}{0em}{}
-\titleformat{\subsubsection}{\zihao{-4}\sffamily} {\arabic{subsubsection}.}{0.5em}{}
-\titleformat{\paragraph}{\zihao{-4}\sffamily} {(\arabic{paragraph})}{0.5em}{}
-\titleformat{\subparagraph}{\zihao{-4}\sffamily} {\ding{\numexpr171+\value{subparagraph}}}{0.5em}{}
-
-%% 注释
+\titleformat{\section}{\centering\zihao{-3}\sffamily}
+  {\chinese{section}、}{0em}{}
+\titleformat{\subsection}{\centering\zihao{4}\sffamily}
+  {（\chinese{subsection}）}{0em}{}
+\titleformat{\subsubsection}{\zihao{-4}\sffamily}
+  {\arabic{subsubsection}.}{0.5em}{}
+\titleformat{\paragraph}{\zihao{-4}\sffamily}
+  {(\arabic{paragraph})}{0.5em}{}
+\titleformat{\subparagraph}{\zihao{-4}\sffamily}
+  {\ding{\numexpr171+\value{subparagraph}}} {0.5em}{}
+%    \end{macrocode}
+%
+% \subsubsection{注释}
+%
+% 页下注，每页重新编号，
+%
+%    \begin{macrocode}
 \RequirePackage[perpage,bottom]{footmisc}
-\renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}} % 仅 1-10 有效
+%    \end{macrocode}
+%
+% 使用带圈数字，编号仅 1到10。
+%
+%    \begin{macrocode}
+\renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}} 
 \RequirePackage{etoolbox}
 \patchcmd\@makefntext{#1}{\enspace{}#1}{}{\fail}
-
+%    \end{macrocode}
+%
+% \subsubsection{浮动体}
+% 
+% 设置题注格式。
+%
+%    \begin{macrocode}
 %% 图、表
 \RequirePackage{caption}
 \DeclareCaptionLabelSeparator{enspace}{\enspace}
 \captionsetup{labelsep=enspace,skip=1pt}
-\RequirePackage{flafter} % 浮动体置于引用后，包含h选项后似乎不生效
-\RequirePackage[section]{placeins} % 浮动体不跨节
-
-%% 超链接、PDF书签属性（教务处格式未要求）
+%    \end{macrocode}
+%
+% 修改浮动规则，浮动体置于引用后。
+%
+%    \begin{macrocode}
+\RequirePackage{flafter}
+%    \end{macrocode}
+%
+%  浮动体不跨节，
+%
+%    \begin{macrocode}
+\RequirePackage[section]{placeins}
+%    \end{macrocode}
+%
+% \subsubsection{其他}
+%
+% 超链接、PDF书签属性（教务处格式未要求）
+%
+%    \begin{macrocode}
 \RequirePackage[hidelinks,pdfa,pdfusetitle,bookmarksnumbered]{hyperref}
 \hypersetup{pdfsubject={南开大学本科生毕业论文（设计）}}
-
-% \begin{macro}{mysample}
-% We start by defining and initializing the counter that is used.
-% \end{macro}
+%    \end{macrocode}
 %
+% \subsection{组件}
 %
-% \begin{environment}{YOURENV}
-% 中文
-% Put explanation of |YOURENV|'s implementation here.
-% \end{environment}
-
-%% 文档信息：模仿\title \author \date 的使用
+% \subsubsection{封面}
+%
+% 保存封面信息
+%
+%    \begin{macrocode}
 \newcommand{\zh@title}{}
 \newcommand{\en@title}{}
 \newcommand{\@studentid}{}
@@ -144,33 +276,49 @@
 \newcommand{\@department}{}
 \newcommand{\@college}{}
 \newcommand{\@adviser}{}
-\newcommand{\zh@keywords}{}
-\newcommand{\en@keywords}{}
+%    \end{macrocode}
+%
+% 设置封面信息
+%
+%    \begin{macrocode}
 \newcommand{\studentid}[1]{\renewcommand{\@studentid}{#1}}
 \newcommand{\grade}[1]{\renewcommand{\@grade}{#1}}
 \newcommand{\major}[1]{\renewcommand{\@major}{#1}}
 \newcommand{\department}[1]{\renewcommand{\@department}{#1}}
 \newcommand{\college}[1]{\renewcommand{\@college}{#1}}
 \newcommand{\adviser}[1]{\renewcommand{\@adviser}{#1}}
-\NewDocumentCommand{\keywords}{sm}{\IfBooleanTF{#1}
-	{\renewcommand{\en@keywords}{#2}}
-	{\renewcommand{\zh@keywords}{#2}\hypersetup{pdfkeywords={#2}}}}
 \RenewDocumentCommand{\title}{sm}{\IfBooleanTF{#1}
 	{\renewcommand{\en@title}{#2}}
 	{\renewcommand{\zh@title}{#2}\hypersetup{pdftitle={#2}}}}
-
-% 封面
+%    \end{macrocode}
+% \begin{macro}{\textfb}
+% 格式为 \cs{textfb}\marg{伪加粗粗度}\marg{文本}，实现伪加粗，
+% 参考\url{http://t.csdn.cn/rJN18}
+%    \begin{macrocode}
 \NewDocumentCommand{\textfb}{O{1}m}{
-	\special{pdf:code q 2 Tr #1 w} % reference: http://t.csdn.cn/rJN18
+	\special{pdf:code q 2 Tr #1 w}
 	\textnormal{#2}
 	\special{pdf:code Q}
 }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\uline@parbox}
+% 格式为 \cs{uline@parbox}\marg{单行长度}\marg{多行文本}，
+% 被实现为具有等宽下划线的多行文本盒子，必须手动换行
+%    \begin{macrocode}
 \DeclareListParser{\dolinelist}{\\}
-\newcommand{\uline@parbox}[2]{
+\newcommand{\uline@parbox}[2]{%
 	\renewcommand*{\do}[1]{\underline{\makebox[#1][c]{##1}}\\}
 	\begin{tabular}[t]{@{}l@{}}
 	\expandafter\dolinelist\expandafter{#2}
-	\end{tabular}}
+	\end{tabular}%
+}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\maketitle}
+% 排版封面，间距为估计值，内容宽度自适应。
+%    \begin{macrocode}
 \renewcommand{\maketitle}{
 	\begin{titlepage}
 		\hbadness=10000
@@ -202,11 +350,24 @@
 		\end{tabular}
 			\vspace{\fill}
 	\end{titlepage}}
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{声明}
+% \begin{macro}{\nolabel@section}
+% 格式为 \cs{nolabel@section}\oarg{*}\marg{字号}\oarg{短标题}\marg{标题}
+%    \begin{macrocode}
 %% 声明
 \NewDocumentCommand{\nolabel@section}{smO{#4}m}{%
-	\clearpage\section*{\phantomsection\sffamily\zihao{#2}#4}\sectionmark{#3}%
-	\IfBooleanF{#1}{\addcontentsline{toc}{section}{#3}}}
+  \clearpage
+  \section*{\phantomsection\sffamily\zihao{#2}#4}
+  \sectionmark{#3}
+  \IfBooleanF{#1}{\addcontentsline{toc}{section}{#3}}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\declaration}
+% 排版声明
+%    \begin{macrocode}
 \newcommand{\declaration}{
 	\nolabel@section*{3}[声明]{关于南开大学本科生毕业论文（设计）的声明}
 	本人郑重声明：所呈交的学位论文，是本人在指导教师指导下，进行研究工作所取得的成果。
@@ -222,27 +383,79 @@
 		学位论文指导教师签名：\hspace*{6em}\medskip\par
 		年\hspace{2em}月\hspace{2em}日
 	\end{flushright}\clearpage}
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{摘要与关键词}
+%
+% 保存关键词
+%
+%    \begin{macrocode}
+%% 中英摘要
+\newcommand{\zh@keywords}{}
+\newcommand{\en@keywords}{}
+%    \end{macrocode}
+%
+% 设置关键词
+%
+%    \begin{macrocode}
+\NewDocumentCommand{\keywords}{sm}{\IfBooleanTF{#1}
+  {\renewcommand{\en@keywords}{#2}}
+  {\renewcommand{\zh@keywords}{#2}\hypersetup{pdfkeywords={#2}}}}
+%    \end{macrocode}
+% \begin{environment}{abstract}
+% 排版中文摘要与关键词。
+%    \begin{macrocode}
 %% 中英摘要
 \renewenvironment{abstract}
 	{\nolabel@section*{4}[摘要]{摘\hspace{1em}要}}
 	{\par\bigskip\par\noindent\textsf{关键词：}\zh@keywords\clearpage}
+%    \end{macrocode}
+% \end{environment}
+% \begin{environment}{abstract*}
+% 排版英文摘要与关键词。
+%    \begin{macrocode}
 \newenvironment{abstract*}
 	{\nolabel@section*{4}{Abstract}}
 	{\par\bigskip\par\noindent\textsf{Keywords:\space}\en@keywords\clearpage}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsubsection{目录}
+%
+% 目录深度为2，只显示章和节。
+%    \begin{macrocode}
+\setcounter{tocdepth}{2}
+%    \end{macrocode}
+%
+% 借助 titletoc 宏包修改目录格式。
+%
+%    \begin{macrocode}
 
 %% 目录
 \RequirePackage{titletoc}
-\setcounter{tocdepth}{2}
 \titlecontents{section}[0em]{\zihao{-3}}
 	{\zhnumber{\thecontentslabel}、}{}{\titlerule*{$\cdot$}\contentspage}
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \titlecontents{subsection}[2em]{\zihao{4}}
 	{（\zhnumber{\thecontentslabel}）}{}{\titlerule*{$\cdot$}\contentspage}
-\renewcommand{\tableofcontents}
-	{\nolabel@section*{3}[目录]{目\hspace{1em}录}\@starttoc{toc}\clearpage}
-
-%% 附录
+%    \end{macrocode}
+% \begin{macro}{\tableofcontents}
+% 排版目录
+%    \begin{macrocode}
+\renewcommand{\tableofcontents}{
+  \nolabel@section*{3}[目录]{目\hspace{1em}录}
+  \@starttoc{toc}
+  \clearpage
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{附录}
+%
+% \begin{macro}{\appendix}
+% 
+%    \begin{macrocode}
 \RenewDocumentCommand{\appendix}{s}{
 	\setcounter{section}{0}
 	\setcounter{subsection}{0}
@@ -257,24 +470,46 @@
 		\nolabel@section{4}[附录]{附\hspace{1em}录}
 	}
 }
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{参考文献}
+%
+% \begin{environment}{reference}
+% 
+%    \begin{macrocode}
 %% 参考文献
 \newenvironment{reference}{
 	\nolabel@section{4}{参考文献}
 	% 兼容natbib、biblatex、和手写
 	\ifdef{\bibfont}{\renewcommand{\bibfont}{\zihao{5}}}{\zihao{5}}
 }{\clearpage}
-
-%% 致谢
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsubsection{致谢}
+%
+% \begin{environment}{acknowledgement}
+% 
+%    \begin{macrocode}
 \newenvironment{acknowledgement}{
-	\nolabel@section{4}[致谢]{致\hspace{1em}谢}
-	\newcounter{begin@page}
-	\setcounter{begin@page}{\value{page}}
+  \nolabel@section{4}[致谢]{致\hspace{1em}谢}
+%    \end{macrocode}
+% 记录当前页码
+%    \begin{macrocode}
+  \newcounter{begin@page}
+  \setcounter{begin@page}{\value{page}}
 }{
-	\ifnumequal{\thebegin@page}{\thepage}{}{\ClassWarning{nkuthesis}{致谢超过了一页}}
-	\clearpage
+%    \end{macrocode}
+% 若致谢内容超过一页，给出警告。
+%    \begin{macrocode}
+  \ifnumequal{\thebegin@page}{\thepage}
+    {}{\ClassWarning{nkuthesis}{致谢超过了一页}}
+  \clearpage
 }
 %    \end{macrocode}
+% \end{environment}
+%
 % \Finale
 %
 % \typeout{**************************************************}

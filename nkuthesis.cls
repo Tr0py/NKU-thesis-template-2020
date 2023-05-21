@@ -84,55 +84,45 @@
 	{\renewcommand{\zh@title}{#2}\hypersetup{pdftitle={#2}}}}
 
 % 封面
-\newlength\topulineparbox@totalheight
-\newcommand\ul@t@parbox[2]{{%
-	\hbadness=10000 % 禁用此处 "underfull hbox" 提示
-	\settototalheight\topulineparbox@totalheight{\parbox[t]{#1}{#2}}%
-	\rlap{\smash{\parbox[t]{#1}{%
-		\unlessboolexpr{test {\ifdimless{\topulineparbox@totalheight}{0pt}}}{%
-			\underline{\hspace{#1}}\\%
-			\addtolength\topulineparbox@totalheight{-\baselineskip}%
-		}%
-	}}}%
-	\parbox[t]{#1}{#2}
-	\settototalheight\topulineparbox@totalheight{\parbox[t]{#1}{#2}}%
-	\ifdimless{\topulineparbox@totalheight}{25pt}{}{\vspace{0.7ex}}
-}}
 \NewDocumentCommand{\textfb}{O{1}m}{
 	\special{pdf:code q 2 Tr #1 w} % reference: http://t.csdn.cn/rJN18
 	\textnormal{#2}
 	\special{pdf:code Q}
 }
-\newlength\@titlewidth
-\newlength\@authorwidth
+\DeclareListParser{\dolinelist}{\\}
+\newcommand{\uline@parbox}[2]{
+	\renewcommand*{\do}[1]{\underline{\makebox[#1][c]{##1}}\\}
+	\begin{tabular}[t]{@{}l@{}}
+	\expandafter\dolinelist\expandafter{#2}
+	\end{tabular}}
 \renewcommand{\maketitle}{
 	\begin{titlepage}
+		\hbadness=10000
 		\centering
 			\vspace*{25pt}\par\linespread{1}\fontsize{56}{0}
 		\textfb{\makebox[5.5em][s]{南开大学}}\par
 			\vspace{35pt}\par\linespread{1}\zihao{2}
 		\makebox[255pt][s]{本科生毕业论文（设计）}\par
 			\vspace{60pt}\par\linespread{1.2}\zihao{3}
-			\settowidth{\@titlewidth}{\begin{tabular}{c}\zh@title\\\en@title\end{tabular}}
-		\begin{tabular}{l@{：}l}
-			中文题目 & \ul@t@parbox{\@titlewidth}{\centering\zh@title} \\
-			外文题目 & \ul@t@parbox{\@titlewidth}{\centering\en@title} \\
+		\begin{tabular}{p{4em}@{：}p{\widthof{
+			\begin{tabular}{l}\zh@title\\\en@title\end{tabular}
+		}}}
+			\makebox[\hsize][s]{中文题目} & \uline@parbox{\hsize}{\zh@title}  \\
+			\makebox[\hsize][s]{外文题目} & \uline@parbox{\hsize}{\en@title}  \\
 		\end{tabular}
 			\vspace{\fill}\par\linespread{1.15}\zihao{3}
-			\settowidth{\@authorwidth}{
-				\begin{tabular}{c}
-					\@studentid\\\@author\\\@grade\\\@major\\\@department\\\@college\\\@adviser\\\@date
-				\end{tabular}
-			}
-		\begin{tabular}{l@{：}l}
-			学\hspace{2em}号 &\ul@t@parbox{\@authorwidth}{\centering\@studentid}  \\
-			姓\hspace{2em}名 &\ul@t@parbox{\@authorwidth}{\centering\@author}     \\
-			年\hspace{2em}级 &\ul@t@parbox{\@authorwidth}{\centering\@grade}      \\
-			专\hspace{2em}业 &\ul@t@parbox{\@authorwidth}{\centering\@major}      \\
-			系\hspace{2em}别 &\ul@t@parbox{\@authorwidth}{\centering\@department} \\
-			学\hspace{2em}院 &\ul@t@parbox{\@authorwidth}{\centering\@college}    \\
-			指导教师         & \ul@t@parbox{\@authorwidth}{\centering\@adviser}    \\
-			完成日期         & \ul@t@parbox{\@authorwidth}{\centering\@date}       \\
+		\begin{tabular}{p{4em}@{：}p{\widthof{
+			\begin{tabular}{l}\@studentid\\\@author\\\@grade\\\@major\\
+				\@department\\\@college\\\@adviser\\\@date\end{tabular}
+		}}}
+			\makebox[\hsize][s]{学号} & \uline@parbox{\hsize}{\@studentid}  \\
+			\makebox[\hsize][s]{姓名} & \uline@parbox{\hsize}{\@author}  \\
+			\makebox[\hsize][s]{年级} & \uline@parbox{\hsize}{\@grade}  \\
+			\makebox[\hsize][s]{专业} & \uline@parbox{\hsize}{\@major}  \\
+			\makebox[\hsize][s]{系别} & \uline@parbox{\hsize}{\@department}  \\
+			\makebox[\hsize][s]{学院} & \uline@parbox{\hsize}{\@college}  \\
+			\makebox[\hsize][s]{指导教师} & \uline@parbox{\hsize}{\@adviser}  \\
+			\makebox[\hsize][s]{完成日期} & \uline@parbox{\hsize}{\@date}  \\
 		\end{tabular}
 			\vspace{\fill}
 	\end{titlepage}}

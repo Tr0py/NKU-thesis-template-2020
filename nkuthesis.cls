@@ -91,7 +91,6 @@
 	{\renewcommand{\zh@title}{#2}\hypersetup{pdftitle={#2}}}}
 
 % 封面
-\RequirePackage{etoolbox}
 \newlength\topulineparbox@totalheight
 \newcommand\ul@t@parbox[2]{{%
 	\hbadness=10000 % 禁用此处 "underfull hbox" 提示

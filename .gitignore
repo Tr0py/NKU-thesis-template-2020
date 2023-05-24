@@ -5,9 +5,11 @@
 *.out
 *.toc
 *.aux
-main.pdf
+*.cls
+*.hd
+*.pdf
+*.synctex.gz
 main.run.xml
-main.synctex.gz
 *.zip
 _site/
 .*

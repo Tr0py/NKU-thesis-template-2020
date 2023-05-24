@@ -8,7 +8,7 @@ layout: default
 [![Overleaf](https://img.shields.io/badge/Overleaf模板-green)](https://www.overleaf.com/latex/templates/nan-kai-da-xue-ben-ke-sheng-bi-ye-lun-wen-mo-ban-v1-dot-4/hdfqhtmmmdpv)
 [![Questions](https://img.shields.io/badge/模板讨论&使用问题？-pink)](https://github.com/Tr0py/NKU-thesis-template-2020/discussions)
 
-最近一次更新：2023年4月。
+最近一次更新：2023年5月。
 
 ## 简介
 
@@ -19,7 +19,16 @@ It mainly provides undergraduate thesis template.
 
 ## 如何使用
 
-有三种常用使用方式，以下三种任选其一，难度递增。
+从源码编译模板：
+
+```
+xelatex nkuthesis.dtx
+```
+
+将得到模板类实现文档（nkuthesis.pdf）和模板类文件（nkuthesis.cls），确保 
+nkuthesis.cls 可用后即可使用模板。
+
+模板有三种常用使用方式，以下三种任选其一，难度递增。
 
 ### 1. 使用Overleaf模板 [便于使用]
 
@@ -32,12 +41,12 @@ It mainly provides undergraduate thesis template.
 
 1. 下载最新的源码
 	- 打开[最新的Release页面](https://github.com/Tr0py/NKU-thesis-template-2020/releases/latest)
-	- 点击Source code (zip) 下载源码
+	- 点击Source code (zip) 下载源码并编译
 2. 在Overleaf中上传源码作为project
 	- Overleaf中，点击左方"New Project" - "Upload Project"
 	- 选择下载好的zip文件上传
 	- 选择使用XeLateX + 2020 TeX Live 进行编译
-		- 左上角Menu - Compiler 选择XeLateX, TeX Live Version选择2020(Legacy)
+		- 左上角Menu - Compiler 选择XeLateX, TeX Live Version选择2022
 
 ### 3. 使用源码+tex本地编译 [便于开发]
 
@@ -45,8 +54,8 @@ It mainly provides undergraduate thesis template.
 	- Windows / Linux: TeX Live
 	- MacOS: MacTeX
 	- Note: 目前TeX Live 2020 + XeLateX可以正常编译，新版本可能会有报错。未来计划修复。
-2. 克隆源码
-3. 使用`make`进行编译
+2. 克隆源码并编译模板
+3. 使用`make`编译 main.tex
 
 
 ## 其他

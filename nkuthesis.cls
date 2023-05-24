@@ -42,8 +42,7 @@
 \RequirePackage[perpage,bottom]{footmisc}
 \renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}} % 仅 1-10 有效
 \RequirePackage{etoolbox}
-\patchcmd\@makefntext{{\hss\@makefnmark}}
-	{{\hss\hbox{\normalfont\zihao{-5}\@thefnmark}}\enspace}{}{\fail}
+\patchcmd\@makefntext{#1}{\enspace{}#1}{}{\fail}
 
 % 图、表
 \RequirePackage{caption}

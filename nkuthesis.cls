@@ -4,29 +4,22 @@
 \ProvidesClass{nkuthesis}
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessOptions\relax
-\LoadClass[zihao=-4,linespread=1.64,fontset=none]{ctexart}
+\LoadClass[zihao=-4,linespread=1.64]{ctexart}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%                               Basic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % 字体
-% Times New Roman
-\setmainfont[
-	BoldFont=timesbd.ttf,
-	ItalicFont=timesi.ttf,
-	BoldItalicFont=timesbi.ttf,
-	Path=fonts/
-]{times.ttf}
-\setsansfont[
-	ItalicFont=timesbi.ttf,
-	Path=fonts/
-]{timesbd.ttf}
-\setCJKmainfont[BoldFont=simhei.ttf,ItalicFont=simkai.ttf,Path=fonts/]{simsun.ttf}
-\setCJKsansfont[Path=fonts/]{simhei.ttf}
-\setCJKmonofont[Path=fonts/]{simfang.ttf}
-\setCJKfamilyfont{fb@song}{simsun.ttf}[AutoFakeBold=1,Path=fonts/]
-
+\IfFontExistsTF{Times New Roman}{
+	\setmainfont{Times New Roman}
+	\setsansfont{Times New Roman Bold}
+}{% fallback
+	\ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“STIX”替代}
+	\RequirePackage[nomath,notext,not1,notextcomp]{stix}
+	\setmainfont{STIX}
+	\setsansfont{STIX-Bold}
+}
 
 % 页面设置
 \pagestyle{plain} % 兼容fancyhdr
@@ -106,13 +99,18 @@
 	\settototalheight\topulineparbox@totalheight{\parbox[t]{#1}{#2}}%
 	\ifdimless{\topulineparbox@totalheight}{25pt}{}{\vspace{0.7ex}}
 }}
+\NewDocumentCommand{\textfb}{O{1}m}{
+	\special{pdf:code q 2 Tr #1 w} % reference: http://t.csdn.cn/rJN18
+	\textnormal{#2}
+	\special{pdf:code Q}
+}
 \newlength\@titlewidth
 \newlength\@authorwidth
 \renewcommand{\maketitle}{
 	\begin{titlepage}
 		\centering
 			\vspace*{25pt}\par\linespread{1}\fontsize{56}{0}
-		\textbf{\CJKfamily{fb@song}\makebox[5.5em][s]{南开大学}}\par
+		\textfb{\makebox[5.5em][s]{南开大学}}\par
 			\vspace{35pt}\par\linespread{1}\zihao{2}
 		\makebox[255pt][s]{本科生毕业论文（设计）}\par
 			\vspace{60pt}\par\linespread{1.2}\zihao{3}
@@ -171,12 +169,11 @@
 % 目录
 \RequirePackage{titletoc}
 \setcounter{tocdepth}{2}
-\newcommand{\content@filler}{~\titlerule*[0.96em]{\CJKfamily{fb@song}…}}
 \titlecontents{section}[0em]{\zihao{-3}}
-	{\zhnumber{\thecontentslabel}、}{}{\content@filler\contentspage}
+	{\zhnumber{\thecontentslabel}、}{}{\titlerule*{$\cdot$}\contentspage}
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \titlecontents{subsection}[2em]{\zihao{4}}
-	{（\zhnumber{\thecontentslabel}）}{}{\content@filler\contentspage}
+	{（\zhnumber{\thecontentslabel}）}{}{\titlerule*{$\cdot$}\contentspage}
 \renewcommand{\tableofcontents}
 	{\nolabel@section*{3}[目录]{目\hspace{1em}录}\@starttoc{toc}\clearpage}
 
@@ -189,7 +186,7 @@
 	\titleformat{\section}{\centering\zihao{4}\sffamily}
 		{附\hspace{1em}录\Alph{section}：}{0em}{}
 	\titlecontents{section}[0em]{\zihao{-3}}{附录\thecontentslabel：}{}
-		{\content@filler\contentspage}
+		{\titlerule*{$\cdot$}\contentspage}
 	\IfBooleanT{#1}{
 		\stepcounter{section}
 		\nolabel@section{4}[附录]{附\hspace{1em}录}

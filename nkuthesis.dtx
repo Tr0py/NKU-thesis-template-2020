@@ -166,9 +166,9 @@
 %    \begin{macrocode}
 %% 字体
 \IfFontExistsTF{Times New Roman}{
-	\setmainfont{Times New Roman}
+\setmainfont{Times New Roman}
 	\setsansfont{Times New Roman Bold}
-}{% fallback
+}{
 	\ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“STIX”替代}
 	\RequirePackage[nomath,notext,not1,notextcomp]{stix}
 	\setmainfont{STIX}
@@ -187,8 +187,14 @@
 % 设置页边距。
 %
 %    \begin{macrocode}
-\RequirePackage[paper=a4paper,vmargin=2.54cm,hmargin=3.17cm,
-  headheight=0.75cm,headsep=0.29cm,footskip=0.79cm]{geometry}
+\RequirePackage[
+	paper=a4paper,
+	vmargin=2.54cm,
+	hmargin=3.17cm,
+	headheight=0.75cm,
+	headsep=0.29cm,
+	footskip=0.79cm
+]{geometry}
 %    \end{macrocode}
 %
 % \subsubsection{标题}
@@ -202,15 +208,15 @@
 \setcounter{secnumdepth}{5}
 \newcommand{\sectionbreak}{\newpage\vspace*{0pt}}
 \titleformat{\section}{\centering\zihao{-3}\sffamily}
-  {\chinese{section}、}{0em}{}
+	{\chinese{section}、}{0em}{}
 \titleformat{\subsection}{\centering\zihao{4}\sffamily}
-  {（\chinese{subsection}）}{0em}{}
+	{（\chinese{subsection}）}{0em}{}
 \titleformat{\subsubsection}{\zihao{-4}\sffamily}
-  {\arabic{subsubsection}.}{0.5em}{}
+	{\arabic{subsubsection}.}{0.5em}{}
 \titleformat{\paragraph}{\zihao{-4}\sffamily}
-  {(\arabic{paragraph})}{0.5em}{}
+	{(\arabic{paragraph})}{0.5em}{}
 \titleformat{\subparagraph}{\zihao{-4}\sffamily}
-  {\ding{\numexpr171+\value{subparagraph}}} {0.5em}{}
+	{\ding{\numexpr171+\value{subparagraph}}} {0.5em}{}
 %    \end{macrocode}
 %
 % \subsubsection{注释}
@@ -295,10 +301,10 @@
 % 格式为 \cs{textfb}\marg{伪加粗粗度}\marg{文本}，实现伪加粗，
 % 参考\url{http://t.csdn.cn/rJN18}
 %    \begin{macrocode}
-\NewDocumentCommand{\textfb}{O{1}m}{
+\NewDocumentCommand{\textfb}{O{1}m}{%
 	\special{pdf:code q 2 Tr #1 w}
 	\textnormal{#2}
-	\special{pdf:code Q}
+	\special{pdf:code Q}%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -319,7 +325,7 @@
 % \begin{macro}{\maketitle}
 % 排版封面，间距为估计值，内容宽度自适应。
 %    \begin{macrocode}
-\renewcommand{\maketitle}{
+\renewcommand{\maketitle}{%
 	\begin{titlepage}
 		\hbadness=10000
 		\centering
@@ -349,7 +355,8 @@
 			\makebox[\hsize][s]{完成日期} & \uline@parbox{\hsize}{\@date}  \\
 		\end{tabular}
 			\vspace{\fill}
-	\end{titlepage}}
+	\end{titlepage}%
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -359,16 +366,19 @@
 %    \begin{macrocode}
 %% 声明
 \NewDocumentCommand{\nolabel@section}{smO{#4}m}{%
-  \clearpage
-  \section*{\phantomsection\sffamily\zihao{#2}#4}
-  \sectionmark{#3}
-  \IfBooleanF{#1}{\addcontentsline{toc}{section}{#3}}}
+	\clearpage
+	\section*{\phantomsection\sffamily\zihao{#2}#4}
+	\sectionmark{#3}
+	\IfBooleanF{#1}{%
+		\addcontentsline{toc}{section}{#3}%
+	}%
+}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\declaration}
 % 排版声明
 %    \begin{macrocode}
-\newcommand{\declaration}{
+\newcommand{\declaration}{%
 	\nolabel@section*{3}[声明]{关于南开大学本科生毕业论文（设计）的声明}
 	本人郑重声明：所呈交的学位论文，是本人在指导教师指导下，进行研究工作所取得的成果。
 	除文中已经注明引用的内容外，本学位论文的研究成果不包含任何他人创作的、
@@ -382,7 +392,9 @@
 	\par\bigskip\begin{flushright}
 		学位论文指导教师签名：\hspace*{6em}\medskip\par
 		年\hspace{2em}月\hspace{2em}日
-	\end{flushright}\clearpage}
+	\end{flushright}
+	\clearpage%
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -399,25 +411,38 @@
 % 设置关键词
 %
 %    \begin{macrocode}
-\NewDocumentCommand{\keywords}{sm}{\IfBooleanTF{#1}
-  {\renewcommand{\en@keywords}{#2}}
-  {\renewcommand{\zh@keywords}{#2}\hypersetup{pdfkeywords={#2}}}}
+\NewDocumentCommand{\keywords}{sm}{
+	\IfBooleanTF{#1}{
+		\renewcommand{\en@keywords}{#2}
+	}{
+		\renewcommand{\zh@keywords}{#2}
+		\hypersetup{pdfkeywords={#2}}
+	}
+}
 %    \end{macrocode}
 % \begin{environment}{abstract}
 % 排版中文摘要与关键词。
 %    \begin{macrocode}
 %% 中英摘要
-\renewenvironment{abstract}
-	{\nolabel@section*{4}[摘要]{摘\hspace{1em}要}}
-	{\par\bigskip\par\noindent\textsf{关键词：}\zh@keywords\clearpage}
+\renewenvironment{abstract}{%
+	\nolabel@section*{4}[摘要]{摘\hspace{1em}要}
+}{%
+	\par\bigskip\par
+	\noindent\textsf{关键词：}\zh@keywords
+	\clearpage%
+}
 %    \end{macrocode}
 % \end{environment}
 % \begin{environment}{abstract*}
 % 排版英文摘要与关键词。
 %    \begin{macrocode}
-\newenvironment{abstract*}
-	{\nolabel@section*{4}{Abstract}}
-	{\par\bigskip\par\noindent\textsf{Keywords:\space}\en@keywords\clearpage}
+\newenvironment{abstract*}{%
+	\nolabel@section*{4}{Abstract}
+}{%
+	\par\bigskip\par
+	\noindent\textsf{Keywords:\space}\en@keywords
+	\clearpage%
+}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -431,8 +456,6 @@
 % 借助 titletoc 宏包修改目录格式。
 %
 %    \begin{macrocode}
-
-%% 目录
 \RequirePackage{titletoc}
 \titlecontents{section}[0em]{\zihao{-3}}
 	{\zhnumber{\thecontentslabel}、}{}{\titlerule*{$\cdot$}\contentspage}
@@ -443,10 +466,10 @@
 % \begin{macro}{\tableofcontents}
 % 排版目录
 %    \begin{macrocode}
-\renewcommand{\tableofcontents}{
+\renewcommand{\tableofcontents}{%
   \nolabel@section*{3}[目录]{目\hspace{1em}录}
   \@starttoc{toc}
-  \clearpage
+  \clearpage%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -456,7 +479,7 @@
 % \begin{macro}{\appendix}
 % 
 %    \begin{macrocode}
-\RenewDocumentCommand{\appendix}{s}{
+\RenewDocumentCommand{\appendix}{s}{%
 	\setcounter{section}{0}
 	\setcounter{subsection}{0}
 	\renewcommand{\thesection}{\Alph{section}}
@@ -465,10 +488,10 @@
 		{附\hspace{1em}录\Alph{section}：}{0em}{}
 	\titlecontents{section}[0em]{\zihao{-3}}{附录\thecontentslabel：}{}
 		{\titlerule*{$\cdot$}\contentspage}
-	\IfBooleanT{#1}{
-		\stepcounter{section}
-		\nolabel@section{4}[附录]{附\hspace{1em}录}
-	}
+	\IfBooleanT{#1}{%
+		\stepcounter{section}%
+		\nolabel@section{4}[附录]{附\hspace{1em}录}%
+	}%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -482,8 +505,14 @@
 \newenvironment{reference}{
 	\nolabel@section{4}{参考文献}
 	% 兼容natbib、biblatex、和手写
-	\ifdef{\bibfont}{\renewcommand{\bibfont}{\zihao{5}}}{\zihao{5}}
-}{\clearpage}
+	\ifdef{\bibfont}{%
+		\renewcommand{\bibfont}{\zihao{5}}%
+	}{%
+		\zihao{5}%
+	}
+}{%
+	\clearpage%
+}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -492,20 +521,22 @@
 % \begin{environment}{acknowledgement}
 % 
 %    \begin{macrocode}
-\newenvironment{acknowledgement}{
-  \nolabel@section{4}[致谢]{致\hspace{1em}谢}
+\newenvironment{acknowledgement}{%
+	\nolabel@section{4}[致谢]{致\hspace{1em}谢}
 %    \end{macrocode}
 % 记录当前页码
 %    \begin{macrocode}
-  \newcounter{begin@page}
-  \setcounter{begin@page}{\value{page}}
-}{
+	\newcounter{begin@page}
+	\setcounter{begin@page}{\value{page}}
+}{%
 %    \end{macrocode}
 % 若致谢内容超过一页，给出警告。
 %    \begin{macrocode}
-  \ifnumequal{\thebegin@page}{\thepage}
-    {}{\ClassWarning{nkuthesis}{致谢超过了一页}}
-  \clearpage
+	\ifnumequal{\thebegin@page}{\thepage}{%
+	}{%
+		\ClassWarning{nkuthesis}{致谢超过了一页}%
+	}%
+	\clearpage%
 }
 %    \end{macrocode}
 % \end{environment}

@@ -231,6 +231,11 @@
 %
 %    \begin{macrocode}
 \renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}} 
+%    \end{macrocode}
+%
+% 脚注编号与内容间需要空一格。
+%
+%    \begin{macrocode}
 \RequirePackage{etoolbox}
 \patchcmd\@makefntext{#1}{\enspace{}#1}{}{\fail}
 %    \end{macrocode}
@@ -299,7 +304,7 @@
 %    \end{macrocode}
 % \begin{macro}{\textfb}
 % 格式为 \cs{textfb}\marg{伪加粗粗度}\marg{文本}，实现伪加粗，
-% 参考\url{http://t.csdn.cn/rJN18}
+% 参考 \url{http://t.csdn.cn/rJN18}。
 %    \begin{macrocode}
 \NewDocumentCommand{\textfb}{O{1}m}{%
 	\special{pdf:code q 2 Tr #1 w}
@@ -411,13 +416,13 @@
 % 设置关键词
 %
 %    \begin{macrocode}
-\NewDocumentCommand{\keywords}{sm}{
-	\IfBooleanTF{#1}{
-		\renewcommand{\en@keywords}{#2}
-	}{
-		\renewcommand{\zh@keywords}{#2}
-		\hypersetup{pdfkeywords={#2}}
-	}
+\NewDocumentCommand{\keywords}{sm}{%
+	\IfBooleanTF{#1}{%
+		\renewcommand{\en@keywords}{#2}%
+	}{%
+		\renewcommand{\zh@keywords}{#2}%
+		\hypersetup{pdfkeywords={#2}}%
+	}%
 }
 %    \end{macrocode}
 % \begin{environment}{abstract}

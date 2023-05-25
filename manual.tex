@@ -4,72 +4,25 @@
 \def\XeLaTeX{X\kern-.1667em\lower.5ex\hbox{\reflectbox{E}}\kern-.1667em\LaTeX}
 \def\XeTeX{X\kern-.1667em\lower.5ex\hbox{\reflectbox{E}}\kern-.1667em\TeX}
 
-\section{南开大学学位论文格式宏包 NKThesis 使用说明} \label{chpt:A}
+\section{介绍} \label{chpt:A}
 
-\subsection{前言}
+\subsection{维护中}
 
-请follow我们最新的进度\href{https://github.com/Tr0py/NKU-thesis-template-2020}{https://github.com/Tr0py/NKU-thesis-template-2020}, 以获取最新的模板bug修复及更新。如有问题请在GitHub留言，我们会尽快回复。欢迎加入毕业论文模板维护的工作中:).
+请follow我们最新的进度\url{https://github.com/Tr0py/NKU-thesis-template-2020}, 
+以获取最新的模板bug修复及更新。如有问题请在GitHub留言，我们会尽快回复。
+欢迎加入毕业论文模板维护的工作中.
 
+\subsection{免责声明}
 
-\iffalse
-本模板的发展历史：
-\begin{enumerate}
-    \item 南开大学孙文昌老师制作了南开大学研究生论文\LaTeX模板
-    \item 南开大学08级本科生卓小杨修改制成本科生毕业论文模板
-\end{enumerate}
+本模板本模板参考\href{http://jwc.nankai.edu.cn/2022/1124/c24a497818/page.htm}
+{2022年11月版《南开大学本科毕业论文（设计）指导手册》}编写。
 
+您自愿使用这个模板。
+提供本模板的目的是为了给您的论文写作带来方便，然而，
+作者不保证这个模板完全符合学校的要求，也不对由此产生的任何后果负责。
+如果您不同意这些条款，请不要使用这个模板。
 
-然而安装\LaTeX 环境以及编译并不那么简单，会有一些出乎意料的bug。为方便使用\LaTeX ，支持在线和跨平台编译修改毕业论文，我们将模板移植到了在线的\LaTeX 平台Overleaf上并做了更新。
-
-本模板参考《南开大学本科生学位论文排版规范（试行）(2016 修正）版本 1.2.21》修改而成，更新了封面格式、添加了所需字体、更新参考文献到最新的bibtex标准。作者希望能给使用者写作论文带来方便。然而，作者不保证本模板完全符合学校要求，也不对由此带来的风险和损失承担任何责任。如果您不接受这项条款，请不要使用本模板。
-\fi
-\LaTeX 由于其专业的排版效果，擅长处理复杂的数学公式，免费等优势而得到了广泛的使用，成为许多西文期刊接收投稿的主流格式；而\LaTeX 环境的安装，编辑器的选择以及编译\LaTeX 文件的设置等增加了使用者的使用困难，并且在此过程中出现的问题有难有易，种类繁多，不易找到解决方案。Overleaf作为一档在线\LaTeX 编辑网站，使用简单，支持在线和跨平台编译修改毕业论文，并且支持多人协作以方便老师和项目组其他人修改。因此，我们参考南开大学08级本科生卓小杨依据《南开大学本科生毕业论文（设计）管理规定（2011年 修订）》修改制成的本科生毕业论文模板，将南开大学孙文昌老师制作的南开大学研究生论文\LaTeX 模板移植到了Overleaf上，借鉴未知人士对其的修改，针对该模板的若干问题和版本旧的不足进行了修改及更新。
-
-本模板参考《南开大学本科生学位论文排版规范（试行）(2016 修正）版本 1.2.21》修改而成，更新了封面格式、添加了所需字体、更新参考文献到最新的bibtex标准。作者希望能给使用者写作论文带来方便。然而，作者不保证本模板完全符合学校要求，也不对由此带来的风险和损失承担任何责任。如果您不接受这项条款，请不要使用本模板。
-
-
-\hskip 20em 16级本科生\quad 赵子懿\quad 潘宇
-
-
-\subsection{系统要求}
-
-模板仅在 CTex2.9.2 下测试\XeLaTeX 通过。对于其它 TeX 发行版可能需要做个别修改。本模板改编自孙老师（http://222.30.48.141/$\sim$sunwch）的版本，格式参照南开大学2019年毕业论文格式。
-
-\subsection{NKThesis 使用说明}
-
-本模板可以使用以下两种方式编译:
-\begin{enumerate}
- \item PDF\LaTeX
-
- \item \XeLaTeX [推荐]
-\end{enumerate}
-
-例如，
-\begin{verbatim}
-         pdflatex main
-         bibtex main      % 处理参考文献
-         pdflatex main   % 连续编译两遍
-         pdflatex main   % 以生成正确的文献引用。
-\end{verbatim}
-
-
-
-
-
-本模板用到 宋体、楷体、仿宋、黑体四种字体. 若需重新配置字体, 请修改 NKTfonts.cfg.
-对于 Linux/Mac 下的 TeX Live 2009, 可能需要设置环境变量 OSFONTDIR, 具体内容请参考 texmf.cnf.
-
-
-我们建议您使用\XeLaTeX\ 编译。与前两种方法相比，\XeLaTeX\  编译长文档的速度更快，
-编译一篇一百多页的论文只需几秒的时间(SL9400 @ 1.86GHz)。
-
-在改变编译方式前应先删除 *.toc 和 *.aux 文件，
-因为不同编译方式产生的辅助文件格式可能并不相同。
-
-
-
-注意：使用 \XeLaTeX\ 编译时，\XeTeX\ 的版本应不低于 0.9995.0(MiKTeX 2.8 或者 TeXLive 2009)。
-
+\section{使用说明}
 
 \subsection{引用章节号}
 \label{sec:ex:A}
@@ -257,110 +210,15 @@ x&=&y+z \\
 \subsubsection{列举环境:  enumerate}
 
 TODO 将会重写
-% \makeatletter
-% \def\@listi{%
-%   \leftmargin\leftmargini
-%   \parsep 0pt%
-%   \topsep \parsep
-%   \itemsep \parsep}
-% \let\@listI\@listi
-% \@listi
-% \def\@listii{%
-%   \leftmargin\leftmarginii
-%   \labelwidth\leftmarginii
-%   \advance\labelwidth-\labelsep
-%   \parsep 0pt%
-%   \topsep \parsep
-%   \itemsep \parsep}
-% \def\@listiii{%
-%   \leftmargin\leftmarginiii
-%   \labelwidth\leftmarginiii
-%   \advance\labelwidth-\labelsep
-%   \parsep 0pt%
-%   \topsep \parsep
-%   \itemsep \parsep
-%   \partopsep \p@ \@plus\z@ \@minus\p@}
 
-% \renewcommand\enumerate[1][M]{%
-%   \ifnum \@enumdepth >3 %
-%     \@toodeep
-%   \else
-%     \advance\@enumdepth\@ne
-%     \edef\@enumctr{%
-%       enum\romannumeral\the\@enumdepth}%
-%     \list{%
-%       \csname label\@enumctr\endcsname\,}%
-%       {\settowidth\labelwidth{#1}%
-%        \leftmargin\labelwidth
-%        \advance\leftmargin\labelsep
-%        \ifnum\@enumdepth=1 %
-%          \advance\leftmargin\parindent
-%        \fi
-%        \usecounter{\@enumctr} %
-%        \listparindent\parindent
-%        \itemsep\z@
-% %       \def\makelabel##1{%
-% %         \mbox{##1}\hfil}%
-%        \def\makelabel##1{\hss\llap{##1}}}%
-%     \def\newblock{%
-%       \hskip .11em plus .33em minus .07em}%
-%     \sloppy\clubpenalty4000 %
-%     \widowpenalty4000 %
-%     \sfcode`\.=1000\relax
-%   \fi}
-% \let\endenumerate=\endlist
-% \endinput
-% \makeatother
-
-% 环境 enumerate 已经被改写，增加了一个可选参数[字符串], 用以控制所进。例如，
-% \begin{verbatim}
-%   \begin{enumerate}
-%     \item This is an example.
-%     \item This is an example.
-%       \begin{enumerate}
-%       \item This is an example.
-%       \item This is an example.
-%     \end{enumerate}
-%   \end{enumerate}
-%   \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的缩进。
-%                        % 缺省值为 [M]
-%     \item This is an example.
-%     \item This is an example.
-%       \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的缩进。
-%       \item This is an example.
-%       \item This is an example.
-%     \end{enumerate}
-%   \end{enumerate}
-% \end{verbatim}
-% 的输出为
-%   \begin{enumerate}
-%     \item This is an example.
-%     \item This is an example.
-%       \begin{enumerate}
-%       \item This is an example.
-%       \item This is an example.
-%     \end{enumerate}
-%   \end{enumerate}
-%   \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的所进。
-%                        % 缺省值为 [M]
-%     \item This is an example.
-%     \item This is an example.
-%       \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的所进。
-%       \item This is an example.
-%       \item This is an example.
-%     \end{enumerate}
-%   \end{enumerate}
-
-% \clearpage
-
-\subsection{\TeX\ 简介}
+\section{\TeX\ 简介}
 
 以下内容是 milksea@bbs.ctex.org 撰写的关于\TeX\ 的简单介绍。
 注意这不是一个入门教程，不讲 \TeX\ 系统的配置安装，也不讲具体的 \LaTeX\ 代码。
 这里仅仅试图以一些只言片语来解释：
 进入这个门槛之前新手应该知道的注意事项，以及遇到问题以后该去如何解决问题。
 
-\subsubsection{什么是 \TeX/\LaTeX，我是否应该选择它}
+\subsection{什么是 \TeX/\LaTeX，我是否应该选择它}
 
 \TeX\ 是最早由高德纳（Donald Knuth）教授创建的一门标记式宏语言，
 用来排版科技文章，尤其擅长处理复杂的数学公式。\TeX\ 同时也是处理这一语言的排版软件。
@@ -392,13 +250,13 @@ TODO 将会重写
 
 \def\AAAA{}
 
-\subsubsection{我该用什么编辑器？}
+\subsection{我该用什么编辑器？}
 
 编辑器功能有简有繁，特色不一，从简单的纯文本编辑器到繁复的 Emacs，因人而易。基本功能有语法高亮、方便编译预览就很好了，扩充功能和定制有无限的可能。初学者可以使用功能简单、使用方便的专用编辑器，如 TeXWorks、Kile、WinEdt 等，或者类似所见即所得功能的 LyX；熟悉的人可以使用定制性更强的 Notepad++、SciTE、Vim、Emacs 等。这方面的介绍很多，一开始不妨多试几种，找到最适合自己的才是最好的。
 
 另外提醒一句，编辑器只是工作的助力，不必把它看得太重。一些编辑器有极为繁杂的功能，一些编辑器常常会引来黑客们的论战（如 Emacs 与 Vim）。为工作，别为这些浪费太多精力，适用即可。
 
-\subsubsection{我该去哪里寻找答案？}
+\subsection{我该去哪里寻找答案？}
 
 0、绝对的新手，先读完一本入门读物，了解基本的知识。
 
@@ -409,7 +267,7 @@ TODO 将会重写
 3、清楚、聪明地提出你的问题。
 
 
-\subsubsection{我应该看什么 \LaTeX\ 读物？}
+\subsection{我应该看什么 \LaTeX\ 读物？}
 
 这不是一个容易回答的问题，因为有许多选择，也同样有许多不合适的选择。
 这里只是选出一个比较好的答案。更多更详细的介绍可以在版面和网上寻找（注意时效）。
@@ -439,7 +297,7 @@ TODO 将会重写
 \end{enumerate}
 \end{enumerate}
 
-\subsubsection{什么知识会过时？什么不会？}
+\subsection{什么知识会过时？什么不会？}
 
 \TeX\ 是排版语言，也是广泛使用的软件，并且不断在发展中；
 因此，总有一些东西会很快过时。作为学习 \TeX\ 的人，
@@ -501,27 +359,12 @@ WinEdt 在 5.5 以后的版本支持 UTF-8 编码，而旧版本不支持；
 天元系统，到后来的 CJK 方式，到近来的 \XeTeX、LuaTeX 方式，
 中文处理的原理、软件、宏包、配置方式等都在不断变化中。
 
-\subsubsection{插图格式}
+\subsection{插图格式}
 
 前面提到， \LaTeX\ 主要支持EPS格式的插图文件， 而PDF\LaTeX\ 则更喜欢 PDF、PNG、JPG 格式的图形。
 为解决兼容性，最新版的 PDF\LaTeX 会自动把 EPS 文件转换为 PDF 文件。因此，使用 EPS 格式的插图可能具有最广泛
 的通用性。
 
-\subsubsection{\LaTeX\ 作图}
+\subsection{\LaTeX\ 作图}
 
 目前已经有很多优秀的\LaTeX\ 作图宏包，如 pgf/Tikz 和 pstricks，两者都具有强大的作图能力。
-
-\section{说明}
-
-本模板参照南开大学学位论文写作规范编写，
-仅仅提供了论文的基本格式，包括章节标题和正文字体、字号等等的设置。
-
-
-
-您自愿使用这个模板。
-提供本模板的目的是为了给您的论文写作带来方便，然而，
-作者不保证这个模板完全符合学校的要求，也不对由此产生的任何后果负责。
-如果您不同意这些条款，请不要使用这个模板。
-
-
-参考文献的录入请参考第\ref{chpt:A}章第\ref{manual:ref}节。 

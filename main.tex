@@ -16,22 +16,10 @@
 \usepackage{newtxmath}
 \usepackage{booktabs}
 \usepackage{graphicx}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.13}
-\usepackage{subfigure}
-\usepackage{listings}
-\usepackage{tikz}
-% \usepackage{setspace}
-\usepackage{color,xcolor}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage{cases}
-\usepackage{multirow}
 \usepackage{enumitem} % 列表格式
 \usepackage{chngcntr} % 编号格式
 \usepackage{fancyhdr}
 
-\usetikzlibrary{patterns}
 \addbibresource{nkthesis.bib}
 \DeclareBibliographyCategory{cited}
 \AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
@@ -43,10 +31,6 @@
 \newtheorem{Definition}[Theorem]{\hskip 2em 定义}
 \newtheorem{Example}[Theorem]{\hskip 2em 例}
 \newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
-\renewcommand{\algorithmicrequire}{\textbf{输入：}}
-\renewcommand{\algorithmicensure}{\textbf{输出：}}
-\algnewcommand{\LeftComment}[1]{\Statex \(\triangleright\) #1}
-\floatname{algorithm}{算法}
 \setlist{nosep}
 \pagestyle{fancy}
 

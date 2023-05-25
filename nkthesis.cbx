@@ -35,7 +35,7 @@
 
 \providecommand{\mksuperbrackets}[1]{\mkbibsuperscript{\mkbibbrackets{#1}}}
 
-\DeclareCiteCommand{\cite}[\mkbibbrackets]
+\DeclareCiteCommand{\parencite}[\mkbibbrackets]
 {%
 	\usebibmacro{cite:init}%
 	\usebibmacro{prenote}%
@@ -50,7 +50,7 @@
 	\usebibmacro{postnote}%
 }
 
-\DeclareCiteCommand{\supercite}[\mksuperbrackets]
+\DeclareCiteCommand{\cite}[\mksuperbrackets]
 {%
 	\usebibmacro{cite:init}%
 	\let\multicitedelim=\supercitedelim

@@ -262,8 +262,8 @@
 % 脚注编号与内容间需要空一格。
 %
 %    \begin{macrocode}
-\RequirePackage{etoolbox}
-\patchcmd\@makefntext{#1}{\enspace{}#1}{}{\fail}
+\NewCommandCopy\old@makefntext{\@makefntext}
+\renewcommand{\@makefntext}[1]{\old@makefntext{\enspace{}#1}}
 %    \end{macrocode}
 %
 % \subsubsection{浮动体}
@@ -344,6 +344,7 @@
 % 格式为 \cs{uline@parbox}\marg{单行长度}\marg{多行文本}，
 % 被实现为具有等宽下划线的多行文本盒子，必须手动换行
 %    \begin{macrocode}
+\RequirePackage{etoolbox}
 \DeclareListParser{\dolinelist}{\\}
 \newcommand{\uline@parbox}[2]{%
   \renewcommand*{\do}[1]{\underline{\makebox[#1][c]{##1}}\\}

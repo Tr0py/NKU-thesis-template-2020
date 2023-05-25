@@ -26,35 +26,9 @@
 
 引用章节号请参考如下格式: 第\ref{chpt:A}章第\ref{sec:ex:A}节或\autoref{chpt:A}\autoref{sec:ex:A}
 
-
 \subsection{中英文间隔}
 
-使用 \hologo{XeLaTeX}\ 编译时，会自动在中英文转换时添加必要的空格。 使用 [PDF]\LaTeX\
-编译时仅忽略中文之间的空格，而中英文之间的空格予以保留。
-因此，不管何种编译方式，您都不需要在中英文间添加 $\tilde{}$ 以获得额外的空格。例如，
-
-这是 English 中文 $x=y$ 测试
-
-这是English中文$x=y$测试
-
-可以看出，以上两行用 \hologo{XeLaTeX}\ 编译的结果是相同的。
-
-
-\subsection{NKThesis 预调用的宏包}
-
-NKThesis 已经调用以下宏包，您无须重新调用。
-
-\begin{table}
-\centering
-\caption{NKThesis 预调用的宏包}
-\begin{tabular}{l|l}
-\hline
-编译方式 & 调用的宏包\\ \hline
-\hologo{XeLaTeX} & xeCJK, CJKnumb, graphicx, mathptmx \\ \hline
-[PDF]\LaTeX & CJK, CJKnumb, uniGBK, graphicx, mathptmx \\
-\hline
-\end{tabular}
-\end{table}
+使用 \hologo{XeLaTeX}\ 编译时，会自动在中英文转换时添加必要的空格。
 
 \subsection{图表}
 
@@ -65,6 +39,20 @@ NKThesis 已经调用以下宏包，您无须重新调用。
 \includegraphics[viewport=0 0 2984 969,width=40mm]{figures/nankaidaxue.pdf}
 \caption{南开大学}
 \end{figure}
+
+表格的例子：
+
+\begin{table}
+  \centering
+  \caption{NKThesis 预调用的宏包}
+  \begin{tabular}{l|l}
+  \hline
+  编译方式 & 调用的宏包\\ \hline
+  \hologo{XeLaTeX} & xeCJK, CJKnumb, graphicx, mathptmx \\ \hline
+  [PDF]\LaTeX & CJK, CJKnumb, uniGBK, graphicx, mathptmx \\
+  \hline
+  \end{tabular}
+  \end{table}
 
 \subsection{字体}
 
@@ -78,7 +66,6 @@ NKThesis 已经调用以下宏包，您无须重新调用。
 加粗:  \jiacu
 \end{verbatim}
 
-% {\itshape 楷体}
 \subsection{参考文献} \label{manual:ref}
 参考文献引用:
 \cite{ChenCheChen2001,Nadkarni-1992,Hua-Wang-1973}
@@ -92,11 +79,8 @@ NKThesis 已经调用以下宏包，您无须重新调用。
 
 本模板采用 biblatex 宏包管理参考文献。如果你对此不熟悉，可以参考biblatex使用手册。
 
-
-
 \subsection{一些建议}
 \subsubsection{关于分数的写法}
-
 
 \LaTeX 提供宏命令\verb+\frac+, 用以打印分数. 为使得版面整齐, 该命令的使用应遵循以下原则:
 
@@ -244,8 +228,6 @@ TODO 将会重写
 
 请尽量清醒看待网上经常见到的关于 \TeX\ 与其他软件的优劣比较和口水战。在选择使用或离开之前，请先考虑
 \TeX\ 的应用领域，想想它是否适合你的需要。
-
-\def\AAAA{}
 
 \subsection{我该用什么编辑器？}
 

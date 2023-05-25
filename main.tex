@@ -45,6 +45,11 @@
 \usepackage{hologo} % logo
 \usepackage{xurl}
 
+% 引用编号格式
+\labelformat{section}{第\zhnumber{#1}章}
+\labelformat{subsection}{第\zhnumber{#1}节}
+\labelformat{figure}{图~#1\space}
+
 % 文档元数据
 \title{南开大学本科生毕业论文模板\\ v3.0}
 \title*{Released in May, 2023}
@@ -99,15 +104,34 @@ Since 1998, two independent supernova research groups have discovered that the u
 
 \pagenumbering{arabic} 
 
+\section{介绍} \label{chpt:A}
+
+\subsection{维护中}
+
+请follow我们最新的进度 \url{https://github.com/Tr0py/NKU-thesis-template-2020}, 
+以获取最新的模板bug修复及更新。如有问题请在GitHub留言，我们会尽快回复。
+欢迎加入毕业论文模板维护的工作中。
+
+\subsection{免责声明}
+
+本模板本模板参考\href{http://jwc.nankai.edu.cn/2022/1124/c24a497818/page.htm}
+{2022年11月版《南开大学本科毕业论文（设计）指导手册》}编写。
+
+您自愿使用这个模板。
+提供本模板的目的是为了给您的论文写作带来方便，然而，
+作者不保证这个模板完全符合学校的要求，也不对由此产生的任何后果负责。
+如果您不同意这些条款，请不要使用这个模板。
+
 \include{manual}
 \appendix
 单标题附录\footnote{脚注}
 
 \appendices
-\section{附录1}
-\newpage
-\subsection{小节}
-\section{附录2}
+\section{标题}
+\section{标题}
+\section{标题}
+\section{标题}
+\section{标题}\section{标题}\section{标题}\section{标题}\section{标题}
 
 \begin{reference}
 \printbibliography[heading=none]

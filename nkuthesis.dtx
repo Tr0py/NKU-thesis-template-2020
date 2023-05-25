@@ -513,16 +513,30 @@
 % \end{macro}
 %
 % \subsubsection{附录}
-%
-% \begin{macro}{\appendix}
 % 
+% \begin{macro}{\appendix}
+% 单标题目录
 %    \begin{macrocode}
 \NewCommandCopy{\old@appendix}{\appendix}
-\RenewDocumentCommand{\appendix}{s}{%
+\renewcommand{\appendix}{%
+	\clearpage
+	\nolabel@section{4}[附录]{附\hspace{1em}录}%
+	\renewcommand{\thesection}{A}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\appendices}
+% 多标题目录。本不应该同时使用 ctexheading 和 titlesec，这么做是为了不在目录和页眉
+% 显示“附录”中间的空格。
+%    \begin{macrocode}
+\ctexset{appendix/name={附录}}
+\RequirePackage{titlesec}
+\newcommand{\appendices}{%
 	\clearpage
 	\old@appendix
-	\nolabel@section{4}[附录]{附\hspace{1em}录}%
-	\renewcommand{\thesection}{A}
+	\titleformat{\section}{\centering\zihao{4}\sffamily}
+		{附\hspace{1em}录\Alph{section}：}{0em}{}%
 }
 %    \end{macrocode}
 % \end{macro}

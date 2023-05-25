@@ -399,10 +399,7 @@
 %    \begin{macrocode}
 %% 声明
 \NewDocumentCommand{\nolabel@section}{smO{#4}m}{%
-  \begingroup
-    \ctexset{section/format=\centering\sffamily\zihao{#2}}
-    \section*{\phantomsection{}#4}
-  \endgroup
+  \section*{\phantomsection\centering\sffamily\zihao{#2}#4}
   \markboth{\centering{}#3}{}
   \IfBooleanF{#1}{%
     \addcontentsline{toc}{section}{#3}%
@@ -488,7 +485,7 @@
 %
 % 目录深度为2，只显示章和节。
 %    \begin{macrocode}
-\ctexset{tocdepth=subsection}
+\setcounter{tocdepth}{2}
 %    \end{macrocode}
 %
 % 借助 titletoc 宏包修改目录格式。
@@ -507,7 +504,7 @@
   \clearpage
   \nolabel@section*{3}[目录]{目\hspace{1em}录}
   \@starttoc{toc}
-  \clearpage%
+  \clearpage
 }
 %    \end{macrocode}
 % \end{macro}

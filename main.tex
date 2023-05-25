@@ -34,6 +34,7 @@
 \usepackage{multirow}
 \usepackage{enumitem} % 列表格式
 \usepackage{chngcntr} % 编号格式
+\usepackage{fancyhdr}
 
 % \usepackage{tabularx}
 \definecolor{corange}{HTML}{FF9666}
@@ -72,6 +73,7 @@
 \algnewcommand{\LeftComment}[1]{\Statex \(\triangleright\) #1}
 \floatname{algorithm}{算法}
 \setlist{nosep}
+\pagestyle{fancy}
 
 \title{南开大学本科生毕业论文模板 V2.0 \\ 第二行}
 \title*{Released in Jan, 2023 \\ 2nd line}
@@ -126,11 +128,14 @@ Since 1998, two independent supernova research groups have discovered that the u
 \pagenumbering{arabic} 
 
 \include{manual}
-\appendix*
+\appendix
 单标题附录\footnote{脚注}
 
-\appendix
-\section{多标题附录}
+\appendices
+\section{附录1}
+\newpage
+\subsection{小节}
+\section{附录2}
 
 % \include{appendices}
 \begin{reference}

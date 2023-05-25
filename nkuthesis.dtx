@@ -192,15 +192,20 @@
 }
 %    \end{macrocode}
 %
-% 使用 fancy 样式页眉页脚，字号小五
+% 使用 fancy 样式页眉页脚
 %
 %    \begin{macrocode}
 \RequirePackage{fancyhdr}
-\NewCommandCopy\old@markboth{\markboth}
-\NewCommandCopy\old@markright{\markright}
-\renewcommand{\markboth}[2]{\old@markboth{\zihao{-5}#1}{\zihao{-5}#2}}
-\renewcommand{\markright}[1]{\old@markright{\zihao{-5}#1}}
 \pagestyle{fancy}
+%    \end{macrocode}
+%
+% 字号小五
+%
+%    \begin{macrocode}
+\NewCommandCopy\old@markboth{\markboth}
+\renewcommand{\markboth}[2]{\old@markboth{\zihao{-5}#1}{\zihao{-5}#2}}
+\NewCommandCopy\old@markright{\markright}
+\renewcommand{\markright}[1]{\old@markright{\zihao{-5}#1}}
 %    \end{macrocode}
 %
 % \subsubsection{标题}

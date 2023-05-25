@@ -1,9 +1,6 @@
 % -*- coding: utf-8 -*-
 % !TEX root = main.tex
 
-\def\XeLaTeX{X\kern-.1667em\lower.5ex\hbox{\reflectbox{E}}\kern-.1667em\LaTeX}
-\def\XeTeX{X\kern-.1667em\lower.5ex\hbox{\reflectbox{E}}\kern-.1667em\TeX}
-
 \section{介绍} \label{chpt:A}
 
 \subsection{维护中}
@@ -32,7 +29,7 @@
 
 \subsection{中英文间隔}
 
-使用 \XeLaTeX\ 编译时，会自动在中英文转换时添加必要的空格。 使用 [PDF]\LaTeX\
+使用 \hologo{XeLaTeX}\ 编译时，会自动在中英文转换时添加必要的空格。 使用 [PDF]\LaTeX\
 编译时仅忽略中文之间的空格，而中英文之间的空格予以保留。
 因此，不管何种编译方式，您都不需要在中英文间添加 $\tilde{}$ 以获得额外的空格。例如，
 
@@ -40,7 +37,7 @@
 
 这是English中文$x=y$测试
 
-可以看出，以上两行用 \XeLaTeX\ 编译的结果是相同的。
+可以看出，以上两行用 \hologo{XeLaTeX}\ 编译的结果是相同的。
 
 
 \subsection{NKThesis 预调用的宏包}
@@ -53,7 +50,7 @@ NKThesis 已经调用以下宏包，您无须重新调用。
 \begin{tabular}{l|l}
 \hline
 编译方式 & 调用的宏包\\ \hline
-\XeLaTeX & xeCJK, CJKnumb, graphicx, mathptmx \\ \hline
+\hologo{XeLaTeX} & xeCJK, CJKnumb, graphicx, mathptmx \\ \hline
 [PDF]\LaTeX & CJK, CJKnumb, uniGBK, graphicx, mathptmx \\
 \hline
 \end{tabular}
@@ -350,13 +347,13 @@ WinEdt 在 5.5 以后的版本支持 UTF-8 编码，而旧版本不支持；
 
 但凡提及“\LaTeX\ 只支持 EPS 图形”的，就是这个过时的时代的产物。事实上 \TeX/\LaTeX\
 并不限定任何图形格式，只不过是当时的输出格式（PS）和工具（Dvips）对 EPS 情有独钟而已。
-后来 PDF 格式成为主流，pdf\TeX、DVIPDFM、DVIPDFMx、\XeTeX\ 等工具则主要支持 PDF、PNG、JPG 格式的图形，
+后来 PDF 格式成为主流，pdf\TeX、DVIPDFM、DVIPDFMx、\hologo{XeTeX}\ 等工具则主要支持 PDF、PNG、JPG 格式的图形，
 涉及一系列工具如 ImageMagick、ebb 等。
 
 值得特别提出注意的就是，中文处理也一起是更新迅速、容易过时的部分。
 而且因为中文处理一直没有一个“官方”的“标准”做法，软件、工具、
 文档以及网上纷繁的笔记也就显得相当混乱。从八十年代开始的 CCT 系统、
-天元系统，到后来的 CJK 方式，到近来的 \XeTeX、LuaTeX 方式，
+天元系统，到后来的 CJK 方式，到近来的 \hologo{XeTeX}、LuaTeX 方式，
 中文处理的原理、软件、宏包、配置方式等都在不断变化中。
 
 \subsection{插图格式}

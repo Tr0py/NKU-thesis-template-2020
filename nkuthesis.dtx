@@ -191,8 +191,8 @@
 	paper=a4paper,
 	vmargin=2.54cm,
 	hmargin=3.17cm,
-	headheight=0.75cm,
-	headsep=0.29cm,
+	headheight=0.25cm,
+	headsep=0.79cm,
 	footskip=0.79cm
 ]{geometry}
 %    \end{macrocode}
@@ -202,21 +202,37 @@
 % 设置五级标题。
 %
 %    \begin{macrocode}
-\RequirePackage{titlesec}
 \RequirePackage{pifont}
 \RequirePackage{calc}
-\setcounter{secnumdepth}{5}
-\newcommand{\sectionbreak}{\newpage\vspace*{0pt}}
-\titleformat{\section}{\centering\zihao{-3}\sffamily}
-	{\chinese{section}、}{0em}{}
-\titleformat{\subsection}{\centering\zihao{4}\sffamily}
-	{（\chinese{subsection}）}{0em}{}
-\titleformat{\subsubsection}{\zihao{-4}\sffamily}
-	{\arabic{subsubsection}.}{0.5em}{}
-\titleformat{\paragraph}{\zihao{-4}\sffamily}
-	{(\arabic{paragraph})}{0.5em}{}
-\titleformat{\subparagraph}{\zihao{-4}\sffamily}
-	{\ding{\numexpr171+\value{subparagraph}}} {0.5em}{}
+\ctexset{
+	secnumdepth=subparagraph,
+	section = {
+		name={,、},
+		number=\chinese{section},
+		format=\zihao{-3}\sffamily,
+	},
+	subsection = {
+		name={（,）},
+		number=\chinese{subsection},
+		format=\zihao{4}\sffamily,
+	},
+	subsubsection = {
+		name={,.},
+		number=\arabic{subsubsection},
+		format=\zihao{-4}\sffamily,
+	},
+	paragraph = {
+		name={(,)},
+		number=\arabic{paragraph},
+		format=\zihao{-4}\sffamily,
+		runin=false,
+	},
+	subparagraph = {
+		number=\ding{\numexpr171+\value{subparagraph}},
+		format=\zihao{-4}\sffamily,
+		runin=false,
+	},
+}
 %    \end{macrocode}
 %
 % \subsubsection{注释}
@@ -371,8 +387,10 @@
 %    \begin{macrocode}
 %% 声明
 \NewDocumentCommand{\nolabel@section}{smO{#4}m}{%
-	\clearpage
-	\section*{\phantomsection\sffamily\zihao{#2}#4}
+	\begingroup
+		\ctexset{section/format=\centering\sffamily\zihao{#2}}
+		\section*{\phantomsection{}#4}
+	\endgroup
 	\sectionmark{#3}
 	\IfBooleanF{#1}{%
 		\addcontentsline{toc}{section}{#3}%
@@ -384,6 +402,7 @@
 % 排版声明
 %    \begin{macrocode}
 \newcommand{\declaration}{%
+	\clearpage
 	\nolabel@section*{3}[声明]{关于南开大学本科生毕业论文（设计）的声明}
 	本人郑重声明：所呈交的学位论文，是本人在指导教师指导下，进行研究工作所取得的成果。
 	除文中已经注明引用的内容外，本学位论文的研究成果不包含任何他人创作的、
@@ -430,6 +449,7 @@
 %    \begin{macrocode}
 %% 中英摘要
 \renewenvironment{abstract}{%
+	\clearpage
 	\nolabel@section*{4}[摘要]{摘\hspace{1em}要}
 }{%
 	\par\bigskip\par
@@ -442,6 +462,7 @@
 % 排版英文摘要与关键词。
 %    \begin{macrocode}
 \newenvironment{abstract*}{%
+	\clearpage
 	\nolabel@section*{4}{Abstract}
 }{%
 	\par\bigskip\par
@@ -455,7 +476,7 @@
 %
 % 目录深度为2，只显示章和节。
 %    \begin{macrocode}
-\setcounter{tocdepth}{2}
+\ctexset{tocdepth=subsection}
 %    \end{macrocode}
 %
 % 借助 titletoc 宏包修改目录格式。
@@ -463,15 +484,16 @@
 %    \begin{macrocode}
 \RequirePackage{titletoc}
 \titlecontents{section}[0em]{\zihao{-3}}
-	{\zhnumber{\thecontentslabel}、}{}{\titlerule*{$\cdot$}\contentspage}
+	{\thecontentslabel}{}{\titlerule*{$\cdot$}\contentspage}
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \titlecontents{subsection}[2em]{\zihao{4}}
-	{（\zhnumber{\thecontentslabel}）}{}{\titlerule*{$\cdot$}\contentspage}
+	{\thecontentslabel}{}{\titlerule*{$\cdot$}\contentspage}
 %    \end{macrocode}
 % \begin{macro}{\tableofcontents}
 % 排版目录
 %    \begin{macrocode}
 \renewcommand{\tableofcontents}{%
+  \clearpage
   \nolabel@section*{3}[目录]{目\hspace{1em}录}
   \@starttoc{toc}
   \clearpage%
@@ -484,19 +506,12 @@
 % \begin{macro}{\appendix}
 % 
 %    \begin{macrocode}
+\NewCommandCopy{\old@appendix}{\appendix}
 \RenewDocumentCommand{\appendix}{s}{%
-	\setcounter{section}{0}
-	\setcounter{subsection}{0}
-	\renewcommand{\thesection}{\Alph{section}}
-	\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}%
-	\titleformat{\section}{\centering\zihao{4}\sffamily}
-		{附\hspace{1em}录\Alph{section}：}{0em}{}
-	\titlecontents{section}[0em]{\zihao{-3}}{附录\thecontentslabel：}{}
-		{\titlerule*{$\cdot$}\contentspage}
-	\IfBooleanT{#1}{%
-		\stepcounter{section}%
-		\nolabel@section{4}[附录]{附\hspace{1em}录}%
-	}%
+	\clearpage
+	\old@appendix
+	\nolabel@section{4}[附录]{附\hspace{1em}录}%
+	\renewcommand{\thesection}{A}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -508,6 +523,7 @@
 %    \begin{macrocode}
 %% 参考文献
 \newenvironment{reference}{
+	\clearpage
 	\nolabel@section{4}{参考文献}
 	% 兼容natbib、biblatex、和手写
 	\ifdef{\bibfont}{%
@@ -527,6 +543,7 @@
 % 
 %    \begin{macrocode}
 \newenvironment{acknowledgement}{%
+	\clearpage
 	\nolabel@section{4}[致谢]{致\hspace{1em}谢}
 %    \end{macrocode}
 % 记录当前页码

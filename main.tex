@@ -4,36 +4,50 @@
 
 \documentclass{nkuthesis}
 
+% 参考文献
 \usepackage[maxnames=3,minnames=3,sorting=none,style=nkthesis]{biblatex}
-\hypersetup{
-  colorlinks=true,    
-  pdfborder=0 0 1,
-  citecolor=black,
-  linkcolor=black,
-}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{newtxmath}
-\usepackage{booktabs}
-\usepackage{graphicx}
-\usepackage{enumitem} % 列表格式
-\usepackage{chngcntr} % 编号格式
-\usepackage{fancyhdr}
-
 \addbibresource{nkthesis.bib}
 \DeclareBibliographyCategory{cited}
 \AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
 
+
+% 数学环境
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{newtxmath}
 \newtheorem{Theorem}{\hskip 2em 定理}[section]
 \newtheorem{Lemma}[Theorem]{\hskip 2em 引理}
 \newtheorem{Corollary}[Theorem]{\hskip 2em 推论}
 \newtheorem{Proposition}[Theorem]{\hskip 2em 命题}
 \newtheorem{Definition}[Theorem]{\hskip 2em 定义}
 \newtheorem{Example}[Theorem]{\hskip 2em 例}
-\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+% 列表格式
+\usepackage{enumitem}
 \setlist{nosep}
+
+% 编号格式
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+
+% 页面风格
+\usepackage{fancyhdr}
 \pagestyle{fancy}
 
+% 其他
+\usepackage{booktabs} % 三线表
+\usepackage{graphicx} % 图片导入
+\hypersetup{ % 超链接样式
+  colorlinks=true,    
+  pdfborder=0 0 1,
+  citecolor=black,
+  linkcolor=black,
+}
+
+% 文档元数据
 \title{南开大学本科生毕业论文模板\\ v3.0}
 \title*{Released in May, 2023}
 \studentid{1234567}
@@ -46,10 +60,6 @@
 \date{\today}
 \keywords{南开大学；毕业论文；模板}
 \keywords*{dark energy model; dynamic analysis}
-
-\counterwithin{table}{section}
-\counterwithin{figure}{section}
-\counterwithin{equation}{section}
 
 \begin{document}
 
@@ -101,7 +111,6 @@ Since 1998, two independent supernova research groups have discovered that the u
 \subsection{小节}
 \section{附录2}
 
-% \include{appendices}
 \begin{reference}
 \printbibliography[category=cited,heading=none]
 \end{reference}

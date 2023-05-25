@@ -167,12 +167,12 @@
 %% 字体
 \IfFontExistsTF{Times New Roman}{
 \setmainfont{Times New Roman}
-	\setsansfont{Times New Roman Bold}
+  \setsansfont{Times New Roman Bold}
 }{
-	\ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“STIX”替代}
-	\RequirePackage[nomath,notext,not1,notextcomp]{stix}
-	\setmainfont{STIX}
-	\setsansfont{STIX-Bold}
+  \ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“STIX”替代}
+  \RequirePackage[nomath,notext,not1,notextcomp]{stix}
+  \setmainfont{STIX}
+  \setsansfont{STIX-Bold}
 }
 %    \end{macrocode}
 %
@@ -183,12 +183,12 @@
 %    \begin{macrocode}
 \RequirePackage{geometry}
 \geometry{
-	paper=a4paper,
-	vmargin=2.54cm,
-	hmargin=3.17cm,
-	headheight=0.4cm,
-	headsep=0.64cm,
-	footskip=0.79cm,
+  paper=a4paper,
+  vmargin=2.54cm,
+  hmargin=3.17cm,
+  headheight=0.4cm,
+  headsep=0.64cm,
+  footskip=0.79cm,
 }
 %    \end{macrocode}
 %
@@ -216,33 +216,33 @@
 \RequirePackage{pifont}
 \RequirePackage{calc}
 \ctexset{
-	secnumdepth=subparagraph,
-	section = {
-		name={,、},
-		number=\chinese{section},
-		format=\zihao{-3}\sffamily,
-	},
-	subsection = {
-		name={（,）},
-		number=\chinese{subsection},
-		format=\zihao{4}\sffamily,
-	},
-	subsubsection = {
-		name={,.},
-		number=\arabic{subsubsection},
-		format=\zihao{-4}\sffamily,
-	},
-	paragraph = {
-		name={(,)},
-		number=\arabic{paragraph},
-		format=\zihao{-4}\sffamily,
-		runin=false,
-	},
-	subparagraph = {
-		number=\ding{\numexpr171+\value{subparagraph}},
-		format=\zihao{-4}\sffamily,
-		runin=false,
-	},
+  secnumdepth=subparagraph,
+  section = {
+    name={,、},
+    number=\chinese{section},
+    format=\zihao{-3}\sffamily,
+  },
+  subsection = {
+    name={（,）},
+    number=\chinese{subsection},
+    format=\zihao{4}\sffamily,
+  },
+  subsubsection = {
+    name={,.},
+    number=\arabic{subsubsection},
+    format=\zihao{-4}\sffamily,
+  },
+  paragraph = {
+    name={(,)},
+    number=\arabic{paragraph},
+    format=\zihao{-4}\sffamily,
+    runin=false,
+  },
+  subparagraph = {
+    number=\ding{\numexpr171+\value{subparagraph}},
+    format=\zihao{-4}\sffamily,
+    runin=false,
+  },
 }
 %    \end{macrocode}
 %
@@ -326,17 +326,17 @@
 \newcommand{\college}[1]{\renewcommand{\@college}{#1}}
 \newcommand{\adviser}[1]{\renewcommand{\@adviser}{#1}}
 \RenewDocumentCommand{\title}{sm}{\IfBooleanTF{#1}
-	{\renewcommand{\en@title}{#2}}
-	{\renewcommand{\zh@title}{#2}\hypersetup{pdftitle={#2}}}}
+  {\renewcommand{\en@title}{#2}}
+  {\renewcommand{\zh@title}{#2}\hypersetup{pdftitle={#2}}}}
 %    \end{macrocode}
 % \begin{macro}{\textfb}
 % 格式为 \cs{textfb}\marg{伪加粗粗度}\marg{文本}，实现伪加粗，
 % 参考 \url{http://t.csdn.cn/rJN18}。
 %    \begin{macrocode}
 \NewDocumentCommand{\textfb}{O{1}m}{%
-	\special{pdf:code q 2 Tr #1 w}
-	\textnormal{#2}
-	\special{pdf:code Q}%
+  \special{pdf:code q 2 Tr #1 w}
+  \textnormal{#2}
+  \special{pdf:code Q}%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -347,10 +347,10 @@
 %    \begin{macrocode}
 \DeclareListParser{\dolinelist}{\\}
 \newcommand{\uline@parbox}[2]{%
-	\renewcommand*{\do}[1]{\underline{\makebox[#1][c]{##1}}\\}
-	\begin{tabular}[t]{@{}l@{}}
-	\expandafter\dolinelist\expandafter{#2}
-	\end{tabular}%
+  \renewcommand*{\do}[1]{\underline{\makebox[#1][c]{##1}}\\}
+  \begin{tabular}[t]{@{}l@{}}
+  \expandafter\dolinelist\expandafter{#2}
+  \end{tabular}%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -358,36 +358,36 @@
 % 排版封面，间距为估计值，内容宽度自适应。
 %    \begin{macrocode}
 \renewcommand{\maketitle}{%
-	\begin{titlepage}
-		\hbadness=10000
-		\centering
-			\vspace*{25pt}\par\linespread{1}\fontsize{56}{0}
-		\textfb{\makebox[5.5em][s]{南开大学}}\par
-			\vspace{35pt}\par\linespread{1}\zihao{2}
-		\makebox[255pt][s]{本科生毕业论文（设计）}\par
-			\vspace{60pt}\par\linespread{1.2}\zihao{3}
-		\begin{tabular}{p{4em}@{：}p{\widthof{
-			\begin{tabular}{l}\zh@title\\\en@title\end{tabular}
-		}}}
-			\makebox[\hsize][s]{中文题目} & \uline@parbox{\hsize}{\zh@title}  \\
-			\makebox[\hsize][s]{外文题目} & \uline@parbox{\hsize}{\en@title}  \\
-		\end{tabular}
-			\vspace{\fill}\par\linespread{1.15}\zihao{3}
-		\begin{tabular}{p{4em}@{：}p{\widthof{
-			\begin{tabular}{l}\@studentid\\\@author\\\@grade\\\@major\\
-				\@department\\\@college\\\@adviser\\\@date\end{tabular}
-		}}}
-			\makebox[\hsize][s]{学号} & \uline@parbox{\hsize}{\@studentid}  \\
-			\makebox[\hsize][s]{姓名} & \uline@parbox{\hsize}{\@author}  \\
-			\makebox[\hsize][s]{年级} & \uline@parbox{\hsize}{\@grade}  \\
-			\makebox[\hsize][s]{专业} & \uline@parbox{\hsize}{\@major}  \\
-			\makebox[\hsize][s]{系别} & \uline@parbox{\hsize}{\@department}  \\
-			\makebox[\hsize][s]{学院} & \uline@parbox{\hsize}{\@college}  \\
-			\makebox[\hsize][s]{指导教师} & \uline@parbox{\hsize}{\@adviser}  \\
-			\makebox[\hsize][s]{完成日期} & \uline@parbox{\hsize}{\@date}  \\
-		\end{tabular}
-			\vspace{\fill}
-	\end{titlepage}%
+  \begin{titlepage}
+    \hbadness=10000
+    \centering
+      \vspace*{25pt}\par\linespread{1}\fontsize{56}{0}
+    \textfb{\makebox[5.5em][s]{南开大学}}\par
+      \vspace{35pt}\par\linespread{1}\zihao{2}
+    \makebox[255pt][s]{本科生毕业论文（设计）}\par
+      \vspace{60pt}\par\linespread{1.2}\zihao{3}
+    \begin{tabular}{p{4em}@{：}p{\widthof{
+      \begin{tabular}{l}\zh@title\\\en@title\end{tabular}
+    }}}
+      \makebox[\hsize][s]{中文题目} & \uline@parbox{\hsize}{\zh@title}  \\
+      \makebox[\hsize][s]{外文题目} & \uline@parbox{\hsize}{\en@title}  \\
+    \end{tabular}
+      \vspace{\fill}\par\linespread{1.15}\zihao{3}
+    \begin{tabular}{p{4em}@{：}p{\widthof{
+      \begin{tabular}{l}\@studentid\\\@author\\\@grade\\\@major\\
+        \@department\\\@college\\\@adviser\\\@date\end{tabular}
+    }}}
+      \makebox[\hsize][s]{学号} & \uline@parbox{\hsize}{\@studentid}  \\
+      \makebox[\hsize][s]{姓名} & \uline@parbox{\hsize}{\@author}  \\
+      \makebox[\hsize][s]{年级} & \uline@parbox{\hsize}{\@grade}  \\
+      \makebox[\hsize][s]{专业} & \uline@parbox{\hsize}{\@major}  \\
+      \makebox[\hsize][s]{系别} & \uline@parbox{\hsize}{\@department}  \\
+      \makebox[\hsize][s]{学院} & \uline@parbox{\hsize}{\@college}  \\
+      \makebox[\hsize][s]{指导教师} & \uline@parbox{\hsize}{\@adviser}  \\
+      \makebox[\hsize][s]{完成日期} & \uline@parbox{\hsize}{\@date}  \\
+    \end{tabular}
+      \vspace{\fill}
+  \end{titlepage}%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -398,14 +398,14 @@
 %    \begin{macrocode}
 %% 声明
 \NewDocumentCommand{\nolabel@section}{smO{#4}m}{%
-	\begingroup
-		\ctexset{section/format=\centering\sffamily\zihao{#2}}
-		\section*{\phantomsection{}#4}
-	\endgroup
-	\markboth{\centering{}#3}{}
-	\IfBooleanF{#1}{%
-		\addcontentsline{toc}{section}{#3}%
-	}%
+  \begingroup
+    \ctexset{section/format=\centering\sffamily\zihao{#2}}
+    \section*{\phantomsection{}#4}
+  \endgroup
+  \markboth{\centering{}#3}{}
+  \IfBooleanF{#1}{%
+    \addcontentsline{toc}{section}{#3}%
+  }%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -413,22 +413,22 @@
 % 排版声明
 %    \begin{macrocode}
 \newcommand{\declaration}{%
-	\clearpage
-	\nolabel@section*{3}[声明]{关于南开大学本科生毕业论文（设计）的声明}
-	本人郑重声明：所呈交的学位论文，是本人在指导教师指导下，进行研究工作所取得的成果。
-	除文中已经注明引用的内容外，本学位论文的研究成果不包含任何他人创作的、
-	已公开发表或没有公开发表的作品内容。对本论文所涉及的研究工作做出贡献的其他
-	个人和集体，均已在文中以明确方式标明。本学位论文原创性声明的法律责任由本人承担。
-	\par\bigskip\begin{flushright}
-		学位论文作者签名：\hspace*{6em}\medskip\par\@date
-	\end{flushright}\vspace{4\baselineskip}\par
-	本人声明：该学位论文是本人指导学生完成的研究成果，已经审阅过论文的全部内容，
-	并能够保证题目、关键词、摘要部分中英文内容的一致性和准确性。
-	\par\bigskip\begin{flushright}
-		学位论文指导教师签名：\hspace*{6em}\medskip\par
-		年\hspace{2em}月\hspace{2em}日
-	\end{flushright}
-	\clearpage%
+  \clearpage
+  \nolabel@section*{3}[声明]{关于南开大学本科生毕业论文（设计）的声明}
+  本人郑重声明：所呈交的学位论文，是本人在指导教师指导下，进行研究工作所取得的成果。
+  除文中已经注明引用的内容外，本学位论文的研究成果不包含任何他人创作的、
+  已公开发表或没有公开发表的作品内容。对本论文所涉及的研究工作做出贡献的其他
+  个人和集体，均已在文中以明确方式标明。本学位论文原创性声明的法律责任由本人承担。
+  \par\bigskip\begin{flushright}
+    学位论文作者签名：\hspace*{6em}\medskip\par\@date
+  \end{flushright}\vspace{4\baselineskip}\par
+  本人声明：该学位论文是本人指导学生完成的研究成果，已经审阅过论文的全部内容，
+  并能够保证题目、关键词、摘要部分中英文内容的一致性和准确性。
+  \par\bigskip\begin{flushright}
+    学位论文指导教师签名：\hspace*{6em}\medskip\par
+    年\hspace{2em}月\hspace{2em}日
+  \end{flushright}
+  \clearpage%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -447,12 +447,12 @@
 %
 %    \begin{macrocode}
 \NewDocumentCommand{\keywords}{sm}{%
-	\IfBooleanTF{#1}{%
-		\renewcommand{\en@keywords}{#2}%
-	}{%
-		\renewcommand{\zh@keywords}{#2}%
-		\hypersetup{pdfkeywords={#2}}%
-	}%
+  \IfBooleanTF{#1}{%
+    \renewcommand{\en@keywords}{#2}%
+  }{%
+    \renewcommand{\zh@keywords}{#2}%
+    \hypersetup{pdfkeywords={#2}}%
+  }%
 }
 %    \end{macrocode}
 % \begin{environment}{abstract}
@@ -460,12 +460,12 @@
 %    \begin{macrocode}
 %% 中英摘要
 \renewenvironment{abstract}{%
-	\clearpage
-	\nolabel@section*{4}[摘要]{摘\hspace{1em}要}
+  \clearpage
+  \nolabel@section*{4}[摘要]{摘\hspace{1em}要}
 }{%
-	\par\bigskip\par
-	\noindent\textsf{关键词：}\zh@keywords
-	\clearpage%
+  \par\bigskip\par
+  \noindent\textsf{关键词：}\zh@keywords
+  \clearpage%
 }
 %    \end{macrocode}
 % \end{environment}
@@ -473,12 +473,12 @@
 % 排版英文摘要与关键词。
 %    \begin{macrocode}
 \newenvironment{abstract*}{%
-	\clearpage
-	\nolabel@section*{4}{Abstract}
+  \clearpage
+  \nolabel@section*{4}{Abstract}
 }{%
-	\par\bigskip\par
-	\noindent\textsf{Keywords:\space}\en@keywords
-	\clearpage%
+  \par\bigskip\par
+  \noindent\textsf{Keywords:\space}\en@keywords
+  \clearpage%
 }
 %    \end{macrocode}
 % \end{environment}
@@ -495,10 +495,10 @@
 %    \begin{macrocode}
 \RequirePackage{titletoc}
 \titlecontents{section}[0em]{\zihao{-3}}
-	{\thecontentslabel}{}{\titlerule*{$\cdot$}\contentspage}
+  {\thecontentslabel}{}{\titlerule*{$\cdot$}\contentspage}
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \titlecontents{subsection}[2em]{\zihao{4}}
-	{\thecontentslabel}{}{\titlerule*{$\cdot$}\contentspage}
+  {\thecontentslabel}{}{\titlerule*{$\cdot$}\contentspage}
 %    \end{macrocode}
 % \begin{macro}{\tableofcontents}
 % 排版目录
@@ -519,9 +519,9 @@
 %    \begin{macrocode}
 \NewCommandCopy{\old@appendix}{\appendix}
 \renewcommand{\appendix}{%
-	\clearpage
-	\nolabel@section{4}[附录]{附\hspace{1em}录}%
-	\renewcommand{\thesection}{A}%
+  \clearpage
+  \nolabel@section{4}[附录]{附\hspace{1em}录}%
+  \renewcommand{\thesection}{A}%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -533,10 +533,10 @@
 \ctexset{appendix/name={附录}}
 \RequirePackage{titlesec}
 \newcommand{\appendices}{%
-	\clearpage
-	\old@appendix
-	\titleformat{\section}{\centering\zihao{4}\sffamily}
-		{附\hspace{1em}录\Alph{section}：}{0em}{}%
+  \clearpage
+  \old@appendix
+  \titleformat{\section}{\centering\zihao{4}\sffamily}
+    {附\hspace{1em}录\Alph{section}：}{0em}{}%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -548,16 +548,16 @@
 %    \begin{macrocode}
 %% 参考文献
 \newenvironment{reference}{
-	\clearpage
-	\nolabel@section{4}{参考文献}
-	% 兼容natbib、biblatex、和手写
-	\ifdef{\bibfont}{%
-		\renewcommand{\bibfont}{\zihao{5}}%
-	}{%
-		\zihao{5}%
-	}
+  \clearpage
+  \nolabel@section{4}{参考文献}
+  % 兼容natbib、biblatex、和手写
+  \ifdef{\bibfont}{%
+    \renewcommand{\bibfont}{\zihao{5}}%
+  }{%
+    \zihao{5}%
+  }
 }{%
-	\clearpage%
+  \clearpage%
 }
 %    \end{macrocode}
 % \end{environment}
@@ -568,22 +568,22 @@
 % 
 %    \begin{macrocode}
 \newenvironment{acknowledgement}{%
-	\clearpage
-	\nolabel@section{4}[致谢]{致\hspace{1em}谢}
+  \clearpage
+  \nolabel@section{4}[致谢]{致\hspace{1em}谢}
 %    \end{macrocode}
 % 记录当前页码
 %    \begin{macrocode}
-	\newcounter{begin@page}
-	\setcounter{begin@page}{\value{page}}
+  \newcounter{begin@page}
+  \setcounter{begin@page}{\value{page}}
 }{%
 %    \end{macrocode}
 % 若致谢内容超过一页，给出警告。
 %    \begin{macrocode}
-	\ifnumequal{\thebegin@page}{\thepage}{%
-	}{%
-		\ClassWarning{nkuthesis}{致谢超过了一页}%
-	}%
-	\clearpage%
+  \ifnumequal{\thebegin@page}{\thepage}{%
+  }{%
+    \ClassWarning{nkuthesis}{致谢超过了一页}%
+  }%
+  \clearpage%
 }
 %    \end{macrocode}
 % \end{environment}

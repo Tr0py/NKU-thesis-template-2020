@@ -7,9 +7,6 @@
 % 参考文献
 \usepackage[maxnames=3,minnames=3,sorting=none,style=nkthesis]{biblatex}
 \addbibresource{nkthesis.bib}
-\DeclareBibliographyCategory{cited}
-\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
-% \newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
 
 % 数学环境
 \usepackage{amssymb}
@@ -111,7 +108,7 @@ Since 1998, two independent supernova research groups have discovered that the u
 \section{附录2}
 
 \begin{reference}
-\printbibliography[category=cited,heading=none]
+\printbibliography[heading=none]
 \end{reference}
 
 \begin{acknowledgement}

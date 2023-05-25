@@ -104,7 +104,7 @@ Since 1998, two independent supernova research groups have discovered that the u
 
 \pagenumbering{arabic} 
 
-\section{介绍} \label{chpt:A}
+\section{介绍}
 
 \subsection{维护中}
 
@@ -122,7 +122,180 @@ Since 1998, two independent supernova research groups have discovered that the u
 作者不保证这个模板完全符合学校的要求，也不对由此产生的任何后果负责。
 如果您不同意这些条款，请不要使用这个模板。
 
-\include{manual}
+\section{使用说明} \label{chpt:A}
+
+\subsection{引用章节号}
+\label{sec:ex:A}
+
+引用章节号请参考如下格式: \ref{chpt:A}\ref{sec:ex:A}
+
+\subsection{中英文间隔}
+
+使用 \hologo{XeLaTeX}\ 编译时，会自动在中英文转换时添加必要的空格。
+
+\subsection{图表}
+
+插图示例，如\ref{fig:nku}所示。
+
+\begin{figure}
+\centering
+\includegraphics[viewport=0 0 2984 969,width=40mm]{figures/nankaidaxue.pdf}
+\caption{南开大学}
+\label{fig:nku}
+\end{figure}
+
+表格的例子：
+
+\begin{table}
+  \centering
+  \caption{NKThesis 预调用的宏包}
+  \begin{tabular}{l|l}
+  \hline
+  编译方式 & 调用的宏包\\ \hline
+  \hologo{XeLaTeX} & xeCJK, CJKnumb, graphicx, mathptmx \\ \hline
+  [PDF]\LaTeX & CJK, CJKnumb, uniGBK, graphicx, mathptmx \\
+  \hline
+  \end{tabular}
+  \end{table}
+
+\subsection{字体}
+
+一般情况下, 您不需要显式地设置字体. 如果确实需要, 请使用以下命令
+
+\begin{verbatim}
+宋体:  \rmfamily\upshape 或 \songti
+黑体:  \bfseries 或 \heiti
+楷体:  \itshape  或 \kaiti
+仿宋:  \ttfamily 或 \fangsong
+加粗:  \jiacu
+\end{verbatim}
+
+\subsection{参考文献} \label{manual:ref}
+参考文献引用:
+\cite{ChenCheChen2001,Nadkarni-1992,Hua-Wang-1973}
+文献\cite{ZhuKeZhen,Huo}\cite{JiangXiZhou,Timoshenko,Zhang-Wang}
+\cite{ZhuKeZhen}
+测试\parencite{PQEMU}或者\parencite{li1988ivy}
+
+第一次编译\cite{hong2012hqemu}\cite{zaharia2010spark}\cite{wenwenasplos2018}
+
+\subsubsection{录入参考文献}
+
+本模板采用 biblatex 宏包管理参考文献。如果你对此不熟悉，可以参考biblatex使用手册。
+
+\subsection{一些建议}
+\subsubsection{关于分数的写法}
+
+\LaTeX 提供宏命令\verb+\frac+, 用以打印分数. 为使得版面整齐, 该命令的使用应遵循以下原则:
+
+\begin{enumerate}
+\item 仅在分行表达式中使用,
+\item 不嵌套使用,
+\item 不在上下标中使用.
+\end{enumerate}
+
+也就是说, 行内表达式和上下标中出现分数时一律用 $a/b$表示, 如
+$(x+2)/((3x^2+4)(7+y))$. 下面是居中表达式:
+
+\[
+ x^2 = y^{1/2} +3.
+\]
+
+多行表达式: 尽量在加、减、乘、等号前换行. 在乘号前换行时,
+下一行首用 \string\times:
+\def\iint{\mathop{\int\!\!\!\int}}\def\calG{\mathcal G}
+\begin{eqnarray}
+&&\left|(W_{\psi_1}f)(a,b)-(W_{\psi_1}f)(a_j,b_{j,k})\right|^{2}\nonumber\\
+&=&\frac{1}{C^{2}_{\varphi}}\Bigg|\iint_{\calG} (W_{\varphi}f)(s,t) \nonumber\\
+&&\qquad\times \Bigg( (W_{\psi_1}\varphi)\left(\frac{a}{s},
+\frac{b-t}{s}\right)
+     -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\Bigg)
+  \frac{dsdt}{s^{d+1}}\Bigg|^2 \nonumber\\
+&\le& \frac{1}{C^2_{\varphi}} \iint_{\calG} |(W_{\varphi}f)(s,t)|^2 \nonumber\\
+&&\qquad \times\left| (W_{\psi_1}\varphi)\left(\frac{a}{s},
+\frac{b-t}{s}\right)
+    -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\right|
+   \frac{dsdt}{s^{d+1}}  \nonumber\\
+&&\qquad \times   \iint_{\calG}\!
+ \left|(W_{\psi_1}\varphi)\left(\frac{a}{s}, \frac{b-t}{s}\right)
+    -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\right|
+ \frac{ ds dt}{s^{d+1}} \nonumber\\
+&=& \frac{1}{C^2_{\varphi}} ....  \label{eq:a0}
+\end{eqnarray}
+
+
+\subsubsection{标点}
+科技文献中一般用半角标点, 请参考《中国科学》发表的论文.
+
+如果使用全角标点, 可以使用
+\begin{verbatim}
+  \punctstyle{<style>}
+\end{verbatim}
+选择标点样式, 有效值为
+\begin{verbatim}
+  quanjiao (所有标点符号占一个汉字宽度，
+            相邻两个标点占一个半汉字宽度)
+  banjiao  (所有标点符号占半个汉字宽度)
+  hangmobanjiao (所有标点符号占一个汉字宽度，行末行首半角)
+  kaiming  (句号、叹号、问号占一个汉字宽度，其他标点占半个汉字宽度)
+\end{verbatim}
+缺省为全角式。注意：不论选择哪种样式，都提供行末对齐(margin kerning)功能。
+
+
+
+\begin{Theorem} \label{thm:latex}
+\LaTeX 的输出是最完美的.
+\end{Theorem}
+
+先证明一个引理
+\begin{Lemma} \label{thm:tex}
+\TeX 文件在不同操作系统下的排版结果完全一致.
+\end{Lemma}
+
+\newcommand{\proof}[1][证明]{\par\textbf{#1.}\,\, }
+\def\endproof{\hfill{\usefont{U}{msa}{m}{n}\char"03}}
+
+\begin{proof}
+这是证明.
+\end{proof}
+
+
+\begin{proof}[定理~\ref{thm:latex}的证明]
+显然是错的.
+\end{proof}
+
+单个带编号的表达式
+\begin{equation}\label{eq:a1}
+x=y+z
+\end{equation}
+
+单个不带编号的表达式
+\[
+y=x-z.
+\]
+
+不带编号的多行表达式
+\begin{eqnarray*}
+x&=&y+z \\
+ &=&z-s\\
+ &<& 3. \\
+ && \mbox{一些注释}
+\end{eqnarray*}
+
+带编号的多行表达式
+\begin{eqnarray}
+ x&=& y-z, \label{eq:aa1}\\
+ y&=& x+z, \nonumber \\
+ z&=&y-x. \label{eq:aa2}
+\end{eqnarray}
+
+引用:   定理\ref{thm:latex}的推论是什么呢？
+方程式编号:  由(\ref{eq:a1})(\ref{eq:aa2})式.
+
+\subsubsection{列举环境:  enumerate}
+
+TODO 将会重写
+
 \appendix
 单标题附录\footnote{脚注}
 

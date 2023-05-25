@@ -178,23 +178,29 @@
 %
 % \subsubsection{页面设计}
 %
-% 隐藏页眉，显示页码，
-%
-%    \begin{macrocode}
-\pagestyle{plain} 
-%    \end{macrocode}
-%
 % 设置页边距。
 %
 %    \begin{macrocode}
-\RequirePackage[
+\RequirePackage{geometry}
+\geometry{
 	paper=a4paper,
 	vmargin=2.54cm,
 	hmargin=3.17cm,
-	headheight=0.25cm,
-	headsep=0.79cm,
-	footskip=0.79cm
-]{geometry}
+	headheight=0.3cm,
+	headsep=0.74cm,
+	footskip=0.79cm,
+}
+%    \end{macrocode}
+%
+% 使用 fancy 样式页眉页脚，字号小五
+%
+%    \begin{macrocode}
+\RequirePackage{fancyhdr}
+\NewCommandCopy\old@markboth{\markboth}
+\NewCommandCopy\old@markright{\markright}
+\renewcommand{\markboth}[2]{\old@markboth{\zihao{-5}#1}{\zihao{-5}#2}}
+\renewcommand{\markright}[1]{\old@markright{\zihao{-5}#1}}
+\pagestyle{fancy}
 %    \end{macrocode}
 %
 % \subsubsection{标题}

@@ -18,20 +18,41 @@
 \newtheorem{Proposition}[Theorem]{\hspace{2em}命题}
 \newtheorem{Definition}[Theorem]{\hspace{2em}定义}
 \newtheorem{Example}[Theorem]{\hspace{2em}例}
+\newenvironment{proof}[1][证明]{\par\textbf{#1.}\,\, }{\hfill{\usefont{U}{msa}{m}{n}\char"03}}
 
 % 列表格式
 \usepackage{enumitem}
 \setlist{nosep}
 
-% 编号格式
+% 编号格式：按 section 编号
 \usepackage{chngcntr}
 \counterwithin{table}{section}
 \counterwithin{figure}{section}
 \counterwithin{equation}{section}
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
+
+% 引用标签格式
+\labelformat{section}{第\zhnumber{#1}章}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\labelformat{subsection}{第\zhnumber{#1}节}
+\labelformat{figure}{图~#1\space}
+\labelformat{table}{表~#1\space}
+\labelformat{equation}{式~(#1)\space}
+\AtBeginDocument{\labelformat{lstlisting}{代码~#1\space}}
+
 
 % 页面风格
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+
+% 代码
+\usepackage{listings}
+\renewcommand{\lstlistingname}{代码}
+\lstset{
+	frame=lines,
+	basicstyle=\ttfamily\linespread{1}\selectfont,
+	columns=flexible,
+}
 
 % 其他
 \usepackage{booktabs} % 三线表
@@ -45,10 +66,6 @@
 \usepackage{hologo} % logo
 \usepackage{xurl}
 
-% 引用编号格式
-\labelformat{section}{第\zhnumber{#1}章}
-\labelformat{subsection}{第\zhnumber{#1}节}
-\labelformat{figure}{图~#1\space}
 
 % 文档元数据
 \title{南开大学本科生毕业论文模板\\ v3.0}
@@ -74,26 +91,7 @@
 \end{titlepage}
 
 \begin{abstract}
-此模板最初按照南开大学计算机/网络空间安全学院本科生毕业设计要求制作整理。我们希望此模板能够帮助更多的同学。本模板会根据同学们的需求进行更新。最新版本请关注本模版主页：\href{https://tr0py.github.io/NKU-thesis-template-2020/}{NKThesis: 南开大学本科生毕业论文模板}。
-
-在2023年5月，本模板经历了一次较大的重构，根据\href{http://jwc.nankai.edu.cn/2022/1124/c24a497818/page.htm}{2022年11月版《南开大学本科毕业论文（设计）指导手册》}重新进行了实现，原有接口不再兼容。
-  
-如果遇到使用问题，你可以用以下方式求助：
-\begin{itemize}
-  \item 在\href{https://github.com/Tr0py/NKU-thesis-template-2020/discussions}{GitHub讨论区}询问你不懂的地方。
-  \item 在\href{https://github.com/Tr0py/NKU-thesis-template-2020/issues}{GitHub Issue}中提出你遇到的待修复的问题。
-  \item 如果不会使用GitHub，你可以在QQ群中提问：群号469868290。
-\end{itemize}
-
-感谢历届的贡献者们：
-\begin{itemize}
-    \item 安祺，23届本科毕业生，\url{aqnin@outlook.com}
-    \item 费迪，22届本科毕业生，\url{fd@nbjl.nankai.edu.cn}
-    \item 林雪，22届本科毕业生，\url{ylsnowy@gmail.com}
-    \item 黎鸿儒，22届本科毕业生，\url{lihongru@mail.nankai.edu.cn}
-    \item 潘宇，20届本科毕业生，\url{panyu@nbjl.nankai.edu.cn}，\href{https://nbjl.nankai.edu.cn/2019/0513/c19244a264683/page.htm}{主页}
-    \item 赵子懿，20届本科毕业生，\url{troppingz@gmail.com}，\href{https://tr0py.github.io/}{主页}
-\end{itemize}
+摘要内容 TODO
 \end{abstract}
   
 \begin{abstract*}
@@ -106,32 +104,143 @@ Since 1998, two independent supernova research groups have discovered that the u
 
 \section{介绍}
 
-\subsection{维护中}
+\subsection{发展历史}
 
-请follow我们最新的进度 \url{https://github.com/Tr0py/NKU-thesis-template-2020}, 
-以获取最新的模板bug修复及更新。如有问题请在GitHub留言，我们会尽快回复。
-欢迎加入毕业论文模板维护的工作中。
+\subsubsection{发源}
 
-\subsection{免责声明}
+\LaTeX 由于其专业的排版效果，擅长处理复杂的数学公式，免费等优势而得到了广泛的使用，成为许多西文期刊接收投稿的主流格式；而\LaTeX 环境的安装，编辑器的选择以及编译\LaTeX 文件的设置等增加了使用者的使用困难，并且在此过程中出现的问题有难有易，种类繁多，不易找到解决方案。Overleaf作为一档在线\LaTeX 编辑网站，使用简单，支持在线和跨平台编译修改毕业论文，并且支持多人协作以方便老师和项目组其他人修改。因此，我们参考南开大学08级本科生卓小杨依据《南开大学本科生毕业论文（设计）管理规定（2011年 修订）》修改制成的本科生毕业论文模板，将南开大学孙文昌老师制作的南开大学研究生论文\LaTeX 模板移植到了Overleaf上，借鉴未知人士对其的修改，针对该模板的若干问题和版本旧的不足进行了修改及更新。
 
-本模板本模板参考\href{http://jwc.nankai.edu.cn/2022/1124/c24a497818/page.htm}
-{2022年11月版《南开大学本科毕业论文（设计）指导手册》}编写。
+本模板参考《南开大学本科生学位论文排版规范（试行）(2016 修正）版本 1.2.21》修改而成，更新了封面格式、添加了所需字体、更新参考文献到最新的bibtex标准。作者希望能给使用者写作论文带来方便。然而，作者不保证本模板完全符合学校要求，也不对由此带来的风险和损失承担任何责任。如果您不接受这项条款，请不要使用本模板。
 
-您自愿使用这个模板。
+\hfill 16级本科生\quad 赵子懿\quad 潘宇
+
+\subsubsection{迭代}
+
+在2023年5月，本模板经历了一次重构。根据 \href{http://jwc.nankai.edu.cn/2022/1124/c24a497818/page.htm}{2022年11月版《南开大学本科毕业论文（设计）指导手册》} 的格式要求重新进行了实现，不再兼容原模板使用接口。
+
+\hfill 19级本科生\quad 安祺
+
+\subsection{求助与反馈}
+
+请follow我们最新的进度\footnote{\url{https://github.com/Tr0py/NKU-thesis-template-2020}}, 
+欢迎加入毕业论文模板维护的工作中。如果遇到使用问题，你可以用以下方式求助：
+\begin{itemize}
+  \item 在 \href{https://github.com/Tr0py/NKU-thesis-template-2020/discussions}{GitHub讨论区} 询问你不懂的地方。
+  \item 在 \href{https://github.com/Tr0py/NKU-thesis-template-2020/issues}{GitHub Issue} 中提出你遇到的待修复的问题。
+  \item 如果不会使用GitHub，你可以在QQ群中提问：群号469868290。
+\end{itemize}
+
+\subsection{注意事项}
+
 提供本模板的目的是为了给您的论文写作带来方便，然而，
-作者不保证这个模板完全符合学校的要求，也不对由此产生的任何后果负责。
-如果您不同意这些条款，请不要使用这个模板。
+作者不保证这个模板完全符合学校的要求，也不对由此产生的任何后果负责。请使用者认真校对模板格式是否符合各学院的格式要求，确保及时发现问题，以便模板维护者尽早解决。
+
+\subsection{入门资料}
+
+如果你需要相对全面的了解 latex 的使用，推荐阅读\href{http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf}{《一份（不太）简短的 LATEX 2ε 介绍》}。如果你想要学习具体问题的解决方法，推荐阅读 \href{https://www.overleaf.com/learn}{Overleaf文档}。
 
 \section{使用说明} \label{chpt:A}
 
-\subsection{引用章节号}
-\label{sec:ex:A}
+本模板基于 ctexart 实现，如本文介绍的内容不够详细丰富，可查看 ctex 宏基文档了解更多信息。
 
-引用章节号请参考如下格式: \ref{chpt:A}\ref{sec:ex:A}
+\subsection{字体}
 
-\subsection{中英文间隔}
+本模板在不同平台默认使用的字体不尽相同，如\ref{tab:ctex-fontset}所示。如果需要修改 ctex 的 fontset 选项，可以在引入本模板文档类前向ctexart 传入参数，例如使用 \verb| \PassOptionsToClass{fontset=windows}{ctexart}| 显示使用windows字体配置。不过，你需要确保这些字体在你的系统上可用。
 
-使用 \hologo{XeLaTeX}\ 编译时，会自动在中英文转换时添加必要的空格。
+\begin{table}
+  \centering
+  \caption{不同平台的默认字体}
+  \begin{tabular}{ccc}
+  \toprule
+  平台 & 中文字体 & 英文字体 \\
+  \midrule
+  Windows & 中易宋黑楷仿 & Times New Roman \\
+  Overleaf & Fandol宋黑楷仿 & Times New Roman\\
+  Other Linux & Fandol宋黑楷仿 & STIX \\
+  \bottomrule
+  \end{tabular}
+  \label{tab:ctex-fontset}
+\end{table}
+
+有时，ctex宏包会使用黑体作为宋体的粗体使用，你可以使用本模板提供的\verb|\textfb| 来进行伪加粗。一般情况下您不需要显式地设置文本字体。如果确实需要，请考虑使用以下命令：
+
+\begin{description}
+\item[宋体] \verb|\songti| 或 \verb|\textnormal{<文本>}|
+\item[黑体] \verb|\heiti| 或 \verb|\textsf{<文本>}|
+\item[楷体] \verb|\kaishu|  或 \verb|\textit{<文本>}|
+\item[仿宋] \verb|\fangsong| 或 \verb|\texttt{<文本>}|
+\item[粗体] \verb|\bfseries| 或 \verb|\textbf{<文本>}|
+\item[伪加粗] \verb|\textfb[<加粗程度>]{<文本>}|
+\end{description}
+
+使用 \hologo{XeLaTeX}\ 编译时，会自动在中英文转换时添加必要的空格。但是某些情况中，空格并不能被自动添加。比如，\verb|中文\url{https://google.com}| 的显示效果为：中文\url{https://google.com}。这时就需要手动添加，这类情况的特点是内容被一些命令所包裹。
+
+\subsection{交叉引用} \label{sec:ex:A}
+
+修改 \verb|\the<counter>| 的定义，可以修改编号的显示格式。 chngcntr 宏包提供了 \verb|\counterwithin{<counter>}{<withincounter>}| 宏对此进行了封装。 该命令会将 \verb|<counter>| 关联到 \verb|<withincounter>|，并将 \verb|\the<counter>| 的定义修改为 \verb|\the<within>.\arabic{<counter>}|。可以通过该命令实现按章编号，如\ref{lst:counterwithin}所示。
+
+\begin{lstlisting}[
+	caption={counterwithin 命令使用示例},
+	label={lst:counterwithin},
+	language={[LaTeX]TeX},
+	morekeywords={counterwithin}
+]
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+\end{lstlisting}
+
+\LaTeX 内核内置了 \verb|\labelformat{<counter>}{<format>}| 宏来设置交叉引用的标签格式，使用示例如\ref{lst:labelformat}所示。hyperref提供的 \verb|\autoref| 也可以实现类似的功能，但是只能修改前缀。
+
+\begin{lstlisting}[
+	caption={labelformat 命令使用示例},
+	label={lst:labelformat},
+	language={[LaTeX]TeX},
+	morekeywords={labelformat,zhnumber},
+  emph={\#1}
+]
+\labelformat{section}{第\zhnumber{#1}章}
+\labelformat{figure}{图~#1\space}
+\labelformat{table}{表~#1\space}
+\end{lstlisting}
+
+引用章节号可参考如下格式: \ref{chpt:A}\ref{sec:ex:A}。
+
+\subsection{参考文献} \label{manual:ref}
+
+由于各专业所需的参考文献格式不尽相同，本模板未统一配置参考文献样式。请使用者自行配置所需的参考文献样式。
+
+当前主要使用 natbib 或 biblatex 宏包设置参考文献和引用格式，示例目前使用 biblatex 和内置样式排版，下面给出一个使用 natbib 排版 gbt7714-2015 样式的例子（需要配合bibtex使用），如\ref{lst:natbib-gbt7714}所示。如果你需要对更多细节进行调整，请查阅 natbib 或 biblatex 宏包文档。
+
+\begin{lstlisting}[
+	caption={用 natbib 排版 gbt7714-2015 样式的参考文献},
+	label={lst:natbib-gbt7714},
+	language={[LaTeX]TeX},
+	morekeywords={labelformat,zhnumber},
+  emph={\#1}
+]
+% 导言区
+\usepackage[sort&compress]{gbt7714}
+\bibliographystyle{gbt7714-numerical} % gbt7714-2015
+\usepackage{natbib}
+
+% 参考文献排版处
+\begin{reference}
+  \renewcommand{\bibsection}{}
+  \bibliography{reference.bib}
+\end{reference}
+\end{lstlisting}
+
+参考文献测试样例:
+\cite{ChenCheChen2001,Nadkarni-1992,Hua-Wang-1973}
+文献\cite{ZhuKeZhen,Huo}文献\cite{JiangXiZhou,Timoshenko,Zhang-Wang}
+\cite{ZhuKeZhen}
+测试\citep{PQEMU}或者\citep{li1988ivy}
+第一次编译\cite{hong2012hqemu}\cite{zaharia2010spark}\cite{wenwenasplos2018}
+
+\subsubsection{录入参考文献}
+
+本模板采用 biblatex 宏包管理参考文献。如果你对此不熟悉，可以参考biblatex使用手册。
 
 \subsection{图表}
 
@@ -143,45 +252,6 @@ Since 1998, two independent supernova research groups have discovered that the u
 \caption{南开大学}
 \label{fig:nku}
 \end{figure}
-
-表格的例子：
-
-\begin{table}
-  \centering
-  \caption{NKThesis 预调用的宏包}
-  \begin{tabular}{l|l}
-  \hline
-  编译方式 & 调用的宏包\\ \hline
-  \hologo{XeLaTeX} & xeCJK, CJKnumb, graphicx, mathptmx \\ \hline
-  [PDF]\LaTeX & CJK, CJKnumb, uniGBK, graphicx, mathptmx \\
-  \hline
-  \end{tabular}
-  \end{table}
-
-\subsection{字体}
-
-一般情况下, 您不需要显式地设置字体. 如果确实需要, 请使用以下命令
-
-\begin{verbatim}
-宋体:  \rmfamily\upshape 或 \songti
-黑体:  \bfseries 或 \heiti
-楷体:  \itshape  或 \kaiti
-仿宋:  \ttfamily 或 \fangsong
-加粗:  \jiacu
-\end{verbatim}
-
-\subsection{参考文献} \label{manual:ref}
-参考文献引用:
-\cite{ChenCheChen2001,Nadkarni-1992,Hua-Wang-1973}
-文献\cite{ZhuKeZhen,Huo}\cite{JiangXiZhou,Timoshenko,Zhang-Wang}
-\cite{ZhuKeZhen}
-测试\parencite{PQEMU}或者\parencite{li1988ivy}
-
-第一次编译\cite{hong2012hqemu}\cite{zaharia2010spark}\cite{wenwenasplos2018}
-
-\subsubsection{录入参考文献}
-
-本模板采用 biblatex 宏包管理参考文献。如果你对此不熟悉，可以参考biblatex使用手册。
 
 \subsection{一些建议}
 \subsubsection{关于分数的写法}
@@ -242,6 +312,12 @@ $(x+2)/((3x^2+4)(7+y))$. 下面是居中表达式:
 缺省为全角式。注意：不论选择哪种样式，都提供行末对齐(margin kerning)功能。
 
 
+引用:   定理\ref{thm:latex}的推论是什么呢？
+方程式编号:  由(\ref{eq:a1})(\ref{eq:aa2})式.
+
+\section{常用宏包使用示例}
+
+\subsection{公式定理}
 
 \begin{Theorem} \label{thm:latex}
 \LaTeX 的输出是最完美的.
@@ -251,14 +327,6 @@ $(x+2)/((3x^2+4)(7+y))$. 下面是居中表达式:
 \begin{Lemma} \label{thm:tex}
 \TeX 文件在不同操作系统下的排版结果完全一致.
 \end{Lemma}
-
-\newcommand{\proof}[1][证明]{\par\textbf{#1.}\,\, }
-\def\endproof{\hfill{\usefont{U}{msa}{m}{n}\char"03}}
-
-\begin{proof}
-这是证明.
-\end{proof}
-
 
 \begin{proof}[定理~\ref{thm:latex}的证明]
 显然是错的.
@@ -277,37 +345,43 @@ y=x-z.
 不带编号的多行表达式
 \begin{eqnarray*}
 x&=&y+z \\
- &=&z-s\\
- &<& 3. \\
- && \mbox{一些注释}
+  &=&z-s\\
+  &<& 3. \\
+  && \mbox{一些注释}
 \end{eqnarray*}
 
 带编号的多行表达式
 \begin{eqnarray}
- x&=& y-z, \label{eq:aa1}\\
- y&=& x+z, \nonumber \\
- z&=&y-x. \label{eq:aa2}
+  x&=& y-z, \label{eq:aa1}\\
+  y&=& x+z, \nonumber \\
+  z&=&y-x. \label{eq:aa2}
 \end{eqnarray}
 
-引用:   定理\ref{thm:latex}的推论是什么呢？
-方程式编号:  由(\ref{eq:a1})(\ref{eq:aa2})式.
+\subsection{伪代码}
 
-\subsubsection{列举环境:  enumerate}
+TODO，推荐阅读：\url{https://www.overleaf.com/learn/latex/Algorithms}
 
-TODO 将会重写
+\subsection{代码块}
+
+TODO，推荐阅读：\url{https://www.overleaf.com/learn/latex/Code_listing}
 
 \appendix
-单标题附录\footnote{脚注}
-
-\appendices
-\section{标题}
+此处展示的为单标题附录，你可以使用 \verb|\appendices| 来排版多个附录。
 
 \begin{reference}
 \printbibliography[heading=none]
 \end{reference}
 
 \begin{acknowledgement}
-  感谢使用本模板。
+  感谢历届的贡献者们：
+  \begin{itemize}
+    \item 赵子懿，20届本科毕业生，\url{troppingz@gmail.com}，\href{https://tr0py.github.io/}{主页}
+    \item 潘宇，20届本科毕业生，\url{panyu@nbjl.nankai.edu.cn}，\href{https://nbjl.nankai.edu.cn/2019/0513/c19244a264683/page.htm}{主页}
+    \item 黎鸿儒，22届本科毕业生，\url{lihongru@mail.nankai.edu.cn}
+    \item 林雪，22届本科毕业生，\url{ylsnowy@gmail.com}
+    \item 费迪，22届本科毕业生，\url{fd@nbjl.nankai.edu.cn}
+    \item 安祺，23届本科毕业生，\url{aqnin@outlook.com}
+  \end{itemize}
 \end{acknowledgement}
 
 \end{document}

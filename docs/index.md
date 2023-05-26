@@ -35,30 +35,30 @@ It mainly provides undergraduate thesis template.
 	- 点击Source code (zip) 下载源码并编译
 2. 在Overleaf中上传源码作为project
 	- Overleaf中，点击左方"New Project" - "Upload Project"
-	- 选择下载好的zip文件上传
-	- 选择使用XeLateX + 2020 TeX Live 进行编译
+	- 选择编译好的zip文件上传
+	- 选择使用XeLateX + 2022 TeX Live 进行编译
 		- 左上角Menu - Compiler 选择XeLateX, TeX Live Version选择2022
 
 ### 3. 使用源码+tex本地编译 [便于开发]
 
 1. 安装环境依赖:textlive
-	- Windows / Linux: TeX Live
+	- Windows / Linux: TeX Live 2022
 	- MacOS: MacTeX
-	- Note: 目前TeX Live 2020 + XeLateX可以正常编译，新版本可能会有报错。未来计划修复。
-2. 克隆源码并编译模板
-3. 使用`make`编译 main.tex
+2. 克隆源码
+3. 编译模板
+4. 使用`make`编译 main.tex
 
-### 4. 使用源码+借助TexWork本地编译 [开箱即用]
+### 4. 使用源码+借助TexWorks本地编译 [开箱即用]
 
 1. 安装环境依赖:miktex
 	- Windows / Linux: miktex
 2. 克隆源码
 3. 编译模板
-	- 使用 TexWork 打开 nkuthesis.dtx
-	- 选择 xelatex 引擎编译得到 nkuthesis.cls
+	- 使用 TexWorks 打开 nkuthesis.dtx
+	- 选择 xelatex 引擎编译一次
 4. 编译文档
-	- 使用 TexWork 打开 main.tex
-		- 依次选择 `xelatex,xelatex,biber,xelatex` 引擎编译共4次
+	- 使用 TexWorks 打开 main.tex
+		- 依次选择 `xelatex,biber,xelatex,xelatex` 引擎编译共4次
 		- 或者，如果参考文献使用的是 natbib 宏包，可以选择 `xelatex+makeindex+bibtex` 引擎编译1次
 
 ## 如何编译模板

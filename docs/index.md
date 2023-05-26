@@ -19,15 +19,6 @@ It mainly provides undergraduate thesis template.
 
 ## 如何使用
 
-从源码编译模板：
-
-```
-xelatex nkuthesis.dtx
-```
-
-将得到模板类实现文档（nkuthesis.pdf）和模板类文件（nkuthesis.cls），确保 
-nkuthesis.cls 可用后即可使用模板。
-
 模板有三种常用使用方式，以下三种任选其一，难度递增。
 
 ### 1. 使用Overleaf模板 [便于使用]
@@ -57,6 +48,29 @@ nkuthesis.cls 可用后即可使用模板。
 2. 克隆源码并编译模板
 3. 使用`make`编译 main.tex
 
+### 4. 使用源码+借助TexWork本地编译 [开箱即用]
+
+1. 安装环境依赖:miktex
+	- Windows / Linux: miktex
+2. 克隆源码
+3. 编译模板
+	- 使用 TexWork 打开 nkuthesis.dtx
+	- 选择 xelatex 引擎编译得到 nkuthesis.cls
+4. 编译文档
+	- 使用 TexWork 打开 main.tex
+		- 依次选择 `xelatex,xelatex,biber,xelatex` 引擎编译共4次
+		- 或者，如果参考文献使用的是 natbib 宏包，可以选择 `xelatex+makeindex+bibtex` 引擎编译1次
+
+## 如何编译模板
+
+从源码编译模板：
+
+```
+xelatex nkuthesis.dtx
+```
+
+将得到模板类实现文档（nkuthesis.pdf）和模板类文件（nkuthesis.cls），确保 
+nkuthesis.cls 可用后即可使用模板。
 
 ## 其他
 

@@ -30,12 +30,12 @@ It mainly provides undergraduate thesis template.
 
 ### 2. 使用源码+overleaf [最新版本]
 
-1. 下载最新的源码
+1. 下载最新的模板
 	- 打开[最新的Release页面](https://github.com/Tr0py/NKU-thesis-template-2020/releases/latest)
-	- 点击Source code (zip) 下载源码并编译
+	- 点击 example.zip 下载模板
 2. 在Overleaf中上传源码作为project
 	- Overleaf中，点击左方"New Project" - "Upload Project"
-	- 选择编译好的zip文件上传
+	- 选择下载好的文件上传
 	- 选择使用XeLateX + 2022 TeX Live 进行编译
 		- 左上角Menu - Compiler 选择XeLateX, TeX Live Version选择2022
 
@@ -45,32 +45,21 @@ It mainly provides undergraduate thesis template.
 	- Windows / Linux: TeX Live 2022
 	- MacOS: MacTeX
 2. 克隆源码
-3. 编译模板
-4. 使用`make`编译 main.tex
+3. 使用`make`编译 main.tex
 
-### 4. 使用源码+借助TexWorks本地编译 [开箱即用]
+### 4. 借助TexWorks本地编译 [开箱即用]
 
 1. 安装环境依赖:miktex
 	- Windows / Linux: miktex
-2. 克隆源码
-3. 编译模板
-	- 使用 TexWorks 打开 nkuthesis.dtx
-	- 选择 xelatex 引擎编译一次
-4. 编译文档
+2. 下载最新的模板
+	- 打开[最新的Release页面](https://github.com/Tr0py/NKU-thesis-template-2020/releases/latest)
+	- 点击 example.zip 下载模板
+3. 编译文档
 	- 使用 TexWorks 打开 main.tex
 		- 依次选择 `xelatex,biber,xelatex,xelatex` 引擎编译共4次
-		- 或者，如果参考文献使用的是 natbib 宏包，可以选择 `xelatex+makeindex+bibtex` 引擎编译1次
+		- 或者，如果使用的是 bibtex，可以选择 texify 工具也就是 `xelatex+makeindex+bibtex` 自动编译
 
-## 如何编译模板
-
-从源码编译模板：
-
-```
-xelatex nkuthesis.dtx
-```
-
-将得到模板类实现文档（nkuthesis.pdf）和模板类文件（nkuthesis.cls），确保 
-nkuthesis.cls 可用后即可使用模板。
+有能力可以继续学习使用vscode(LaTeX workshop插件),texstudio等编辑器，以及latexmk,llmk,arara,cluttex等自动工具。
 
 ## 其他
 

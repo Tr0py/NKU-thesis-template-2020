@@ -8,8 +8,9 @@
 *.cls
 *.hd
 *.pdf
+*-blx.bib
 *.synctex.gz
-main.run.xml
+*.run.xml
 *.zip
 _site/
 .*

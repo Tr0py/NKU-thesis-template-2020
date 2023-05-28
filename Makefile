@@ -1,45 +1,47 @@
-PACKAGE  = nkuthesis
+PKG  = nkuthesis
 THESIS   = main
-DIST_DIR = dist
 
-.PHONY: help thesis package dist clean docker-compile
-
-help:
-	@echo "Targets:"
-	@echo "	help (default)   - print this message"
-	@echo "	thesis           - compile the example"
-	@echo "	package          - compile the '${PACKAGE}' class and its document"
-	@echo "	dist             - collect the files to release"
-	@echo "	clean            - clean all generated files"
-	@echo "	docker-compile   - compile the example with docker"
-
-thesis: ${THESIS}.pdf
-
-package: ${PACKAGE}.cls ${PACKAGE}.pdf
-
-dist: example.zip ${THESIS}.pdf ${PACKAGE}.cls ${PACKAGE}.pdf 
-	mkdir -p ${DIST_DIR}
-	cp $^ ${DIST_DIR}
-	mv ${DIST_DIR}/${THESIS}.pdf ${DIST_DIR}/example.pdf
-
-${THESIS}.pdf: ${THESIS}.tex ${PACKAGE}.cls reference.bib figures
+${THESIS}.pdf: ${THESIS}.tex ${PKG}.cls reference.bib figures/*
 	xelatex ${THESIS}
 	biber ${THESIS}
 	xelatex ${THESIS}
 	xelatex ${THESIS}
 
-${PACKAGE}.pdf: ${PACKAGE}.dtx
+${PKG}.cls: ${PKG}.dtx
 	xelatex $<
 
-${PACKAGE}.cls: ${PACKAGE}.pdf
+${PKG}.pdf: ${PKG}.dtx
+	xelatex $<
 
-example.zip: ${PACKAGE}.cls ${THESIS}.tex reference.bib figures/* README.md
+${PKG}-example.zip: ${PKG}.cls ${THESIS}.tex reference.bib figures/* README.md
 	zip $@ $^
 
+${PKG}-example.pdf: ${THESIS}.pdf
+	cp $^ $@
+
+.PHONY: thesis package dist clean distclean docker-compile help
+
+thesis: ${THESIS}.pdf
+
+package: ${PKG}.cls ${PKG}.pdf
+
+dist: ${PKG}-example.zip ${PKG}-example.pdf ${PKG}.pdf ${PKG}.cls
+
 clean:
-	rm -f *.aux *.blg *.bcf *.bbl *.cls *.hd *.log *.out *.toc *.pdf *.run.xml *.zip 
-	rm -r ${DIST_DIR}
+	rm -f *.aux *.blg *.bcf *.bbl *.hd *.log *.out *.toc *.run.xml ${THESIS}.pdf
+
+distclean: clean
+	rm -f *.cls *.zip *.pdf
 
 docker-compile:
-	sudo docker run --rm -v "$(pwd)":/latex -w /latex texlive/texlive /bin/bash -c "make"
-
+	sudo docker run --rm -v "$(pwd)":/latex -w /latex texlive/texlive \
+	                /bin/bash -c "make"
+help:
+	@echo "Targets:"
+	@echo "	(default)        - compile the example"
+	@echo "	help             - print this message"
+	@echo "	package          - compile the '${PKG}' class"
+	@echo "	dist             - package the thesis template"
+	@echo "	clean            - clean all temporary files"
+	@echo "	distclean        - clean all generated files"
+	@echo "	docker-compile   - compile the example with docker"

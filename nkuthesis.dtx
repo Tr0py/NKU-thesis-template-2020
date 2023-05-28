@@ -1,22 +1,3 @@
-% \iffalse meta-comment
-% !TeX program  = XeLaTeX
-% !TeX encoding = UTF-8
-%
-% Copyright (C) 2023 by <https://github.com/Tr0py/NKU-thesis-template-2020>
-% -----------------------------------
-%
-% This file may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3
-% of this license or (at your option) any later version.
-% The latest version of this license is in:
-%
-% http://www.latex-project.org/lppl.txt
-%
-% and version 1.3 or later is part of all distributions of LaTeX
-% version 2005/12/01 or later.
-%
-% \fi
-%
 % \iffalse
 %<*driver>
 \ProvidesFile{nkuthesis.dtx}
@@ -24,7 +5,7 @@
 %<class>\NeedsTeXFormat{LaTeX2e}[2021/11/15]
 %<class>\ProvidesClass{nkuthesis}
 %<*class>
-[2023/05/17 v3.0 Nankai University undergraduate thesis document class]
+  [2023/05/17 v3.0 Nankai University undergraduate thesis document class]
 %</class>
 %
 %<*batchfile>
@@ -111,7 +92,7 @@
 % \DescribeEnv{abstract}
 % 排版中文摘要。
 %
-%% \DescribeEnv{abstract*}
+% \DescribeEnv{abstract*}
 % 排版英文摘要。
 %
 % \subsubsection{目录}
@@ -181,6 +162,7 @@
 % 设置页边距。
 %
 %    \begin{macrocode}
+%% 页边距
 \RequirePackage{geometry}
 \geometry{
   paper=a4paper,
@@ -195,12 +177,14 @@
 % 默认使用 plain 样式页眉页脚
 %
 %    \begin{macrocode}
+%% 页眉页脚
 \pagestyle{plain}
 %    \end{macrocode}
 %
 % 字号小五
 %
 %    \begin{macrocode}
+%% 页眉字体
 \NewCommandCopy\old@markboth{\markboth}
 \renewcommand{\markboth}[2]{\old@markboth{\zihao{-5}#1}{\zihao{-5}#2}}
 \NewCommandCopy\old@markright{\markright}
@@ -212,6 +196,7 @@
 % 设置五级标题。
 %
 %    \begin{macrocode}
+%% 五级编号标题
 \RequirePackage{pifont}
 \RequirePackage{calc}
 \ctexset{
@@ -250,13 +235,14 @@
 % 页下注，每页重新编号，
 %
 %    \begin{macrocode}
+%% 脚注
 \RequirePackage[perpage,bottom]{footmisc}
 %    \end{macrocode}
 %
 % 使用带圈数字，编号仅 1到10。
 %
 %    \begin{macrocode}
-\renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}} 
+\renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}}
 %    \end{macrocode}
 %
 % 脚注编号与内容间需要空一格。
@@ -294,6 +280,7 @@
 % 超链接、PDF书签属性（教务处格式未要求）
 %
 %    \begin{macrocode}
+%% 超链接、PDF书签、PDF元数据
 \RequirePackage[hidelinks,pdfa,pdfusetitle,bookmarksnumbered]{hyperref}
 \hypersetup{pdfsubject={南开大学本科生毕业论文（设计）}}
 %    \end{macrocode}
@@ -305,6 +292,7 @@
 % 保存封面信息
 %
 %    \begin{macrocode}
+%% 封面信息
 \newcommand{\zh@title}{}
 \newcommand{\en@title}{}
 \newcommand{\@studentid}{}
@@ -332,6 +320,7 @@
 % 格式为 \cs{textfb}\marg{伪加粗粗度}\marg{文本}，实现伪加粗，
 % 参考 \url{http://t.csdn.cn/rJN18}。
 %    \begin{macrocode}
+%% 伪加粗
 \NewDocumentCommand{\textfb}{O{1}m}{%
   \special{pdf:code q 2 Tr #1 w}
   \textnormal{#2}
@@ -345,6 +334,7 @@
 % 被实现为具有等宽下划线的多行文本盒子，必须手动换行。此处使用|\underbar|
 % 实现下划线的原因是使用|\underline|可能造成下划线间距不均匀。
 %    \begin{macrocode}
+%% 封面
 \RequirePackage{etoolbox}
 \DeclareListParser{\dolinelist}{\\}
 \newcommand{\uline@parbox}[2]{%
@@ -436,7 +426,7 @@
 % 保存关键词
 %
 %    \begin{macrocode}
-%% 中英摘要
+%% 设置中英关键词
 \newcommand{\zh@keywords}{}
 \newcommand{\en@keywords}{}
 %    \end{macrocode}
@@ -456,7 +446,7 @@
 % \begin{environment}{abstract}
 % 排版中文摘要与关键词。
 %    \begin{macrocode}
-%% 中英摘要
+%% 中文摘要
 \renewenvironment{abstract}{%
   \clearpage
   \nolabel@section*{4}[摘要]{摘\hspace{1em}要}
@@ -470,6 +460,7 @@
 % \begin{environment}{abstract*}
 % 排版英文摘要与关键词。
 %    \begin{macrocode}
+%% 英文摘要
 \newenvironment{abstract*}{%
   \clearpage
   \nolabel@section*{4}{Abstract}
@@ -491,6 +482,7 @@
 % 借助 titletoc 宏包修改目录格式。
 %
 %    \begin{macrocode}
+%% 目录
 \RequirePackage{titletoc}
 \titlecontents{section}[0em]{\zihao{-3}}
   {\thecontentslabel}{}{\titlerule*{$\cdot$}\contentspage}
@@ -512,8 +504,9 @@
 % \subsubsection{附录}
 % 
 % \begin{macro}{\appendix}
-% 单标题目录
+% 单标题附录
 %    \begin{macrocode}
+%% 单附录
 \NewCommandCopy{\old@appendix}{\appendix}
 \renewcommand{\appendix}{%
   \clearpage
@@ -527,6 +520,7 @@
 % 多标题目录。本不应该同时使用 ctexheading 和 titlesec，这么做是为了不在目录和页眉
 % 显示“附录”中间的空格。
 %    \begin{macrocode}
+%% 多附录
 \RequirePackage{titlesec}
 \newcommand{\appendices}{%
   \clearpage
@@ -547,9 +541,8 @@
 \newenvironment{reference}{
   \clearpage
   \nolabel@section{4}{参考文献}
-  % 兼容natbib、biblatex、和手写
   \ifdef{\bibfont}{%
-    \renewcommand{\bibfont}{\zihao{5}}%
+    \renewcommand{\bibfont}{\zihao{5}}% 兼容natbib、biblatex
   }{%
     \zihao{5}%
   }
@@ -564,6 +557,7 @@
 % \begin{environment}{acknowledgement}
 % 
 %    \begin{macrocode}
+%% 致谢
 \newenvironment{acknowledgement}{%
   \clearpage
   \nolabel@section{4}[致谢]{致\hspace{1em}谢}

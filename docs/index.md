@@ -56,15 +56,15 @@ It mainly provides undergraduate thesis template.
 
 ## 如何编译
 
-### 3. 使用源码+tex本地编译 [便于开发]
-
 使用 l3build 进行构建
 
 1. 环境
 	- linux：TeXLive2022
 	- windows：l3build 本身有一些 bug, 暂时无法编译
 2. 克隆源码
-3. 使用`l3build <target>`编译 
+3. 使用 `l3build <target>` 编译 
+
+target 列举说明：
 
 | target | 说明 |
 | ------ | ---- |

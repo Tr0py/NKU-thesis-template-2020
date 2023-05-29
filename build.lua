@@ -29,6 +29,7 @@ function typeset_demo_tasks()
 		demotypesetdir = typesetdir .. "/" .. demoname
 		cp(demoname, "example", typesetdir)
 		cp(democls, localdir, demotypesetdir)
+		cp("README.md", ".", demotypesetdir)
 		zip(typesetdir,demoname .. ".zip", demoname)
 		typeset("main.tex", typesetdir .. "/" .. demoname)
 		cp("main.pdf", demotypesetdir, typesetdir)

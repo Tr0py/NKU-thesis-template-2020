@@ -32,34 +32,48 @@ It mainly provides undergraduate thesis template.
 
 1. 下载最新的模板
 	- 打开[最新的Release页面](https://github.com/Tr0py/NKU-thesis-template-2020/releases/latest)
-	- 点击 example.zip 下载模板
+	- 点击 xxxx.zip 下载所需模板
 2. 在Overleaf中上传源码作为project
 	- Overleaf中，点击左方"New Project" - "Upload Project"
 	- 选择下载好的文件上传
 	- 选择使用XeLateX + 2022 TeX Live 进行编译
 		- 左上角Menu - Compiler 选择XeLateX, TeX Live Version选择2022
 
-### 3. 使用源码+tex本地编译 [便于开发]
+### 3. 借助TexWorks本地编译 [开箱即用]
 
-1. 安装环境依赖:textlive
-	- Windows / Linux: TeX Live 2022
+1. 安装环境依赖:
+	- Windows / Linux: MiKTeX/TeXLive2022
 	- MacOS: MacTeX
-2. 克隆源码
-3. 使用`make`编译 main.tex
-
-### 4. 借助TexWorks本地编译 [开箱即用]
-
-1. 安装环境依赖:miktex
-	- Windows / Linux: miktex
 2. 下载最新的模板
 	- 打开[最新的Release页面](https://github.com/Tr0py/NKU-thesis-template-2020/releases/latest)
-	- 点击 example.zip 下载模板
+	- 点击 xxxx.zip 下载所需模板
 3. 编译文档
 	- 使用 TexWorks 打开 main.tex
-		- 依次选择 `xelatex,biber,xelatex,xelatex` 引擎编译共4次
-		- 或者，如果使用的是 bibtex，可以选择 texify 工具也就是 `xelatex+makeindex+bibtex` 自动编译
+		- 如果使用 biber，依次选择 `xelatex,biber,xelatex,xelatex` 引擎编译共4次
+		- 如果使用 bibtex，可以直接选择 `xelatex+makeindex+bibtex` 也就是 texify 工具自动编译
 
-有能力可以继续学习使用vscode(LaTeX workshop插件),texstudio等编辑器，以及latexmk,llmk,arara,cluttex等自动工具。
+有能力可以继续学习使用 vscode(LaTeX workshop插件), texstudio 等编辑器，以及 latexmk, llmk, arara, cluttex 等自动工具。
+
+## 如何编译
+
+### 3. 使用源码+tex本地编译 [便于开发]
+
+使用 l3build 进行构建
+
+1. 环境
+	- linux：TeXLive2022
+	- windows：l3build 本身有一些 bug, 暂时无法编译
+2. 克隆源码
+3. 使用`l3build <target>`编译 
+
+| target | 说明 |
+| ------ | ---- |
+| unpack  | 解包所有 class 文件 |
+|  doc   | 生成文档和示例     |
+| ctan |  打包汇总所有结果 |
+| clean |   清理所有生成的文件   |
+
+其他 target 的行为暂时不可预料。
 
 ## 其他
 

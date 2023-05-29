@@ -8,15 +8,6 @@
   [2023/05/17 v3.0 Nankai University undergraduate thesis document class]
 %</class>
 %
-%<*batchfile>
-\begingroup
-\input docstrip.tex
-\keepsilent
-\askforoverwritefalse
-\generate{\file{nkuthesis.cls}{\from{nkuthesis.dtx}{class}}}
-\endgroup
-%</batchfile>
-%
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{ctex}
@@ -146,15 +137,15 @@
 %
 %    \begin{macrocode}
 %% 字体
-\IfFontExistsTF{Times New Roman}{
-\setmainfont{Times New Roman}
-  \setsansfont{Times New Roman Bold}
-}{
-  \ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“STIX”替代}
+%%\IfFontExistsTF{Times New Roman}{
+%%\setmainfont{Times New Roman}
+%%  \setsansfont{Times New Roman Bold}
+%%}{
+%%  \ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“STIX”替代}
   \RequirePackage[nomath,notext,not1,notextcomp]{stix}
   \setmainfont{STIX}
   \setsansfont{STIX-Bold}
-}
+%%}
 %    \end{macrocode}
 %
 % \subsubsection{页面设计}
@@ -580,16 +571,4 @@
 % \end{environment}
 %
 % \Finale
-%
-% \typeout{**************************************************}
-% \typeout{*}
-% \typeout{* To finish the installation you have to move the}
-% \typeout{* following file into a directory searched by TeX:}
-% \typeout{*}
-% \typeout{*   nkuthesis.cls}
-% \typeout{*}
-% \typeout{* Documentation is in nkuthesis.pdf}
-% \typeout{*}
-% \typeout{* Happy TeXing!}
-% \typeout{**************************************************}
 \endinput

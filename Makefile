@@ -7,8 +7,8 @@ ${THESIS}.pdf: ${THESIS}.tex ${PKG}.cls reference.bib figures/*
 	xelatex ${THESIS}
 	xelatex ${THESIS}
 
-${PKG}.cls: ${PKG}.dtx
-	xelatex $<
+${PKG}.cls: ${PKG}.ins ${PKG}.dtx
+	xetex $<
 
 ${PKG}.pdf: ${PKG}.dtx
 	xelatex $<

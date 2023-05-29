@@ -13,5 +13,6 @@
 *.run.xml
 *.zip
 _site/
+build/
 .*
 Gemfile.lock

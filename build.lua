@@ -9,10 +9,6 @@ demos = {
 
 -- internal commands
 
-builddir   = "./build"
-typesetdir = builddir .. "/doc"
-docfiledir = typesetdir
-
 local newzip = require"l3build-zip"
 local function zip(dir, zipname, zipdir)
     local zipfile = newzip(dir .. '/' .. zipname )
@@ -30,10 +26,11 @@ function typeset_demo_tasks()
 		cp(demoname, "example", typesetdir)
 		cp(democls, localdir, demotypesetdir)
 		cp("README.md", ".", demotypesetdir)
-		zip(typesetdir,demoname .. ".zip", demoname)
-		typeset("main.tex", typesetdir .. "/" .. demoname)
-		cp("main.pdf", demotypesetdir, typesetdir)
-		ren(typesetdir, "main.pdf", demoname .. ".pdf")
+		zip(typesetdir, demoname .. ".zip", demoname)
+		cp(demoname .. ".zip", typesetdir, docfiledir)
+		typeset("main.tex", demotypesetdir)
+		cp("main.pdf", demotypesetdir, docfiledir)
+		ren(docfiledir, "main.pdf", demoname .. ".pdf")
 		table.insert(demofiles, demoname .. ".pdf")
 		table.insert(demofiles, demoname .. ".zip")
 	end

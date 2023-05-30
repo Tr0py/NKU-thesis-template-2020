@@ -121,7 +121,7 @@
 
 \def\songti{\rmfamily\upshape}
 \def\heiti{\bfseries}
-\def\kaiti{\itshape}
+% \def\kaiti{\rmfamily\upshape}
 \def\fangsong{\ttfamily}
 \let\kai\kaiti
 \let\song\songti
@@ -185,12 +185,12 @@
 \def\subsubsection{
   \@startsection{subsubsection}{3}{\z@}{12pt}{6pt}{\subsubsectionformat}}
 
-\def\sectionspecial{\jiacu}
-\def\partformat{\centering\huge\bfseries}
-\def\chapterformat{\centering\fontsize{16}{19}\bfseries}
-\def\sectionformat{\centering\bfseries\zihaoxiaosan}
-\def\subsectionformat{\bfseries\fontsize{14}{15}\selectfont}
-\def\subsubsectionformat{\bfseries\zihaowu}
+\def\sectionspecial{\heiti}
+\def\partformat{\centering\huge\heiti}
+\def\chapterformat{\centering\zihaosan\bfseries}
+\def\sectionformat{\centering\heiti\zihaoxiaosan}
+\def\subsectionformat{\heiti\zihaosi\selectfont}
+\def\subsubsectionformat{\heiti\zihaosi}
 
 
 \def\chapter{
@@ -396,8 +396,8 @@
 \if@twoside
   \def\ps@centerheadings{
     \let\@mkboth\markboth
-    \def\@oddfoot{{\small\hfil  \thepage \hfil}}
-    \def\@evenfoot{{\small\hfil  \thepage \hfil}}
+    \def\@oddfoot{{\zihaoxiaowu\hfil  \thepage \hfil}}
+    \def\@evenfoot{{\zihaoxiaowu\hfil  \thepage \hfil}}
     \def\setevenhead{\def\@evenhead{\protect\rule[-5pt]{\textwidth}{0.5pt}\hspace{-\textwidth}
      \headingfonts\hfil  \leftmark\hfil}}
     \sethead{\protect\rule[-5pt]{\textwidth}{0.5pt}\hspace{-\textwidth}
@@ -408,13 +408,13 @@
 
     \def\ps@plain{
       \let\@mkboth\markboth
-      \def\@oddfoot{{\small\hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
-      \def\@evenfoot{{\small\hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
+      \def\@oddfoot{{\zihaoxiaowu\hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
+      \def\@evenfoot{{\zihaoxiaowu\hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
       \sethead{}}
 \else
   \def\ps@centerheadings{
     \let\@mkboth\markboth
-    \def\@oddfoot{{\small\hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
+    \def\@oddfoot{{\zihaoxiaowu \hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
     \sethead{\protect\rule[-5pt]{\textwidth}{0.5pt}\hspace{-\textwidth}
     \headingfonts \hfil\rightmark\hfil  }
      \def\chaptermark##1{
@@ -430,8 +430,8 @@
 
   \def\ps@plain{
      \let\@mkboth\markboth
-     \def\@oddfoot{{\small\hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
-     \def\@evenfoot{{\small\hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
+     \def\@oddfoot{{\zihaoxiaowu\hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
+     \def\@evenfoot{{\zihaoxiaowu\hfil $\cdot$\, \thepage \, $\cdot$\hfil}}
      \def\@evenhead{}
      \sethead{}}
 \fi
@@ -473,11 +473,14 @@
 \def\c@wuhao@pt{10.5}
 \def\c@xiaowuhao@pt{9}
 \def\c@liuhao@pt{7.5}
+% \def\c@titlezihao@pt{56}
 
 \def\NKT@definezihao#1#2#3{
   \def#1{\fontsize{#2}{#3}\selectfont}}
 
+
 \NKT@definezihao{\zihaochu}{42}{50}
+\NKT@definezihao{\zihaonankaidaxue}{56}{56}
 \NKT@definezihao{\zihaoxiaochu}{36}{44}
 \NKT@definezihao{\zihaoyi}{28}{34}
 \NKT@definezihao{\zihaoer}{22}{26}
@@ -511,7 +514,14 @@
   {\def\@noitemerr{
      \@latex@warning{Empty `thebibliography' environment}}%
    \endlist}
-
+% \renewenvironment{table}{%
+% \if@tablecaptionabove\let\caption\captionabove
+%   \else\let\caption\captionbelow\fi
+%   \tiny\@float{table}%
+% }{%
+%   \end@float
+% }
+\renewcommand\thepage{\zihaoxiaowu ~\arabic{page}~}
 
 \def\appendix{
   \if@firstappendix
@@ -549,16 +559,18 @@
 
 \newcount\NKT@itemcnt
 \NKT@itemcnt=0
-
 \def\standardpageset{
   \paperwidth 210mm
   \paperheight 297mm
-  \textheight 220mm
+  \textheight 246.2mm
   \textwidth 146mm
-  \oddsidemargin 32mm
+  \oddsidemargin 31.7mm
   \advance\oddsidemargin -1in
   \evensidemargin \oddsidemargin
-  \topmargin 38mm
+  \topmargin 25.4mm
+  \headheight 15mm
+  \footskip 7.9mm
+  % \advance \footskip +0.5in
   \advance \topmargin -1in
   \advance \topmargin -\headsep
   \advance \topmargin -\headheight
@@ -571,10 +583,10 @@
 \def\chapternamesep{5mm}
 \def\chpaterheaderheight{16pt}
 
-\def\tocpartfonts{\rmfamily\zihaosi}
-\def\tocchapterfonts{\rmfamily\zihaosi}
-\def\tocsectionfonts{\rmfamily\zihaoxiaosi}
-\def\tocsubsectionfonts{\rmfamily\zihaowu}
+\def\tocpartfonts{\rmfamily\zihaoxiaosan}
+\def\tocchapterfonts{\rmfamily\zihaoxiaosan}
+\def\tocsectionfonts{\rmfamily\zihaosi}
+\def\tocsubsectionfonts{\rmfamily\songti\zihaoxiaosi}
 \def\tocleaders{$\cdot\!\cdot\!\cdot\ $}
 \def\tocchapterindent{0em}
 \def\tocsectionindent{2em}
@@ -602,6 +614,25 @@
   \fontsize{12}{20}\selectfont
 %  \baselineskip 20pt %
   \parindent 2em}
+
+% \setCJKmonofont[Path=fonts/]{simfang.ttf}
+\setCJKmainfont[BoldFont=SimHei.ttf,Path=fonts/]{simsun.ttf}
+\newCJKfontfamily\kaiti[Path=fonts/]{simkai.ttf}
+\newCJKfontfamily\cusongti[Path=fonts/]{cusongti.ttf}
+\newCJKfontfamily\cukai[Path=fonts/]{FZCKJW.ttf}
+
+\newfontfamily{\enghei}[Path=fonts/]{simhei.ttf}
+% Times New Roman
+\setromanfont[
+BoldFont=timesbd.ttf,
+ItalicFont=timesi.ttf,
+BoldItalicFont=timesbi.ttf,
+Path=fonts/
+]{times.ttf}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Times New Roman}
+
 
 %
 %  论文基本信息
@@ -657,11 +688,10 @@
 \NKT@definekey{论文题目(中文)(第二行)}   {titlecntwo}
 \NKT@definekey{论文题目(英文)(第二行)}   {titleentwo}
 \NKT@definekey{论文题目(英文)(第三行)}   {titleenthree}
-
 \NKT@definekey{空后缀}                   {noneval}
 \NKT@definekey{级}                   {ji}
 \NKT@definekey{年}                   {year}
-\NKT@definekey{月份}                   {monthval}
+\NKT@definekey{月份}                   {monthva}
 \NKT@definekey{月}                   {month}
 
 
@@ -743,7 +773,7 @@
 \def\zhaiyao{
   \clearpage
   \vspace*{24pt}
-  \centerline{\zihaosi\rmfamily\bfseries 摘\quad 要}
+  \centerline{\zihaosi\bfseries 摘\quad 要}
   \phantomsection
   \addcontentsline{toc}{chapter}{\protect\numberline{摘 要}{}}
   \markboth{摘\quad 要}{摘\quad 要} 
@@ -779,22 +809,23 @@
   \thispagestyle{empty}
   \zihaowu
   \def\arraystretch{1.5}
-  
-%   \vskip 60mm
   \begin{center}
+    % \vskip{0.5em}
 %   \vbox to 30mm{}
-  \zihaoxiaochu\baselineskip 1.3em
-       {\jiacu 南\hskip 0.5em 开\hskip 0.5em 大\hskip 0.5em 学\\}
-  {\def\CJKglue{\hskip 0.5em}\zihaoer 
+  \zihaonankaidaxue  \baselineskip 1em
+  \textbf{\cusongti \vskip 0.5em 南\hskip 0.5em 开\hskip 0.5em 大\hskip 0.5em 学\\}
+
+  {\def\CJKglue{\hskip 0.25em}\zihaoer
      \ifx\NKT@key@lunwenleibie\NKT@string@boshi 
       本科生毕业论文（设计）%
      \else
        本科生毕业论文（设计）%
      \fi}
 
-  \vskip 10mm
-  \vbox to 15mm{}
-  \zihaoxiaosan
+  % \vskip 10mm
+  % \vbox to 0pt{}
+  \zihaosan
+  \vskip 48pt
   \baselineskip 30pt
   \vbox to 35mm{
   \begin{tabular}{lcl}
@@ -816,20 +847,20 @@
 
     \end{tabular}
     \vss}
-
-  \vskip 3mm
-  \zihaosi
-  \def\arraystretch{2}
+  \zihaosan
+  \vskip 80pt
+  \zihaosan
+  \def\arraystretch{1.25}
   \tabcolsep 0.2em
    \begin{tabular}{lcl}
-  \NKT@tp@item{学\hskip 2em 号：}{xuehao}{noneval}{noneval}{noneval}  \\
-  \NKT@tp@item{姓\hskip 2em 名：}{noneval}{xingming}{noneval}{noneval}  \\
-  \NKT@tp@item{年\hskip 2em 级：}{nianji}{ji}{noneval}{noneval}\\
-  \NKT@tp@item{学\hskip 2em 院：}{noneval}{xueyuan}{noneval}{noneval}\\
-  \NKT@tp@item{系\hskip 2em 别：}{noneval}{xibie}{noneval}{noneval}  \\
-  \NKT@tp@item{专\hskip 2em 业：}{noneval}{zhuanye}{noneval}{noneval}  \\
-  \NKT@tp@item{完成日期：}{lunwenwanchengshijian}{year}{monthval}{month}\\   
-  \NKT@tp@item{指导教师：}{noneval}{zhidaojiaoshi}{noneval}{noneval} \\
+  \NKT@tp@item{ 学\hskip 2em 号：}{xuehao}{noneval}{noneval}{noneval}  \\
+  \NKT@tp@item{ 姓\hskip 2em 名：}{noneval}{xingming}{noneval}{noneval}  \\
+  \NKT@tp@item{ 年\hskip 2em 级：}{nianji}{ji}{noneval}{noneval}\\
+  \NKT@tp@item{ 专\hskip 2em 业：}{noneval}{zhuanye}{noneval}{noneval}  \\
+  \NKT@tp@item{ 系\hskip 2em 别：}{noneval}{xibie}{noneval}{noneval}  \\
+    \NKT@tp@item{ 学\hskip 2em 院：}{noneval}{xueyuan}{noneval}{noneval}\\
+  \NKT@tp@item{ 指导教师：}{noneval}{zhidaojiaoshi}{noneval}{noneval} \\
+    \NKT@tp@item{完成日期：}{lunwenwanchengshijian}{year}{monthva}{month} \\ 
   \ifx\NKT@key@xiaowaidaoshi\NKT@string@null
     %% 没有校外导师
   \else
@@ -837,24 +868,24 @@
   \fi
 
   \end{tabular}
-
+% ok
   \vskip 10mm
       \end{center}
   \egroup}
 
 \def\NKT@tp@item#1#2#3#4#5{%
-  #1%
+   #1%
   \hskip 0.5em%
-  \underline{\hbox to 53mm{\zihaosi\NKT@keyvalue{#2} \zihaosi\kaiti\NKT@keyvalue{#3}
+  \underline{\hbox to 53mm{\zihaosan\NKT@keyvalue{#2} \zihaosan\kaiti\NKT@keyvalue{#3}
       %
-      \zihaosi\songti\NKT@keyvalue{#4}
+      \zihaosan\songti\NKT@keyvalue{#4}
       %
-      \zihaosi\kaiti\NKT@keyvalue{#5}\hfil}}}
+      \zihaosan\kaiti\NKT@keyvalue{#5}\hfil}}}
   
 \def\NKT@tb@item#1#2{%
   #1%
   \hskip 0.5em%
-  \underline{\hbox to 115mm{\zihaoxiaosan{\cukai\NKT@keyvalue{#2}\hfil}}}}
+  \underline{\hbox to 115mm{\zihaosan{\cukai\NKT@keyvalue{#2}\hfil}}}}
   
 \def\NKT@declaration{
 本人郑重声明：所呈交的学位论文，是本人在指导教师指导下，进行研究工作所取得的成果。
@@ -887,26 +918,6 @@
   
   \hskip 25em 年\hskip 2em 月\hskip 2em 日\hbox to 1em{}
   }
-
-\setCJKmonofont[Path=fonts/]{simfang.ttf}
-\setCJKmainfont[BoldFont=simhei.ttf,ItalicFont=simkai.ttf,Path=fonts/]{simsun.ttf}
-\newCJKfontfamily\cukai[Path=fonts/]{FZCKJW.ttf}
-
-\newfontfamily{\enghei}[Path=fonts/]{simhei.ttf}
-% Times New Roman
-\setromanfont[
-BoldFont=timesbd.ttf,
-ItalicFont=timesi.ttf,
-BoldItalicFont=timesbi.ttf,
-Path=fonts/
-]{times.ttf}
-\setmainfont[
-BoldFont=timesbd.ttf,
-ItalicFont=timesi.ttf,
-BoldItalicFont=timesbi.ttf,
-Path=fonts/
-]{times.ttf}
-
 
 \newcommand\setpaperdimen[2]{
   \pdfpagewidth=#1 true mm
@@ -948,10 +959,11 @@ Path=fonts/
 
 \def\tablecaption#1{%
   \refstepcounter{table}%
-  {\zihaowu \tablename\nobreakspace\thetable\hskip\NK@captionsep #1}
+  {\small \tablename\nobreakspace\thetable\hskip\NK@captionsep #1}
   \nopagebreak
   \vskip\csname belowcaptionskip@table\endcsname
   \nopagebreak}
+% \renewcommand{\normalsize}{\zihaoxiaosi\selectfont}
 
 \def\figurecaption#1{%
   \refstepcounter{figure}%

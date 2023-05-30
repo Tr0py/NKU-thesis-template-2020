@@ -2,6 +2,7 @@
 
 module = "nkuthesis"
 typesetexe  = "xelatex"
+ctanzip = module .. "-all"
 
 demos = {
 	bachelor = "nkuthesis.cls",

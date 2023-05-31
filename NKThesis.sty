@@ -104,7 +104,7 @@
 \else
   \def\chaptername{第\texorpdfstring{\CJKnumber{\arabic{chapter}}}{\arabic{chapter}}章}
   \def\thesection{第\texorpdfstring{\CJKnumber{\arabic{section}}}{\arabic{section}}节}
-  \def\thesubsection{{\texorpdfstring{\enghei}{}\arabic{chapter}.\arabic{section}.\arabic{subsection}}}
+  \def\thesubsection{{\texorpdfstring{}{}\arabic{chapter}.\arabic{section}.\arabic{subsection}}}
   \def\contentsname{目\quad 录}
   \def\appendixnamenonumber{附录}
   \def\appendixname{附\quad 录}
@@ -177,19 +177,19 @@
 \def\@seccntformat#1{\csname the#1\endcsname\quad}
 
 \def\section{
-  \@startsection{section}{1}{\z@}{24pt}{6pt}{\sectionformat}}
+  \@startsection{section}{1}{\z@}{6pt}{6pt}{\sectionformat}}
 
 \def\subsection{
-  \@startsection{subsection}{2}{\z@}{12pt}{6pt}{\subsectionformat}}
+  \@startsection{subsection}{2}{\z@}{6pt}{6pt}{\subsectionformat}}
 
 \def\subsubsection{
-  \@startsection{subsubsection}{3}{\z@}{12pt}{6pt}{\subsubsectionformat}}
+  \@startsection{subsubsection}{3}{\z@}{6pt}{6pt}{\subsubsectionformat}}
 
 \def\sectionspecial{\heiti}
 \def\partformat{\centering\huge\heiti}
 \def\chapterformat{\centering\zihaosan\bfseries}
 \def\sectionformat{\centering\heiti\zihaoxiaosan}
-\def\subsectionformat{\heiti\zihaosi\selectfont}
+\def\subsectionformat{\enghei\heiti\zihaosi\selectfont}
 \def\subsubsectionformat{\heiti\zihaosi}
 
 
@@ -370,7 +370,6 @@
   \ifdim\NKT@tempdim<\csname toc#1titlewidth\endcsname
     \NKT@tempdim =\csname toc#1titlewidth\endcsname
   \fi}
-
 \def\tocdepth#1{
   \ifcase #1
       \def\tableofcontents{}
@@ -474,7 +473,7 @@
 \def\c@xiaowuhao@pt{9}
 \def\c@liuhao@pt{7.5}
 % \def\c@titlezihao@pt{56}
-
+% \renewcommand{\cftsubsecfont}{\normalfont\itshape} 
 \def\NKT@definezihao#1#2#3{
   \def#1{\fontsize{#2}{#3}\selectfont}}
 
@@ -577,7 +576,7 @@
   \relax}
 \standardpageset
 
-\def\overchapterspace{24pt}
+\def\overchapterspace{0pt}
 \def\belowchapterspace{18pt}
 
 \def\chapternamesep{5mm}
@@ -586,8 +585,8 @@
 \def\tocpartfonts{\rmfamily\zihaoxiaosan}
 \def\tocchapterfonts{\rmfamily\zihaoxiaosan}
 \def\tocsectionfonts{\rmfamily\zihaosi}
-\def\tocsubsectionfonts{\rmfamily\songti\zihaoxiaosi}
-\def\tocleaders{$\cdot\!\cdot\!\cdot\ $}
+\def\tocsubsectionfonts{\songti\rmfamily\zihaoxiaosi\selectfont}
+\def\tocleaders{$\cdot$}
 \def\tocchapterindent{0em}
 \def\tocsectionindent{2em}
 \def\tocsubsectionindent{2em}
@@ -737,7 +736,7 @@ Path=fonts/
 \def\NKT@keyvalue#1{%
   \edef\NKT@temp{\csname NKT@key@#1\endcsname}%
   \scantokens\expandafter{\NKT@temp}}
-
+\def\equationautorefname~#1\null{式 (#1)\null}
 
 % \input{NKThesis.cfg}
 
@@ -747,7 +746,7 @@ Path=fonts/
 
 \def\zhixie{
   \clearpage
-  \vspace*{24pt}
+  \vspace*{0pt}
   \centerline{\zihaosi\rmfamily\bfseries 致\quad 谢}
   \phantomsection
   \addcontentsline{toc}{chapter}{\protect\numberline{致\quad 谢}{}}
@@ -772,7 +771,7 @@ Path=fonts/
 
 \def\zhaiyao{
   \clearpage
-  \vspace*{24pt}
+  \vspace*{0pt}
   \centerline{\zihaosi\bfseries 摘\quad 要}
   \phantomsection
   \addcontentsline{toc}{chapter}{\protect\numberline{摘 要}{}}
@@ -783,7 +782,7 @@ Path=fonts/
 
 \def\abstract{
   \clearpage
-  \vspace*{24pt}
+  \vspace*{0pt}
 %  \centerline{\zihaosi \jiacu Abstract}
   \centerline{\zihaosi \bfseries Abstract}
   \phantomsection

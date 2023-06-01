@@ -1,28 +1,6 @@
-%%
-%% This is file `nkuthesis.cls',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% nkuthesis.dtx  (with options: `class')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from nkuthesis.cls.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file nkuthesis.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
 \NeedsTeXFormat{LaTeX2e}[2021/11/15]
-\ProvidesClass{nkuthesis}
-  [2023/05/17 v3.0 Nankai University undergraduate thesis document class]
+\ProvidesClass{nktba}
+  [2023/05/17 v3.0 Nankai University bachelor's thesis document class]
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessOptions\relax
 \LoadClass[zihao=-4,linespread=1.64]{ctexart}

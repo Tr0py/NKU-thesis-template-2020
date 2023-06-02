@@ -166,6 +166,66 @@ Since 1998, two independent supernova research groups have discovered that the u
 \label{fig:nku}
 \end{figure}
 
+\subsection{列表}
+
+本节示例来自 \url{https://www.overleaf.com/learn/latex/Lists}
+
+\begin{itemize}
+  \item This is my first point.This is my first point.This is my first point.This is my first point.This is my first point.
+  \item Another point I want to make 
+  \item[!] A point to exclaim something!
+  \item[NOTE] This entry has no bullet
+  \item[] A blank label?
+\end{itemize}
+
+\begin{enumerate}
+  \item This is my first point.This is my first point.This is my first point.This is my first point.This is my first point.
+  \item Another point I want to make 
+  \item[!] A point to exclaim something!
+  \item[NOTE] This entry has no bullet
+  \item[] A blank label?
+\end{enumerate}
+
+\begin{description}
+  \item This is an entry \textit{without} a label.
+  \item[Something short] A short one-line description.
+  \item[Something long] A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.A much longer description.
+\end{description}
+
+\begin{enumerate}
+  \item First level item
+  \item First level item
+  \begin{enumerate}
+    \item Second level item
+    \item Second level item
+    \begin{enumerate}
+      \item Third level item
+      \item Third level item
+      \begin{enumerate}
+        \item Fourth level item
+        \item Fourth level item
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+\begin{itemize}
+  \item First level item
+  \item First level item
+  \begin{itemize}
+    \item Second level item
+    \item Second level item
+    \begin{itemize}
+      \item Third level item
+      \item Third level item
+      \begin{itemize}
+        \item Fourth level item
+        \item Fourth level item
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
 \subsection{一些建议}
 \subsubsection{关于分数的写法}
 
@@ -227,6 +287,8 @@ $(x+2)/((3x^2+4)(7+y))$. 下面是居中表达式:
 
 引用:   \ref{thm:latex}的推论是什么呢？
 方程式编号:  由\ref{eq:a1}和\ref{eq:aa2}.
+
+
 
 \section{常用宏包使用示例}
 

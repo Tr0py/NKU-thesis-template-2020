@@ -1,0 +1,292 @@
+% -*- coding: utf-8 -*-
+% !TeX program = xelatex
+% !BIB program = biber
+
+\documentclass{nktba}
+\usepackage{nktbacs}
+
+\usepackage{booktabs} % 三线表
+\usepackage{graphicx} % 图片导入
+\usepackage{hologo} % logo
+\usepackage{xurl}
+
+% 文档元数据
+\title{南开大学本科生毕业论文模板 \\ 计网版}
+\title*{version: 2023/06/02}
+\studentid{1234567}
+\author{XXX}
+\grade{2019 级}
+\major{计算机科学与技术}
+\department{计算机科学与技术}
+\college{计算机学院}
+\adviser{XXX\quad 教授 \\ 罗翔\quad 教授 \\（张三大学）}
+\date{\today}
+\keywords{南开大学；毕业论文；LaTeX模板}
+\keywords*{dark energy model; dynamic analysis}
+\addbibresource{reference.bib} % 参考文献
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+摘要内容 TODO
+\end{abstract}
+  
+\begin{abstract*}
+Since 1998, two independent supernova research groups have discovered that the universe is accelerating, and the dark energy has become a hot topic in cosmology. 
+\end{abstract*}
+
+\tableofcontents
+
+\section{介绍}
+
+\subsection{注意事项}
+
+提供本模板的目的是为了给您的论文写作带来方便，然而，
+作者不保证这个模板完全符合学校的要求，也不对由此产生的任何后果负责。请使用者认真校对模板格式是否符合各学院的格式要求，确保及时发现问题，以便模板维护者尽早解决。
+
+\input{contents/about.tex}
+
+\section{使用说明} \label{chpt:A}
+
+本模板基于 ctexart 实现，如本文介绍的内容不够详细丰富，可查看 ctex 宏基文档了解更多信息。
+
+\subsection{入门资料}
+
+如果你需要相对全面的了解 latex 的使用，推荐阅读\href{http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf}{《一份（不太）简短的 LATEX 2ε 介绍》}。如果你想要学习具体问题的解决方法，推荐阅读 \href{https://www.overleaf.com/learn}{Overleaf文档}。
+
+\subsection{字体}
+
+本模板在不同平台默认使用的字体不尽相同，如\ref{tab:ctex-fontset}所示。如果需要修改 ctex 的 fontset 选项，可以在引入本模板文档类前向ctexart 传入参数，例如使用 \verb| \PassOptionsToClass{fontset=windows}{ctexart}| 显示使用windows字体配置。不过，你需要确保这些字体在你的系统上可用。
+
+\begin{table}
+  \centering
+  \caption{不同平台的默认字体}
+  \begin{tabular}{ccc}
+  \toprule
+  平台 & 中文字体 & 英文字体 \\
+  \midrule
+  Windows & 中易宋黑楷仿 & Times New Roman \\
+  Overleaf & Fandol宋黑楷仿 & Times New Roman\\
+  Other Linux & Fandol宋黑楷仿 & STIX \\
+  \bottomrule
+  \end{tabular}
+  \label{tab:ctex-fontset}
+\end{table}
+
+有时，ctex宏包会使用黑体作为宋体的粗体使用，你可以使用本模板提供的\verb|\textfb| 来进行伪加粗。一般情况下您不需要显式地设置文本字体。如果确实需要，请考虑使用以下命令：
+
+\begin{description}
+\item[宋体] \verb|\songti| 或 \verb|\textnormal{<文本>}|
+\item[黑体] \verb|\heiti| 或 \verb|\textsf{<文本>}|
+\item[楷体] \verb|\kaishu|  或 \verb|\textit{<文本>}|
+\item[仿宋] \verb|\fangsong| 或 \verb|\texttt{<文本>}|
+\item[粗体] \verb|\bfseries| 或 \verb|\textbf{<文本>}|
+\item[伪加粗] \verb|\textfb[<加粗程度>]{<文本>}|
+\end{description}
+
+使用 \hologo{XeLaTeX}\ 编译时，会自动在中英文转换时添加必要的空格。但是某些情况中，空格并不能被自动添加。比如，\verb|中文\url{https://google.com}| 的显示效果为：中文\url{https://google.com}。这时就需要手动添加，这类情况的特点是内容被一些命令所包裹。
+
+\subsection{交叉引用} \label{sec:ex:A}
+
+修改 \verb|\the<counter>| 的定义，可以修改编号的显示格式。 chngcntr 宏包提供了 \verb|\counterwithin{<counter>}{<withincounter>}| 宏对此进行了封装。 该命令会将 \verb|<counter>| 关联到 \verb|<withincounter>|，并将 \verb|\the<counter>| 的定义修改为 \verb|\the<within>.\arabic{<counter>}|。可以通过该命令实现按章编号，如\ref{lst:counterwithin}所示。
+
+\begin{lstlisting}[
+	caption={counterwithin 命令使用示例},
+	label={lst:counterwithin},
+	language={[LaTeX]TeX},
+	morekeywords={counterwithin}
+]
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+\end{lstlisting}
+
+\LaTeX 内核内置了 \verb|\labelformat{<counter>}{<format>}| 宏来设置交叉引用的标签格式，使用示例如\ref{lst:labelformat}所示。hyperref提供的 \verb|\autoref| 也可以实现类似的功能，但是只能修改前缀。
+
+\begin{lstlisting}[
+	caption={labelformat 命令使用示例},
+	label={lst:labelformat},
+	language={[LaTeX]TeX},
+	morekeywords={labelformat,zhnumber},
+  emph={\#1}
+]
+\labelformat{section}{第\zhnumber{#1}章}
+\labelformat{figure}{图~#1\space}
+\labelformat{table}{表~#1\space}
+\end{lstlisting}
+
+引用章节号可参考如下格式: \ref{chpt:A}\ref{sec:ex:A}。
+
+\subsection{参考文献} \label{manual:ref}
+
+由于各专业所需的参考文献格式不尽相同，本模板未统一配置参考文献样式。请使用者自行配置所需的参考文献样式。
+
+当前主要使用 natbib 或 biblatex 宏包设置参考文献和引用格式，示例目前使用 biblatex 和内置样式排版，下面给出一个使用 natbib 排版 gbt7714-2015 样式的例子（需要配合bibtex使用），如\ref{lst:natbib-gbt7714}所示。如果你需要对更多细节进行调整，请查阅 natbib 或 biblatex 宏包文档。
+
+\begin{lstlisting}[
+	caption={用 natbib 排版 gbt7714-2015 样式的参考文献},
+	label={lst:natbib-gbt7714},
+	language={[LaTeX]TeX},
+	morekeywords={labelformat,zhnumber},
+  emph={\#1}
+]
+% 导言区
+\usepackage[sort&compress]{gbt7714}
+\bibliographystyle{gbt7714-numerical} % gbt7714-2015
+\usepackage{natbib}
+
+% 参考文献排版处
+\begin{reference}
+  \renewcommand{\bibsection}{}
+  \bibliography{reference.bib}
+\end{reference}
+\end{lstlisting}
+
+参考文献测试样例:
+\cite{ChenCheChen2001,Nadkarni-1992,Hua-Wang-1973}
+文献\cite{ZhuKeZhen,Huo}文献\cite{JiangXiZhou,Timoshenko,Zhang-Wang}
+\cite{ZhuKeZhen}
+测试\citep{PQEMU}或者\citep{li1988ivy}
+第一次编译\cite{hong2012hqemu}\cite{zaharia2010spark}\cite{wenwenasplos2018}
+
+\subsubsection{录入参考文献}
+
+本模板采用 biblatex 宏包管理参考文献。如果你对此不熟悉，可以参考biblatex使用手册。
+
+\subsection{图表}
+
+插图示例，如\ref{fig:nku}所示。
+
+\begin{figure}
+\centering
+\includegraphics[viewport=0 0 2984 969,width=40mm]{figures/nankaidaxue.pdf}
+\caption{南开大学}
+\label{fig:nku}
+\end{figure}
+
+\subsection{一些建议}
+\subsubsection{关于分数的写法}
+
+\LaTeX 提供宏命令\verb+\frac+, 用以打印分数. 为使得版面整齐, 该命令的使用应遵循以下原则:
+
+\begin{enumerate}
+\item 仅在分行表达式中使用,
+\item 不嵌套使用,
+\item 不在上下标中使用.
+\end{enumerate}
+
+也就是说, 行内表达式和上下标中出现分数时一律用 $a/b$表示, 如
+$(x+2)/((3x^2+4)(7+y))$. 下面是居中表达式:
+
+\[
+ x^2 = y^{1/2} +3.
+\]
+
+多行表达式: 尽量在加、减、乘、等号前换行. 在乘号前换行时,
+下一行首用 \string\times:
+\def\iint{\mathop{\int\!\!\!\int}}\def\calG{\mathcal G}
+\begin{eqnarray}
+&&\left|(W_{\psi_1}f)(a,b)-(W_{\psi_1}f)(a_j,b_{j,k})\right|^{2}\nonumber\\
+&=&\frac{1}{C^{2}_{\varphi}}\Bigg|\iint_{\calG} (W_{\varphi}f)(s,t) \nonumber\\
+&&\qquad\times \Bigg( (W_{\psi_1}\varphi)\left(\frac{a}{s},
+\frac{b-t}{s}\right)
+     -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\Bigg)
+  \frac{dsdt}{s^{d+1}}\Bigg|^2 \nonumber\\
+&\le& \frac{1}{C^2_{\varphi}} \iint_{\calG} |(W_{\varphi}f)(s,t)|^2 \nonumber\\
+&&\qquad \times\left| (W_{\psi_1}\varphi)\left(\frac{a}{s},
+\frac{b-t}{s}\right)
+    -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\right|
+   \frac{dsdt}{s^{d+1}}  \nonumber\\
+&&\qquad \times   \iint_{\calG}\!
+ \left|(W_{\psi_1}\varphi)\left(\frac{a}{s}, \frac{b-t}{s}\right)
+    -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\right|
+ \frac{ ds dt}{s^{d+1}} \nonumber\\
+&=& \frac{1}{C^2_{\varphi}} ....  \label{eq:a0}
+\end{eqnarray}
+
+
+\subsubsection{标点}
+科技文献中一般用半角标点, 请参考《中国科学》发表的论文.
+
+如果使用全角标点, 可以使用
+\begin{verbatim}
+  \punctstyle{<style>}
+\end{verbatim}
+选择标点样式, 有效值为
+\begin{verbatim}
+  quanjiao (所有标点符号占一个汉字宽度，
+            相邻两个标点占一个半汉字宽度)
+  banjiao  (所有标点符号占半个汉字宽度)
+  hangmobanjiao (所有标点符号占一个汉字宽度，行末行首半角)
+  kaiming  (句号、叹号、问号占一个汉字宽度，其他标点占半个汉字宽度)
+\end{verbatim}
+缺省为全角式。注意：不论选择哪种样式，都提供行末对齐(margin kerning)功能。
+
+
+引用:   定理\ref{thm:latex}的推论是什么呢？
+方程式编号:  由(\ref{eq:a1})(\ref{eq:aa2})式.
+
+\section{常用宏包使用示例}
+
+\subsection{公式定理}
+
+\begin{Theorem} \label{thm:latex}
+\LaTeX 的输出是最完美的.
+\end{Theorem}
+
+先证明一个引理
+\begin{Lemma} \label{thm:tex}
+\TeX 文件在不同操作系统下的排版结果完全一致.
+\end{Lemma}
+
+\begin{proof}[定理~\ref{thm:latex}的证明]
+显然是错的.
+\end{proof}
+
+单个带编号的表达式
+\begin{equation}\label{eq:a1}
+x=y+z
+\end{equation}
+
+单个不带编号的表达式
+\[
+y=x-z.
+\]
+
+不带编号的多行表达式
+\begin{eqnarray*}
+x&=&y+z \\
+  &=&z-s\\
+  &<& 3. \\
+  && \mbox{一些注释}
+\end{eqnarray*}
+
+带编号的多行表达式
+\begin{eqnarray}
+  x&=& y-z, \label{eq:aa1}\\
+  y&=& x+z, \nonumber \\
+  z&=&y-x. \label{eq:aa2}
+\end{eqnarray}
+
+\subsection{伪代码}
+
+TODO，推荐阅读：\url{https://www.overleaf.com/learn/latex/Algorithms}
+
+\subsection{代码块}
+
+TODO，推荐阅读：\url{https://www.overleaf.com/learn/latex/Code_listing}
+
+\appendix
+此处展示的为单标题附录，你可以使用 \verb|\appendices| 来排版多个附录。
+
+\begin{reference}
+\printbibliography[heading=none]
+\end{reference}
+
+\begin{acknowledgement}
+
+\end{acknowledgement}
+
+\end{document}

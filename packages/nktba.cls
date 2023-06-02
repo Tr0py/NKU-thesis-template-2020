@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}[2021/11/15]
 \ProvidesClass{nktba}
-  [2023/05/17 v3.0 Nankai University bachelor's thesis document class]
+  [2023/06/02 
+    Nankai University bachelor's thesis document class]
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessOptions\relax
 \LoadClass[zihao=-4,linespread=1.64]{ctexart}
@@ -104,8 +105,9 @@
 %% 封面
 \RequirePackage{etoolbox}
 \DeclareListParser{\dolinelist}{\\}
+\newcommand{\titlestyle}{}
 \newcommand{\uline@parbox}[2]{%
-  \renewcommand*{\do}[1]{\underbar{\makebox[#1][c]{##1}}\\}
+  \renewcommand*{\do}[1]{\underbar{\makebox[#1][l]{##1}}\\}
   \begin{tabular}[t]{@{}l@{}}
   \expandafter\dolinelist\expandafter{#2}
   \end{tabular}%
@@ -122,8 +124,8 @@
     \begin{tabular}{p{4em}@{：}p{\widthof{
       \begin{tabular}{l}\zh@title\\\en@title\end{tabular}
     }}}
-      \makebox[\hsize][s]{中文题目} & \uline@parbox{\hsize}{\zh@title}  \\
-      \makebox[\hsize][s]{外文题目} & \uline@parbox{\hsize}{\en@title}  \\
+      \makebox[\hsize][s]{中文题目} & \uline@parbox{\hsize}{\zh@title} \\
+      \makebox[\hsize][s]{外文题目} & \uline@parbox{\hsize}{\en@title} \\
     \end{tabular}
       \vspace{\fill}\par\linespread{1.15}\zihao{3}
     \begin{tabular}{p{4em}@{：}p{\widthof{
@@ -182,19 +184,19 @@
 %% 中文摘要
 \renewenvironment{abstract}{%
   \clearpage
-  \nolabel@section*{4}[摘要]{摘\hspace{1em}要}
+  \nolabel@section{4}[摘要]{摘\hspace{1em}要}
 }{%
   \par\bigskip\par
-  \noindent\textsf{关键词：}\zh@keywords
+  \noindent\mbox{\textsf{关键词：}}\parbox[t]{\textwidth}{\zh@keywords}
   \clearpage%
 }
 %% 英文摘要
 \newenvironment{abstract*}{%
   \clearpage
-  \nolabel@section*{4}{Abstract}
+  \nolabel@section{4}{Abstract}
 }{%
   \par\bigskip\par
-  \noindent\textsf{Keywords:\space}\en@keywords
+  \noindent\textsf{Key Words:\space}\parbox[t]{\textwidth}{\en@keywords}
   \clearpage%
 }
 \setcounter{tocdepth}{2}
@@ -214,17 +216,9 @@
 \NewCommandCopy{\old@appendix}{\appendix}
 \renewcommand{\appendix}{%
   \clearpage
+  \old@appendix
   \nolabel@section{4}[附录]{附\hspace{1em}录}%
   \renewcommand{\thesection}{A}%
-}
-%% 多附录
-\RequirePackage{titlesec}
-\newcommand{\appendices}{%
-  \clearpage
-  \old@appendix
-  \ctexset{section/name={附录,：}}
-  \titleformat{\section}{\centering\zihao{4}\sffamily}
-    {附\hspace{1em}录\Alph{section}：}{0em}{}%
 }
 %% 参考文献
 \newenvironment{reference}{

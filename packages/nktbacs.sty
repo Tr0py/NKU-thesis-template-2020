@@ -1,0 +1,147 @@
+\NeedsTeXFormat{LaTeX2e}[2021/11/15]
+\ProvidesPackage{nktbacs}
+  [2023/06/02 
+    Nankai University computer science bachelor's thesis style]
+\ProcessOptions\relax
+%% 页眉页脚
+\RequirePackage{fancyhdr}
+\fancypagestyle{chdr}{
+  \fancyhf{}
+  \fancyhead[C]{\zihao{-5}\leftmark}
+  \fancyfoot[C]{\zihao{-5}\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\headruleskip}{1pt}
+}
+\pagestyle{chdr}
+\AddToHook{cmd/declaration/after}{\pagenumbering{Roman}}
+\AddToHook{cmd/tableofcontents/after}{\pagenumbering{arabic}}
+%% 五级编号标题
+\RequirePackage{pifont}
+\RequirePackage{calc}
+\AddToHook{cmd/section/before}{\newpage}
+\ctexset{
+  secnumdepth=subsubsection,
+  section = {
+    name={第,章},
+    number=\chinese{section},
+    format=\centering\zihao{3}\sffamily,
+  },
+  subsection = {
+    name={第,节},
+    number=\chinese{subsection},
+    format=\centering\zihao{-3}\sffamily,
+  },
+  subsubsection = {
+    number=\arabic{section}.\arabic{subsection}.\arabic{subsubsection},
+    format=\raggedright\zihao{4}\sffamily,
+  },
+  paragraph = {
+    format=\zihao{-4}\sffamily,
+    runin=true,
+  },
+  subparagraph = {
+    format=\zihao{-4}\sffamily,
+    runin=true,
+  },
+}
+%% 图、表、公式
+\captionsetup{font=small} % 题注五号字
+\AddToHook{cmd/caption/before}{\zihao{5}} %设置表格五号字
+% 数学环境
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{newtxmath}
+\newtheorem{Theorem}{\hspace{2em}定理}[section]
+\newtheorem{Lemma}[Theorem]{\hspace{2em}引理}
+\newtheorem{Corollary}[Theorem]{\hspace{2em}推论}
+\newtheorem{Proposition}[Theorem]{\hspace{2em}命题}
+\newtheorem{Definition}[Theorem]{\hspace{2em}定义}
+\newtheorem{Example}[Theorem]{\hspace{2em}例}
+\newenvironment{proof}[1][证明]{\par\textbf{#1.}\,\, }{\hfill{\usefont{U}{msa}{m}{n}\char"03}}
+% 列表格式
+% \usepackage{enumitem}
+% \setlist{nosep}
+%% 代码
+\RequirePackage{listings}
+\RequirePackage[dvipsnames]{xcolor}
+\renewcommand{\lstlistingname}{代码}
+\lstset{
+	frame=lines,
+	basicstyle=\ttfamily\zihao{5}\linespread{1}\selectfont,
+	keywordstyle=\bfseries\color{NavyBlue},
+	emphstyle={\bfseries\color{Rhodamine}},
+	commentstyle=\itshape\color{black!50!white},
+	aboveskip=10pt,
+	columns=flexible,
+	tabsize=4,
+}
+%% 算法
+\RequirePackage[ruled]{algorithm}
+\floatname{algorithm}{算法}
+\counterwithin{algorithm}{section}
+\captionsetup[ruled]{font=small}
+\AddToHook{env/algorithm/begin}{\linespread{1}\zihao{5}}
+%% 编号与浮动
+\RequirePackage{flafter}
+\RequirePackage[section]{placeins}
+\RequirePackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
+% 引用标签格式
+\labelformat{section}{第\zhnumber{#1}章}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\labelformat{subsection}{第\zhnumber{#1}节}
+\labelformat{figure}{图~#1\space}
+\labelformat{table}{表~#1\space}
+\labelformat{equation}{式~(#1)\space}
+\AtBeginDocument{\labelformat{lstlisting}{代码~#1\space}}
+\labelformat{algorithm}{算法~#1\space}
+%% 封面
+\renewcommand{\titlestyle}{\kaishu}
+%% 声明
+\AddToHook{cmd/declaration/before}{\begin{titlepage}}
+\AddToHook{cmd/declaration/after}{\end{titlepage}}
+\AddToHook{cmd/maketitle/after}{\declaration}
+%% 目录
+\setcounter{tocdepth}{3}
+\titlecontents{section}[0em]{\zihao{-3}}
+  {\thecontentslabel\quad}{}{\titlerule*{.}\contentspage}
+\titlecontents{subsection}[2em]{\zihao{4}}
+  {\thecontentslabel\quad}{}{\titlerule*{.}\contentspage}
+\titlecontents{subsubsection}[4em]{\zihao{-4}}
+  {\thecontentslabel\quad}{}{\titlerule*{.}\contentspage}
+%% 附录
+\RequirePackage{titlesec}
+\renewcommand{\appendix}{%
+  \clearpage
+  \old@appendix
+  \ctexset{section/name={附录,：}}
+  \titleformat{\section}{\centering\zihao{4}\sffamily}
+    {附\hspace{1em}录\Alph{section}：}{0em}{}%
+}
+%% 参考文献
+\RequirePackage[
+  backend=biber,
+  doi=false,
+  url=false,
+  gbpunctin=false,
+  gbnamefmt=lowercase,
+  style=gb7714-2015]{biblatex}
+\DefineBibliographyStrings{english}{
+  andothers  = {\textit{et al.}},
+  in={},
+  incn={},
+}
+\DeclareFieldFormat{titlecase}{\MakeSentenceCase*{#1}} % 标题句首字母大写
+\RequirePackage{mfirstuc-english} 
+\MFUnocap{of}\MFUnocap{to}\MFUnocap{as}\MFUnocap{by}\MFUnocap{on}\MFUnocap{in} % 设置首字母不大写的介词
+\MFUnocap{about}\MFUnocap{from}\MFUnocap{with}\MFUnocap{for}\MFUnocap{at}
+\MFUnocap{up}\MFUnocap{down}\MFUnocap{under}\MFUnocap{over}\MFUnocap{against}
+\DeclareFieldFormat{journaltitle}{\capitalisewords{#1}\isdot} % 期刊名称实词首字母大写
+\DeclareFieldFormat{booktitle}{\capitalisewords{#1}} % 会议名称实词首字母大写
+\renewcommand{\finentrypunct}{} % 句末无标点
+\setlength{\bibitemsep}{0pt}
+\renewcommand{\bibfont}{\zihao{5}\linespread{1.2}}
+\defbibheading{bibliography}[\bibname]{\clearpage\nolabel@section{4}{#1}}

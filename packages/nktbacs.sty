@@ -97,22 +97,26 @@
 \defbibheading{bibliography}[\bibname]{\clearpage\nolabel@section{4}{#1}}
 
 %%%%%%%%%%%%%%%%%
-% 数学环境
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{newtxmath}
-\newtheorem{Theorem}{\hspace{2em}定理}[section]
-\newtheorem{Lemma}[Theorem]{\hspace{2em}引理}
-\newtheorem{Corollary}[Theorem]{\hspace{2em}推论}
-\newtheorem{Proposition}[Theorem]{\hspace{2em}命题}
-\newtheorem{Definition}[Theorem]{\hspace{2em}定义}
-\newtheorem{Example}[Theorem]{\hspace{2em}例}
-\newenvironment{proof}[1][证明]{\par\textbf{#1.}\,\, }{\hfill{\usefont{U}{msa}{m}{n}\char"03}}
+% 列表格式
+\RequirePackage{enumitem}
+\setlist{nosep}
 
 %%%%%%%%%%%%%%%%%
-% 列表格式
-% \usepackage{enumitem}
-% \setlist{nosep}
+% 数学环境
+\RequirePackage{mathtools}
+% 定理
+\RequirePackage{amsthm}
+\newtheoremstyle{nkubacs}{}{}{\kaishu}{2em}{\bfseries}{}{0.5em}{}
+\theoremstyle{nkubacs}
+\newtheorem{definition}{定义}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}{引理}[section]
+\labelformat{definition}{定义~#1\space}
+\labelformat{theorem}{定理~#1\space}
+\labelformat{lemma}{引理~#1\space}
+% 数学字体
+\RequirePackage{unicode-math}
+\setmathfont{XITS Math}
 
 %%%%%%%%%%%%%%%%%
 %% 图、表

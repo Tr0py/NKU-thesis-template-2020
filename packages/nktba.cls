@@ -6,7 +6,7 @@
 \ProcessOptions\relax
 \LoadClass[zihao=-4,linespread=1.64]{ctexart}
 %% 字体
-\IfFontExistsTF{Times New Roma}{
+\IfFontExistsTF{Times New Roman}{
 \setmainfont{Times New Roman}
   \setsansfont{Times New Roman Bold}
 }{

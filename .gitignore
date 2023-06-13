@@ -11,6 +11,9 @@
 *.synctex.gz
 *.run.xml
 *.zip
+*.fls
+*.fdb_latexmk
+*.xdv
 _site/
 .*
 Gemfile.lock

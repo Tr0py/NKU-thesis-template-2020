@@ -1,0 +1,161 @@
+\NeedsTeXFormat{LaTeX2e}[2021/11/15]
+\ProvidesPackage{nktbacs}
+  [2023/06/02 
+    Nankai University computer science bachelor's thesis style]
+\ProcessOptions\relax
+
+
+%%%%%%%%%%%%%%%%% 
+% 页眉页脚
+\pagestyle{chdr} % 详见 nktba.cls
+
+%%%%%%%%%%%%%%%%%
+% 三级编号标题
+\AddToHook{cmd/section/before}{\newpage}
+\ctexset{
+  secnumdepth=subsubsection,
+  section = {
+    name={第,章},
+    number=\chinese{section},
+    format=\centering\zihao{3}\sffamily,
+  },
+  subsection = {
+    name={第,节},
+    number=\chinese{subsection},
+    format=\centering\zihao{-3}\sffamily,
+  },
+  subsubsection = {
+    number=\arabic{section}.\arabic{subsection}.\arabic{subsubsection},
+    format=\raggedright\zihao{4}\sffamily,
+  },
+  paragraph = {
+    format=\zihao{-4}\sffamily,
+    runin=true,
+  },
+  subparagraph = {
+    format=\zihao{-4}\sffamily,
+    runin=true,
+  },
+}
+
+%%%%%%%%%%%%%%%%%
+% 封面 
+\renewcommand{\titlestyle}{\kaishu} % 详见 nktba.cls
+
+%%%%%%%%%%%%%%%%%
+% 目录
+\setcounter{tocdepth}{3}
+\titlecontents{section}[0em]{\zihao{-3}}{\thecontentslabel\quad}{}{\titlerule*{.}\contentspage}
+\titlecontents{subsection}[2em]{\zihao{4}}{\thecontentslabel\quad}{}{\titlerule*{.}\contentspage}
+\titlecontents{subsubsection}[4em]{\zihao{-4}}{\thecontentslabel\quad}{}{\titlerule*{.}\contentspage}
+
+%%%%%%%%%%%%%%%%%
+% 参考文献
+\RequirePackage[
+  backend=biber,
+  doi=false,
+  url=false,
+  gbpunctin=false,
+  gbnamefmt=lowercase,
+  style=gb7714-2015]{biblatex}
+\DefineBibliographyStrings{english}{
+  andothers  = {\textit{et al.}},
+  in={},
+  incn={},
+}
+% 标题句首字母大写
+\DeclareFieldFormat{titlecase}{\MakeSentenceCase*{#1}} 
+\RequirePackage{mfirstuc-english} 
+% 设置首字母不大写的介词
+\MFUnocap{of}
+\MFUnocap{to}
+\MFUnocap{as}
+\MFUnocap{by}
+\MFUnocap{on}
+\MFUnocap{in} 
+\MFUnocap{about}
+\MFUnocap{from}
+\MFUnocap{with}
+\MFUnocap{for}
+\MFUnocap{at}
+\MFUnocap{up}
+\MFUnocap{down}
+\MFUnocap{under}
+\MFUnocap{over}
+\MFUnocap{against}
+% 期刊名称实词首字母大写
+\DeclareFieldFormat{journaltitle}{\capitalisewords{#1}\isdot}
+% 会议名称实词首字母大写
+\DeclareFieldFormat{booktitle}{\capitalisewords{#1}}
+% 句末无标点
+\renewcommand{\finentrypunct}{}
+% 参考文献无段间距
+\setlength{\bibitemsep}{0pt}
+% 缩窄行距，5号字
+\renewcommand{\bibfont}{\zihao{5}\linespread{1.2}}
+% 自定义标题
+\defbibheading{bibliography}[\bibname]{\clearpage\nolabel@section{4}{#1}}
+
+%%%%%%%%%%%%%%%%%
+% 列表格式
+\RequirePackage{enumitem}
+\setlist{
+  nosep,
+  labelindent=\parindent,
+}
+
+%%%%%%%%%%%%%%%%%
+% 数学环境
+\RequirePackage{mathtools}
+% 定理
+\RequirePackage{amsthm}
+\newtheoremstyle{nkubacs}{}{}{\kaishu}{2em}{\bfseries}{}{0.5em}{}
+\theoremstyle{nkubacs}
+\newtheorem{definition}{定义}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}{引理}[section]
+\labelformat{definition}{定义~#1\space}
+\labelformat{theorem}{定理~#1\space}
+\labelformat{lemma}{引理~#1\space}
+% 数学字体
+\RequirePackage{unicode-math}
+\setmathfont{XITS Math}
+
+%%%%%%%%%%%%%%%%%
+%% 图、表
+\captionsetup{font=small} % 题注五号字
+\AddToHook{cmd/caption/before}{\zihao{5}} %设置表格五号字
+
+%%%%%%%%%%%%%%%%%
+%% 代码
+\RequirePackage{listings}
+\RequirePackage[dvipsnames]{xcolor}
+\lstset{
+	frame=lines,
+	basicstyle=\ttfamily\zihao{5}\linespread{1}\selectfont,
+	keywordstyle=\bfseries\color{NavyBlue},
+	emphstyle={\bfseries\color{Rhodamine}},
+	commentstyle=\itshape\color{black!50!white},
+	aboveskip=10pt,
+	columns=flexible,
+	tabsize=4,
+}
+\renewcommand{\lstlistingname}{代码}
+\AtBeginDocument{\labelformat{lstlisting}{代码~#1\space}}
+
+%%%%%%%%%%%%%%%%%
+%% 算法
+\RequirePackage[ruled]{algorithm}
+\floatname{algorithm}{算法}
+\counterwithin{algorithm}{section}
+\captionsetup[ruled]{font=small}
+\AddToHook{env/algorithm/begin}{\linespread{1}\zihao{5}}
+\labelformat{algorithm}{算法~#1\space}
+
+%%%%%%%%%%%%%%%%%
+%% 按章编号
+\RequirePackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+\AtBeginDocument{\counterwithin{lstlisting}{section}}

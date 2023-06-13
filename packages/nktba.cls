@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}[2021/11/15]
 \ProvidesClass{nktba}
-  [2023/05/17 v3.0 Nankai University bachelor's thesis document class]
+  [2023/06/02 
+    Nankai University bachelor's thesis document class]
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessOptions\relax
 \LoadClass[zihao=-4,linespread=1.64]{ctexart}
@@ -9,10 +10,9 @@
 \setmainfont{Times New Roman}
   \setsansfont{Times New Roman Bold}
 }{
-  \ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“STIX”替代}
-  \RequirePackage[nomath,notext,not1,notextcomp]{stix}
-  \setmainfont{STIX}
-  \setsansfont{STIX-Bold}
+  \ClassWarning{nkuthesis}{“Times New Roman”不可用，使用“XITS”替代}
+  \setmainfont{XITS}
+  \setsansfont{XITS-Bold}
 }
 %% 页边距
 \RequirePackage{geometry}
@@ -25,6 +25,14 @@
   footskip=0.79cm,
 }
 %% 页眉页脚
+\RequirePackage{fancyhdr}
+\fancypagestyle{chdr}{
+  \fancyhf{}
+  \fancyhead[C]{\zihao{-5}\leftmark}
+  \fancyfoot[C]{\zihao{-5}\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\headruleskip}{1pt}
+}
 \pagestyle{plain}
 %% 页眉字体
 \NewCommandCopy\old@markboth{\markboth}
@@ -63,6 +71,9 @@
     runin=false,
   },
 }
+\labelformat{section}{第\zhnumber{#1}章}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\labelformat{subsection}{第\zhnumber{#1}节}
 %% 脚注
 \RequirePackage[perpage,bottom]{footmisc}
 \renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}}
@@ -74,6 +85,9 @@
 \captionsetup{labelsep=enspace,skip=1pt}
 \RequirePackage{flafter}
 \RequirePackage[section]{placeins}
+\labelformat{figure}{图~#1\space}
+\labelformat{table}{表~#1\space}
+\labelformat{equation}{式~(#1)\space}
 %% 超链接、PDF书签、PDF元数据
 \RequirePackage[hidelinks,pdfa,pdfusetitle,bookmarksnumbered]{hyperref}
 \hypersetup{pdfsubject={南开大学本科生毕业论文（设计）}}
@@ -104,8 +118,9 @@
 %% 封面
 \RequirePackage{etoolbox}
 \DeclareListParser{\dolinelist}{\\}
+\newcommand{\titlestyle}{}
 \newcommand{\uline@parbox}[2]{%
-  \renewcommand*{\do}[1]{\underbar{\makebox[#1][c]{##1}}\\}
+  \renewcommand*{\do}[1]{\underbar{\makebox[#1][l]{##1}}\\}
   \begin{tabular}[t]{@{}l@{}}
   \expandafter\dolinelist\expandafter{#2}
   \end{tabular}%
@@ -122,8 +137,8 @@
     \begin{tabular}{p{4em}@{：}p{\widthof{
       \begin{tabular}{l}\zh@title\\\en@title\end{tabular}
     }}}
-      \makebox[\hsize][s]{中文题目} & \uline@parbox{\hsize}{\zh@title}  \\
-      \makebox[\hsize][s]{外文题目} & \uline@parbox{\hsize}{\en@title}  \\
+      \makebox[\hsize][s]{中文题目} & \uline@parbox{\hsize}{\zh@title} \\
+      \makebox[\hsize][s]{外文题目} & \uline@parbox{\hsize}{\en@title} \\
     \end{tabular}
       \vspace{\fill}\par\linespread{1.15}\zihao{3}
     \begin{tabular}{p{4em}@{：}p{\widthof{
@@ -182,19 +197,19 @@
 %% 中文摘要
 \renewenvironment{abstract}{%
   \clearpage
-  \nolabel@section*{4}[摘要]{摘\hspace{1em}要}
+  \nolabel@section{4}[摘要]{摘\hspace{1em}要}
 }{%
   \par\bigskip\par
-  \noindent\textsf{关键词：}\zh@keywords
+  \noindent\mbox{\textsf{关键词：}}\parbox[t]{\textwidth}{\zh@keywords}
   \clearpage%
 }
 %% 英文摘要
 \newenvironment{abstract*}{%
   \clearpage
-  \nolabel@section*{4}{Abstract}
+  \nolabel@section{4}{Abstract}
 }{%
   \par\bigskip\par
-  \noindent\textsf{Keywords:\space}\en@keywords
+  \noindent\textsf{Key Words:\space}\parbox[t]{\textwidth}{\en@keywords}
   \clearpage%
 }
 \setcounter{tocdepth}{2}
@@ -214,6 +229,7 @@
 \NewCommandCopy{\old@appendix}{\appendix}
 \renewcommand{\appendix}{%
   \clearpage
+  \old@appendix
   \nolabel@section{4}[附录]{附\hspace{1em}录}%
   \renewcommand{\thesection}{A}%
 }
@@ -251,6 +267,3 @@
   }%
   \clearpage%
 }
-\endinput
-%%
-%% End of file `nkuthesis.cls'.

@@ -8,7 +8,7 @@ layout: default
 [![Overleaf](https://img.shields.io/badge/Overleaf模板-green)](https://www.overleaf.com/latex/templates/nan-kai-da-xue-ben-ke-sheng-bi-ye-lun-wen-mo-ban-v1-dot-4/hdfqhtmmmdpv)
 [![Questions](https://img.shields.io/badge/模板讨论&使用问题？-pink)](https://github.com/Tr0py/NKU-thesis-template-2020/discussions)
 
-最近一次更新：2023年6月。
+最近一次更新：2024年3月。
 
 ## 简介
 

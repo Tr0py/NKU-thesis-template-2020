@@ -55,10 +55,9 @@ It mainly provides undergraduate thesis template.
 3. 使用`make compile`进行编译
 
 
-## 其他
+## 问题反馈/需要帮助？
 
+- 如果遇到问题，可以在[GitHub 讨论区](https://github.com/Tr0py/NKU-thesis-template-2020/discussions)问问题。建议开一个新帖问问题。
+- 如果需要我们添加新的功能，可以在GitHub提出[Issue](https://github.com/Tr0py/NKU-thesis-template-2020/issues)
+- 我通常会在两三天内回复，若得不到及时回复，可以发送[邮件](https://github.com/tr0py/)询问
 - 硕士生/博士生毕业论文模板可以移步[南开大学硕士毕业论文(博士论文)Latex模板](https://nkthesis.newfuture.cc/)
-- 如果遇到问题，你可以在QQ群中提问：群号 469868290。如果你会用GitHub：
-	- 如果你有疑问或建议，欢迎在[GitHub 讨论区](https://github.com/Tr0py/NKU-thesis-template-2020/discussions)问问题
-	- 如果你遇到了bug，欢迎在GitHub提出[Issue](https://github.com/Tr0py/NKU-thesis-template-2020/issues)
-	- 最后，欢迎向维护者发送[邮件](https://github.com/tr0py/)询问

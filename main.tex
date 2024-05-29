@@ -123,11 +123,17 @@
 \begin{spacing}{1.5}
 \include{manual}
 \include{references}
-\end{spacing}
-\include{acknowledgements}
-\ifdefstring{\college}{Chem}{}{
-\ifdefstring{\college}{Bio}{}{
-\include{resume}
+\ifdefstring{\college}{Chem}{
+  \include{acknowledgements}
+  \end{spacing}
+  }{
+\ifdefstring{\college}{Bio}{
+  \include{acknowledgements}
+  \end{spacing}
+  }{
+  \end{spacing}
+  \include{acknowledgements}
+  \include{resume}
 }%Bio
 }%Chem
 \end{document}

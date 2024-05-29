@@ -20,8 +20,13 @@
       \fi
     \fi}}
 
+%more college specific options waiting to be added.
 \newif\if@NKT@English
 \DeclareOption{English}{\@NKT@Englishtrue}
+\newif\if@NKT@Chem
+\DeclareOption{Chem}{\@NKT@Chemtrue}
+\newif\if@NKT@Bio
+\DeclareOption{Bio}{\@NKT@Biotrue}
 
 \ProcessOptions\relax
 
@@ -101,11 +106,26 @@
   \def\tablename{Table}
   \def\figurename{Figure}
   \def\NKT@proof{Proof}
-\else
-  \def\chaptername{第\texorpdfstring{\CJKnumber{\arabic{chapter}}}{\arabic{chapter}}章}
-  \def\thesection{第\texorpdfstring{\CJKnumber{\arabic{section}}}{\arabic{section}}节}
-  \def\thesubsection{{\texorpdfstring{}{}\arabic{chapter}.\arabic{section}.\arabic{subsection}}}
-  \def\contentsname{目\quad 录}
+\else%English
+  \if@NKT@Chem
+    \def\chaptername{第\texorpdfstring{\CJKnumber{\arabic{chapter}}}{\arabic{chapter}}章}
+    \def\thesection{\texorpdfstring{\CJKnumber{\arabic{section}}}{\arabic{section}}、}
+    \def\thesubsection{（{\texorpdfstring{}{}\CJKnumber{\arabic{subsection}}}）}
+    \def\contentsname{目\qquad 录}
+  \else%Chem
+    \if@NKT@Bio
+      \def\chaptername{\texorpdfstring{\CJKnumber{\arabic{chapter}}}{\arabic{chapter}}、}
+      \def\thesection{（\texorpdfstring{\CJKnumber{\arabic{section}}}{\arabic{section}}）}
+      \def\thesubsection{{\texorpdfstring{}{}\arabic{subsection}.}}
+      \def\subsubsectionname{（\texorpdfstring{}{}\arabic{subsubsection}）}
+      \def\contentsname{目\quad 录}
+    \else%Bio Below is default!
+      \def\chaptername{第\texorpdfstring{\CJKnumber{\arabic{chapter}}}{\arabic{chapter}}章}
+      \def\thesection{第\texorpdfstring{\CJKnumber{\arabic{section}}}{\arabic{section}}节}
+      \def\thesubsection{{\texorpdfstring{}{}\arabic{chapter}.\arabic{section}.\arabic{subsection}}}
+      \def\contentsname{目\quad 录}
+    \fi%Bio
+  \fi%Chem
   \def\appendixnamenonumber{附录}
   \def\appendixname{附\quad 录}
   \def\nkrefname{参考文献}
@@ -175,6 +195,12 @@
   \@xsect{#5}}
 
 \def\@seccntformat#1{\csname the#1\endcsname\quad}
+\if@NKT@Chem
+  \def\@seccntformat#1{\csname the#1\endcsname}
+\fi
+\if@NKT@Bio
+  \def\@seccntformat#1{\csname the#1\endcsname}
+\fi
 
 \def\section{
   \@startsection{section}{1}{\z@}{6pt}{6pt}{\sectionformat}}
@@ -191,7 +217,18 @@
 \def\sectionformat{\centering\heiti\zihaoxiaosan}
 \def\subsectionformat{\enghei\heiti\zihaosi\selectfont}
 \def\subsubsectionformat{\heiti\zihaosi}
-
+\if@NKT@Chem
+  \renewcommand{\chapterformat}{\centering\zihaoxiaosan\bfseries}
+  \renewcommand{\sectionformat}{\heiti\zihaosi}
+  \renewcommand{\subsectionformat}{\enghei\heiti\zihaoxiaosi\selectfont}
+  \renewcommand{\subsubsectionformat}{\heiti\zihaoxiaosi}
+\fi
+\if@NKT@Bio
+  \renewcommand{\chapterformat}{\zihaoxiaosan\bfseries}
+  \renewcommand{\sectionformat}{\heiti\zihaosi}
+  \renewcommand{\subsectionformat}{\enghei\heiti\zihaoxiaosi\selectfont}
+  \renewcommand{\subsubsectionformat}{\heiti\zihaoxiaosi}
+\fi
 
 \def\chapter{
   \if@openright
@@ -289,7 +326,15 @@
   \fi
   {  
   \phantomsection
-  \addcontentsline{toc}{chapter}{\protect\numberline{目 录}{}}
+  \if@NKT@Chem
+    \addcontentsline{toc}{chapter}{\protect 目\qquad 录}
+  \else
+    \if@NKT@Bio
+      %Bio Template have no line of 目录 in contents page
+    \else
+      \addcontentsline{toc}{chapter}{\protect\numberline{目 录}{}}
+    \fi
+  \fi
   \@toclinefalse\chapter*{\contentsname}}
   \@starttoc{toc}%
   \if@restonecol
@@ -355,15 +400,35 @@
 
 \def\NKTchapternumberline#1{
   \NKT@settoctitlewidth{chapter}{#1}
-  \hbox to \NKT@tempdim{#1\hfil}\hskip \toctitlesep}
+  \if@NKT@Bio
+    \hbox to \NKT@tempdim{#1\hfil}
+  \else
+    \hbox to \NKT@tempdim{#1\hfil}\hskip \toctitlesep
+  \fi}
 
 \def\NKTsectionnumberline#1{
   \NKT@settoctitlewidth{section}{#1}
-  \hbox to \NKT@tempdim{\hfil #1}\hskip \toctitlesep}
+  \if@NKT@Chem
+    \hbox to \NKT@tempdim{\hfil #1}
+  \else
+    \if@NKT@Bio
+      \hbox to \NKT@tempdim{\hfil #1}
+    \else
+      \hbox to \NKT@tempdim{\hfil #1}\hskip \toctitlesep
+    \fi
+  \fi}
 
 \def\NKTsubsectionnumberline#1{
   \NKT@settoctitlewidth{subsection}{#1}
-  \hbox to \NKT@tempdim{\hfil #1}\hskip \toctitlesep}
+  \if@NKT@Chem
+    \hbox to \NKT@tempdim{\hfil #1}
+  \else
+    \if@NKT@Bio
+      \hbox to \NKT@tempdim{\hfil #1}
+    \else
+      \hbox to \NKT@tempdim{\hfil #1}\hskip \toctitlesep
+    \fi
+  \fi}
 
 \def\NKT@settoctitlewidth#1#2{
   \settowidth\NKT@tempdim{#2}
@@ -734,7 +799,12 @@ Path=fonts/
     \pagestyle{empty}
     \@twosidefalse
     \NKTtitlepage
-    \NKTdeclaration
+    \if@NKT@Chem
+      %Chem requires declaration shown in CONTENTS page which requires
+      %adding it in main
+    \else
+      \NKTdeclaration
+    \fi
     % \NKTauthorization    
     \clearpage
     \ifx\NKT@key@lunwenleibie\NKT@string@boshi
@@ -762,10 +832,17 @@ Path=fonts/
 \def\zhixie{
   \clearpage
   \vspace*{0pt}
-  \centerline{\zihaosi\rmfamily\bfseries 致\quad 谢}
-  \phantomsection
-  \addcontentsline{toc}{chapter}{\protect\numberline{致\quad 谢}{}}
-  \markboth{致\quad 谢}{致\quad 谢} 
+  \if@NKT@Chem
+    \centerline{\zihaosi\rmfamily\bfseries 致\qquad 谢}
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\protect\numberline{致\qquad 谢}{}}
+    \markboth{致\qquad 谢}{致\qquad 谢}
+  \else%Chem
+    \centerline{\zihaosi\rmfamily\bfseries 致\quad 谢}
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\protect\numberline{致\quad 谢}{}}
+    \markboth{致\quad 谢}{致\quad 谢}
+  \fi%Chem 
   \vspace*{18pt}
   \fontsize{12}{20}\selectfont}
 \let\endzhixie\relax
@@ -781,16 +858,33 @@ Path=fonts/
 \let\endresume\relax
 
 
-
-
+%Chem requires \fulu with zihaosi title which is not compatible with 
+% \appendix command derived from \chapter.
+\def\fulu{
+  \clearpage
+  \vspace*{0pt}
+  \centerline{\zihaosi\bfseries 附\qquad 录}
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\protect 附\qquad 录}
+  \markboth{附\qquad 录}{附\qquad 录}
+  \vspace*{2pt}
+  \fontsize{12}{20}\selectfont}
+\let\endfulu\relax
 
 \def\zhaiyao{
   \clearpage
   \vspace*{0pt}
-  \centerline{\zihaosi\bfseries 摘\quad 要}
-  \phantomsection
-  \addcontentsline{toc}{chapter}{\protect\numberline{摘 要}{}}
-  \markboth{摘\quad 要}{摘\quad 要} 
+  \if@NKT@Chem
+    \centerline{\zihaosi\bfseries 摘\qquad 要}
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\protect 摘\qquad 要}
+    \markboth{摘\qquad 要}{摘\qquad 要}
+  \else%Chem
+    \centerline{\zihaosi\bfseries 摘\quad 要}
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\protect\numberline{摘 要}{}}
+    \markboth{摘\quad 要}{摘\quad 要}
+  \fi%Chem 
   \vspace*{18pt}
   \fontsize{12}{20}\selectfont}
 \let\endzhaiyao\relax
@@ -801,7 +895,15 @@ Path=fonts/
 %  \centerline{\zihaosi \jiacu Abstract}
   \centerline{\zihaosi \bfseries Abstract}
   \phantomsection
-  \addcontentsline{toc}{chapter}{\protect\numberline{Abstract}{}}  
+  \if@NKT@Chem
+    \addcontentsline{toc}{chapter}{\protect{Abstract}}
+  \else
+    \if@NKT@Bio
+      \addcontentsline{toc}{chapter}{\protect\numberline{\textbf{Abstract}}{}}
+    \else
+      \addcontentsline{toc}{chapter}{\protect\numberline{Abstract}{}}
+    \fi
+  \fi
   \markboth{Abstract}{Abstract}
   \vspace*{18pt}
   \fontsize{12}{20}\selectfont}
@@ -814,6 +916,16 @@ Path=fonts/
 \let\endkeywords\relax
  
 \endlinechar `\^^M
+
+\def\reference{
+  \clearpage
+  \vspace*{0pt}
+%  \centerline{\zihaosi \jiacu 参考文献}
+  \centerline{\zihaoxiaosan \bfseries 参考文献}
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\protect{参考文献}}
+  \vspace{\belowchapterspace}
+}
 
 
 \long\def\NKTtitlepage{
@@ -910,6 +1022,9 @@ Path=fonts/
 \long\def\NKTdeclaration{
   \clearpage
   \@makeschapterhead{\centerline{\zihaosan\bfseries 关于南开大学本科生毕业论文（设计）的声明}}
+  \if@NKT@Chem
+    \addcontentsline{toc}{chapter}{\protect{关于南开大学本科生毕业论文（设计）的声明}}
+  \fi
 %  \vskip 24pt
 
   \fontsize{12}{24}\selectfont

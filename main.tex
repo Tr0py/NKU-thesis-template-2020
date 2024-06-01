@@ -9,7 +9,9 @@
 \fi
 % 上下2.54cm，左右3.17cm，页眉1.5cm，页脚1.75cm
 \usepackage{geometry}
-\usepackage[emptydoublepage]{NKThesis}   % 中文
+%分学院风格的模板。已实现的：Chem/化院，Bio/生科院
+\def\college{Bio}
+\usepackage[emptydoublepage,\college]{NKThesis}   % 中文
 %\usepackage[emptydoublepage,English]{NKThesis} % 英文
 \usepackage{amssymb}
 %   根据需要选择 biblatex 宏包选项.
@@ -77,6 +79,9 @@
 \renewcommand{\algorithmicrequire}{\textbf{输入：}}
 \renewcommand{\algorithmicensure}{\textbf{输出：}}
 
+\ifdefstring{\college}{Chem}{
+  \defbibheading{bibliography}[\bibname]{\reference}
+  }{}
 \renewcommand*{\songti}{\CJKfamily{zhsong}} %宋体加粗
 \algnewcommand{\LeftComment}[1]{\Statex \(\triangleright\) #1}
 \floatname{algorithm}{算法}
@@ -112,13 +117,23 @@
   空后缀 = ,
   }
 
+%\ifdefstring{\college}{Chem}{\NKTdeclaration}{}
 \include{abstract}
 \tableofcontents
 \begin{spacing}{1.5}
 \include{manual}
 \include{references}
-\end{spacing}
-\include{acknowledgements}
-\include{resume}
-
+\ifdefstring{\college}{Chem}{
+  \include{acknowledgements}
+  \end{spacing}
+  }{
+\ifdefstring{\college}{Bio}{
+  \include{acknowledgements}
+  \end{spacing}
+  }{
+  \end{spacing}
+  \include{acknowledgements}
+  \include{resume}
+}%Bio
+}%Chem
 \end{document}

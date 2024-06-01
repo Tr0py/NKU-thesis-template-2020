@@ -799,12 +799,14 @@ Path=fonts/
     \pagestyle{empty}
     \@twosidefalse
     \NKTtitlepage
-    \if@NKT@Chem
+%    \if@NKT@Chem
       %Chem requires declaration shown in CONTENTS page which requires
       %adding it in main
-    \else
+      % 24-6-1: NKU 学生培养与课程中心 Specified declaration should NOT
+      % be numbered in page
+%    \else
       \NKTdeclaration
-    \fi
+%    \fi
     % \NKTauthorization    
     \clearpage
     \ifx\NKT@key@lunwenleibie\NKT@string@boshi
@@ -1022,9 +1024,9 @@ Path=fonts/
 \long\def\NKTdeclaration{
   \clearpage
   \@makeschapterhead{\centerline{\zihaosan\bfseries 关于南开大学本科生毕业论文（设计）的声明}}
-  \if@NKT@Chem
-    \addcontentsline{toc}{chapter}{\protect{关于南开大学本科生毕业论文（设计）的声明}}
-  \fi
+  %\if@NKT@Chem
+  %  \addcontentsline{toc}{chapter}{\protect{关于南开大学本科生毕业论文（设计）的声明}}
+  %\fi
 %  \vskip 24pt
 
   \fontsize{12}{24}\selectfont
